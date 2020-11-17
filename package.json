@@ -21,6 +21,7 @@
   "homepage": "https://github.com/bbhye1/project-react-2-bbhye1#readme",
   "dependencies": {
     "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@reduxjs/toolkit": "^1.4.0",
     "react": "^17.0.1",
