@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Global, css } from '@emotion/react';
 
+import MoodControllerPage from './MoodControllerPage';
+
 const GlobalStyles = css`
 body {
   background-color: #fff;
@@ -22,7 +24,7 @@ export default function App() {
   return (
     <>
       <Global styles={GlobalStyles} />
-      <h1>Hello</h1>
+      <MoodControllerPage />
     </>
   );
 }

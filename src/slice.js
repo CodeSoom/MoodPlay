@@ -3,17 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
+    clientLocation: null,
   },
   reducers: {
-    setTest(state, { payload: test }) {
+    setClientLocation(state, { payload: clientLocation }) {
       return {
         ...state,
-        test,
+        clientLocation,
       };
     },
   },
 });
 
-export const { setTest } = actions;
+export const { setClientLocation } = actions;
 
 export default reducer;
