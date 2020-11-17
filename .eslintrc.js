@@ -15,6 +15,13 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+    context: 'readonly',
+    Feature: 'readonly',
+    given: 'readonly',
+  },
   plugins: [
     'react',
   ],
