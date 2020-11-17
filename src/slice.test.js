@@ -1,16 +1,20 @@
-import reducer, { setTest } from './slice';
+import reducer, { setClientLocation } from './slice';
 
 describe('reducer', () => {
-  it('reducer test', () => {
-    const initialState = {
-      test: null,
-    };
+  describe('setClientLocationt', () => {
+    it('changes clientLocation', () => {
+      const initialState = {
+        clientLocation: null,
+      };
 
-    const test = 'test';
+      const clientLocation = {
+        x: '15',
+        y: '22',
+      };
 
-    const state = reducer(initialState, setTest(test));
-    expect(state).toEqual({
-      test: 'test',
+      const state = reducer(initialState, setClientLocation(clientLocation));
+
+      expect(state.clientLocation).toEqual(clientLocation);
     });
   });
 });
