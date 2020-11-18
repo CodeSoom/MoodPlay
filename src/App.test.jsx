@@ -12,6 +12,7 @@ test('App', () => {
   useSelector.mockImplementation((selector) => selector(
     {
       clientLocation: null,
+      todayMood: [],
     },
   ));
 

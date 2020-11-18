@@ -18,13 +18,18 @@ describe('MoodControllerContainer', () => {
 
     useSelector.mockImplementation((selector) => selector({
       clientLocation: given.clientLocation,
+      todayMood: given.todayMood,
     }));
   });
 
-  it('renders mood submit button', () => {
-    const { container } = render(<MoodControllerContainer />);
+  given('todayMood', () => []);
 
-    expect(container).toHaveTextContent('Play your mood');
+  it('renders mood submit button', () => {
+    const { getByText } = render(<MoodControllerContainer />);
+
+    fireEvent.click(getByText('Play your mood'));
+
+    expect(dispatch).toBeCalled();
   });
 
   it('renders mood controller', () => {
@@ -58,6 +63,26 @@ describe('MoodControllerContainer', () => {
       const { queryByTestId } = render(<MoodControllerContainer />);
 
       expect(queryByTestId('pointer')).toBeNull();
+    });
+  });
+
+  context('with clientLocation', () => {
+    given('todayMood', () => [['차분한', 40], ['밝은', 20]]);
+
+    it("renders today's mood message", () => {
+      const { container } = render(<MoodControllerContainer />);
+
+      expect(container).toHaveTextContent('오늘의 기분은 차분한40% 밝은20% 입니다!');
+    });
+  });
+
+  context('without clientLocation', () => {
+    given('todayMood', () => []);
+
+    it("renders no today's mood message", () => {
+      const { container } = render(<MoodControllerContainer />);
+
+      expect(container).not.toHaveTextContent('오늘의 기분은 차분한40% 밝은20% 입니다!');
     });
   });
 });
