@@ -12,6 +12,7 @@ describe('MoodControllerPage', () => {
   useSelector.mockImplementation((selector) => selector(
     {
       clientLocation: null,
+      todayMood: [],
     },
   ));
 

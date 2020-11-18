@@ -9,7 +9,6 @@ body {
   background-color: #fff;
   margin : 0;
   padding: 0;
-  position: relative;
   width: 100vw;
   height: 10vh;
   overflow: hidden;
