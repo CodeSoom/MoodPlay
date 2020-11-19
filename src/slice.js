@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
-    clientLocation: null,
+    moodPointLocation: null,
     moodRatio: {},
     todayMood: [],
   },
   reducers: {
-    setClientLocation(state, { payload: clientLocation }) {
+    setMoodPointLocation(state, { payload: moodPointLocation }) {
       return {
         ...state,
-        clientLocation,
+        moodPointLocation,
       };
     },
 
@@ -78,7 +78,7 @@ const { actions, reducer } = createSlice({
 });
 
 export const {
-  setClientLocation,
+  setMoodPointLocation,
   setMoodRatio,
   setTodayMood,
 } = actions;

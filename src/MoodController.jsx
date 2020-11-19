@@ -51,8 +51,8 @@ const Uplifting = styled.p({
   transform: 'translateY(-50%)',
 });
 
-export default function MoodController({ onClick, clientLocation }) {
-  if (!clientLocation) {
+export default function MoodController({ onClick, moodPointLocation }) {
+  if (!moodPointLocation) {
     return (
       <>
         <Controller type="button" value="controller" onClick={onClick} />
@@ -64,7 +64,7 @@ export default function MoodController({ onClick, clientLocation }) {
     );
   }
 
-  const { x, y } = clientLocation;
+  const { x, y } = moodPointLocation;
 
   return (
     <>

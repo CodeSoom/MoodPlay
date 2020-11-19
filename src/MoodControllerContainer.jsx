@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  setClientLocation,
+  setMoodPointLocation,
   setMoodRatio,
   setTodayMood,
 } from './slice';
@@ -13,8 +13,8 @@ import MoodController from './MoodController';
 export default function MoodControllerContainer() {
   const dispatch = useDispatch();
 
-  const { clientLocation, todayMood } = useSelector((state) => ({
-    clientLocation: state.clientLocation,
+  const { moodPointLocation, todayMood } = useSelector((state) => ({
+    moodPointLocation: state.moodPointLocation,
     todayMood: state.todayMood,
   }));
 
@@ -30,7 +30,7 @@ export default function MoodControllerContainer() {
       yPosition: clientY,
     }));
 
-    dispatch(setClientLocation({ x: clientX, y: clientY }));
+    dispatch(setMoodPointLocation({ x: clientX, y: clientY }));
   };
 
   const handSubmitMood = () => {
@@ -56,7 +56,7 @@ export default function MoodControllerContainer() {
         : null}
       <MoodController
         onClick={handleClickController}
-        clientLocation={clientLocation}
+        moodPointLocation={moodPointLocation}
       />
     </>
   );
