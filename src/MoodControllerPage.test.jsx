@@ -27,9 +27,9 @@ describe('MoodControllerPage', () => {
   });
 
   it('render mood controller', () => {
-    const { getByText, getByTestId } = renderMoodControllerPage();
+    const { getByText } = renderMoodControllerPage();
 
     expect(getByText('Play your mood')).not.toBeNull();
-    expect(getByTestId('controller')).not.toBeNull();
+    expect(getByText('controller')).not.toBeNull();
   });
 });

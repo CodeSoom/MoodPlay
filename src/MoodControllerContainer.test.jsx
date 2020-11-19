@@ -33,9 +33,9 @@ describe('MoodControllerContainer', () => {
   });
 
   it('renders mood controller', () => {
-    const { getByTestId } = render(<MoodControllerContainer />);
+    const { getByText } = render(<MoodControllerContainer />);
 
-    fireEvent.click(getByTestId('controller'));
+    fireEvent.click(getByText('controller'));
 
     expect(dispatch).toBeCalledWith({
       payload: {

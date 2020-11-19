@@ -17,15 +17,15 @@ describe('MoodController', () => {
   }
 
   it('renders Mood controller', () => {
-    const { getByTestId } = renderMoodController();
+    const { getByText } = renderMoodController();
 
-    expect(getByTestId('controller')).not.toBeNull();
+    expect(getByText('controller')).not.toBeNull();
   });
 
   it('listens click event', () => {
-    const { getByTestId } = renderMoodController();
+    const { getByText } = renderMoodController();
 
-    fireEvent.click(getByTestId('controller'));
+    fireEvent.click(getByText('controller'));
 
     expect(handleClick).toBeCalled();
   });

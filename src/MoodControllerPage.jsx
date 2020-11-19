@@ -11,6 +11,7 @@ const Wrap = styled.div({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  position: 'relative',
 });
 
 export default function MoodControllerPage() {
