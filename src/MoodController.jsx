@@ -2,14 +2,15 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-const Controller = styled.div({
-  position: 'relative',
+const Controller = styled.input({
   width: '500px',
   height: '500px',
   backgroundColor: 'darkorange',
   borderRadius: '50%',
   cursor: 'pointer',
   marginTop: '50px',
+  outline: 0,
+  color: 'transparent',
 });
 
 const Pointer = styled.div(({ x, y }) => ({
@@ -53,25 +54,21 @@ const Uplifting = styled.p({
 export default function MoodController({ onClick, clientLocation }) {
   if (!clientLocation) {
     return (
-      <Controller
-        onClick={onClick}
-        data-testid="controller"
-      >
+      <>
+        <Controller type="button" value="controller" onClick={onClick} />
         <Happy>밝은</Happy>
         <Sad>어두운</Sad>
         <Calm>차분한</Calm>
         <Uplifting>신나는</Uplifting>
-      </Controller>
+      </>
     );
   }
 
   const { x, y } = clientLocation;
 
   return (
-    <Controller
-      onClick={onClick}
-      data-testid="controller"
-    >
+    <>
+      <Controller type="button" value="controller" onClick={onClick} />
       <Pointer
         x={x}
         y={y}
@@ -81,6 +78,6 @@ export default function MoodController({ onClick, clientLocation }) {
       <Sad>어두운</Sad>
       <Calm>차분한</Calm>
       <Uplifting>신나는</Uplifting>
-    </Controller>
+    </>
   );
 }
