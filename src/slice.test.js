@@ -1,24 +1,24 @@
 import reducer, {
-  setClientLocation,
+  setMoodPointLocation,
   setMoodRatio,
   setTodayMood,
 } from './slice';
 
 describe('reducer', () => {
-  describe('setClientLocationt', () => {
-    it('changes clientLocation', () => {
+  describe('setMoodPointLocation', () => {
+    it('changes moodPointLocation', () => {
       const initialState = {
-        clientLocation: null,
+        moodPointLocation: null,
       };
 
-      const clientLocation = {
+      const moodPointLocation = {
         x: '15',
         y: '22',
       };
 
-      const state = reducer(initialState, setClientLocation(clientLocation));
+      const state = reducer(initialState, setMoodPointLocation(moodPointLocation));
 
-      expect(state.clientLocation).toEqual(clientLocation);
+      expect(state.moodPointLocation).toEqual(moodPointLocation);
     });
   });
 

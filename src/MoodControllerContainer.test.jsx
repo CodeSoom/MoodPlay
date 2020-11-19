@@ -17,7 +17,7 @@ describe('MoodControllerContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      clientLocation: given.clientLocation,
+      moodPointLocation: given.moodPointLocation,
       todayMood: given.todayMood,
     }));
   });
@@ -42,12 +42,12 @@ describe('MoodControllerContainer', () => {
         x: 0,
         y: 0,
       },
-      type: 'application/setClientLocation',
+      type: 'application/setMoodPointLocation',
     });
   });
 
-  context('with clientLocation', () => {
-    given('clientLocation', () => ({ x: 1, y: 1 }));
+  context('with moodPointLocation', () => {
+    given('moodPointLocation', () => ({ x: 1, y: 1 }));
 
     it('renders mood controller mood point', () => {
       const { getByTestId } = render(<MoodControllerContainer />);
@@ -56,8 +56,8 @@ describe('MoodControllerContainer', () => {
     });
   });
 
-  context('without clientLocation', () => {
-    given('clientLocation', () => null);
+  context('without moodPointLocation', () => {
+    given('moodPointLocation', () => null);
 
     it('renders no mood controller mood point', () => {
       const { queryByTestId } = render(<MoodControllerContainer />);
@@ -66,7 +66,7 @@ describe('MoodControllerContainer', () => {
     });
   });
 
-  context('with clientLocation', () => {
+  context('with todayMood', () => {
     given('todayMood', () => [['차분한', 40], ['밝은', 20]]);
 
     it("renders today's mood message", () => {
@@ -76,7 +76,7 @@ describe('MoodControllerContainer', () => {
     });
   });
 
-  context('without clientLocation', () => {
+  context('without todayMood', () => {
     given('todayMood', () => []);
 
     it("renders no today's mood message", () => {

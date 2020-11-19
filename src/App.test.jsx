@@ -11,7 +11,7 @@ jest.mock('react-redux');
 test('App', () => {
   useSelector.mockImplementation((selector) => selector(
     {
-      clientLocation: null,
+      moodPointLocation: null,
       todayMood: [],
     },
   ));

@@ -7,11 +7,11 @@ import MoodController from './MoodController';
 describe('MoodController', () => {
   const handleClick = jest.fn();
 
-  function renderMoodController(clientLocation) {
+  function renderMoodController(moodPointLocation) {
     return render(
       <MoodController
         onClick={handleClick}
-        clientLocation={clientLocation}
+        moodPointLocation={moodPointLocation}
       />,
     );
   }
@@ -30,21 +30,21 @@ describe('MoodController', () => {
     expect(handleClick).toBeCalled();
   });
 
-  context('with clientLocation', () => {
-    const clientLocation = { x: 1, y: 2 };
+  context('with moodPointLocation', () => {
+    const moodPointLocation = { x: 1, y: 2 };
 
     it('renders mood point', () => {
-      const { getByTestId } = renderMoodController(clientLocation);
+      const { getByTestId } = renderMoodController(moodPointLocation);
 
       expect(getByTestId('mood-point')).not.toBeNull();
     });
   });
 
-  context('without clientLocation', () => {
-    const clientLocation = null;
+  context('without moodPointLocation', () => {
+    const moodPointLocation = null;
 
     it('renders no mood point', () => {
-      const { queryByTestId } = renderMoodController(clientLocation);
+      const { queryByTestId } = renderMoodController(moodPointLocation);
 
       expect(queryByTestId('mood-point')).toBeNull();
     });
