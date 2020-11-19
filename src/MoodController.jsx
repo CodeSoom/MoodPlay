@@ -13,7 +13,7 @@ const Controller = styled.input({
   color: 'transparent',
 });
 
-const Pointer = styled.div(({ x, y }) => ({
+const MoodPoint = styled.div(({ x, y }) => ({
   position: 'fixed',
   top: `${y - 15}px`,
   left: `${x - 15}px`,
@@ -69,10 +69,10 @@ export default function MoodController({ onClick, clientLocation }) {
   return (
     <>
       <Controller type="button" value="controller" onClick={onClick} />
-      <Pointer
+      <MoodPoint
         x={x}
         y={y}
-        data-testid="pointer"
+        data-testid="mood-point"
       />
       <Happy>밝은</Happy>
       <Sad>어두운</Sad>

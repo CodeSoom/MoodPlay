@@ -33,20 +33,20 @@ describe('MoodController', () => {
   context('with clientLocation', () => {
     const clientLocation = { x: 1, y: 2 };
 
-    it('renders pointer', () => {
+    it('renders mood point', () => {
       const { getByTestId } = renderMoodController(clientLocation);
 
-      expect(getByTestId('pointer')).not.toBeNull();
+      expect(getByTestId('mood-point')).not.toBeNull();
     });
   });
 
   context('without clientLocation', () => {
     const clientLocation = null;
 
-    it('renders no pointer', () => {
+    it('renders no mood point', () => {
       const { queryByTestId } = renderMoodController(clientLocation);
 
-      expect(queryByTestId('pointer')).toBeNull();
+      expect(queryByTestId('mood-point')).toBeNull();
     });
   });
 });

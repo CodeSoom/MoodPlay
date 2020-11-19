@@ -27,7 +27,7 @@ describe('reducer', () => {
       moodRatio: {},
     };
 
-    context('pointer is close to "calm" and "sad" than "uplifting" and "happy"', () => {
+    context('mood point is close to "calm" and "sad" than "uplifting" and "happy"', () => {
       it('changes uplifting and happy in moodRatio', () => {
         const moodRatio = {
           top: 100,
@@ -44,7 +44,7 @@ describe('reducer', () => {
       });
     });
 
-    context('pointer is close to "uplifting" and "happy" than "calm" and "sad"', () => {
+    context('mood point is close to "uplifting" and "happy" than "calm" and "sad"', () => {
       it('changes calm and sad in moodRatio', () => {
         const moodRatio = {
           top: 100,
