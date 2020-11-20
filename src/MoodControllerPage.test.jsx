@@ -11,8 +11,7 @@ jest.mock('react-redux');
 describe('MoodControllerPage', () => {
   useSelector.mockImplementation((selector) => selector(
     {
-      clientLocation: null,
-      todayMood: [],
+      moodselectFields: {},
     },
   ));
 
@@ -24,12 +23,5 @@ describe('MoodControllerPage', () => {
     const { container } = renderMoodControllerPage();
 
     expect(container).toHaveTextContent('오늘은 어떤 날인가요?');
-  });
-
-  it('render mood controller', () => {
-    const { getByText } = renderMoodControllerPage();
-
-    expect(getByText('Play your mood')).not.toBeNull();
-    expect(getByText('controller')).not.toBeNull();
   });
 });
