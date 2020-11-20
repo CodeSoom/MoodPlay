@@ -2,7 +2,7 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import MoodControllerContainer from './MoodControllerContainer';
 
@@ -15,74 +15,43 @@ describe('MoodControllerContainer', () => {
     dispatch.mockClear();
 
     useDispatch.mockImplementation(() => dispatch);
-
-    useSelector.mockImplementation((selector) => selector({
-      moodPointLocation: given.moodPointLocation,
-      todayMood: given.todayMood,
-    }));
   });
 
-  given('todayMood', () => []);
+  it('renders mood energy select fields', () => {
+    const { container } = render(<MoodControllerContainer />);
 
-  it('renders mood submit button', () => {
-    const { getByText } = render(<MoodControllerContainer />);
-
-    fireEvent.click(getByText('Play your mood'));
-
-    expect(dispatch).toBeCalled();
+    expect(container).toHaveTextContent('차분하고 싶으세요 아니면 신나고 싶으세요?');
   });
 
-  it('renders mood controller', () => {
-    const { getByText } = render(<MoodControllerContainer />);
+  it('renders mood brightness select fields', () => {
+    const { container } = render(<MoodControllerContainer />);
 
-    fireEvent.click(getByText('controller'));
-
-    expect(dispatch).toBeCalledWith({
-      payload: {
-        x: 0,
-        y: 0,
-      },
-      type: 'application/setMoodPointLocation',
-    });
+    expect(container).toHaveTextContent('밝은 느낌이 좋으세요? 아니면 어두운 느낌이 좋으세요?');
   });
 
-  context('with moodPointLocation', () => {
-    given('moodPointLocation', () => ({ x: 1, y: 1 }));
+  context('when select mood', () => {
+    it('calls dispatch', () => {
+      const { getByLabelText } = render(<MoodControllerContainer />);
 
-    it('renders mood controller mood point', () => {
-      const { getByTestId } = render(<MoodControllerContainer />);
+      fireEvent.click(getByLabelText('차분한'));
 
-      expect(getByTestId('mood-point')).not.toBeNull();
-    });
-  });
+      expect(dispatch).toBeCalledWith({
+        type: 'application/setMoodselectFields',
+        payload: {
+          name: 'energy',
+          value: 'calm',
+        },
+      });
 
-  context('without moodPointLocation', () => {
-    given('moodPointLocation', () => null);
+      fireEvent.click(getByLabelText('밝은'));
 
-    it('renders no mood controller mood point', () => {
-      const { queryByTestId } = render(<MoodControllerContainer />);
-
-      expect(queryByTestId('mood-point')).toBeNull();
-    });
-  });
-
-  context('with todayMood', () => {
-    given('todayMood', () => [['차분한', 40], ['밝은', 20]]);
-
-    it("renders today's mood message", () => {
-      const { container } = render(<MoodControllerContainer />);
-
-      expect(container).toHaveTextContent('오늘의 기분은 차분한40% 밝은20% 입니다!');
-    });
-  });
-
-  context('without todayMood', () => {
-    given('todayMood', () => []);
-
-    it("renders no today's mood message", () => {
-      const { container } = render(<MoodControllerContainer />);
-
-      expect(container).not.toHaveTextContent('오늘의 기분은 차분한40% 밝은20% 입니다!');
+      expect(dispatch).toBeCalledWith({
+        type: 'application/setMoodselectFields',
+        payload: {
+          name: 'brightness',
+          value: 'happy',
+        },
+      });
     });
   });
 });
