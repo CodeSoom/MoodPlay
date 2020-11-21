@@ -13,10 +13,6 @@ body {
   word-break: keep-all;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
 ul {
   list-style: none;
 }

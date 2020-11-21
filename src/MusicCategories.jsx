@@ -1,0 +1,54 @@
+import React from 'react';
+
+import styled from '@emotion/styled';
+
+const Cards = styled.ul({
+  height: '18%',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'rows',
+  marginTop: '30px',
+});
+
+const Card = styled.li({
+  height: '100%',
+  width: '200px',
+  border: '3px solid #f0f0f0',
+  borderRadius: '10px',
+  padding: '20px 30px',
+  margin: '0 15px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  cursor: 'pointer',
+  '& p': {
+    color: 'dodgerblue',
+  },
+});
+
+export default function MusicCategories({ moodCategories }) {
+  const tags = {
+    calm: '차분한',
+    uplifting: '신나는',
+    happy: '밝은',
+    dark: '어두운',
+  };
+
+  return (
+    <Cards>
+      {
+        moodCategories.map(([title, tag1, tag2]) => (
+          <Card key={title}>
+            <h3>{title}</h3>
+            <p>
+              #
+              {tags[tag1]}
+              {' '}
+              {tag2 ? `#${tags[tag2]}` : ''}
+            </p>
+          </Card>
+        ))
+      }
+    </Cards>
+  );
+}
