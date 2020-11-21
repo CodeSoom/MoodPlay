@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import {
   setMoodselectFields,
   loadMoodCategories,
@@ -13,12 +15,8 @@ import MoodBrightnessForm from './MoodBrightnessForm';
 export default function MoodControllerContainer() {
   const dispatch = useDispatch();
 
-  const {
-    moodselectFields,
-    moodCategories,
-  } = useSelector((state) => ({
+  const { moodselectFields } = useSelector((state) => ({
     moodselectFields: state.moodselectFields,
-    moodCategories: state.moodCategories,
   }));
 
   function handleChangeMood(event) {
@@ -46,16 +44,10 @@ export default function MoodControllerContainer() {
         onChange={handleChangeMood}
       />
       <button type="button" onClick={handleSubmitMood}>
-        Play your mood!
+        <Link to="/moodplay">
+          Play your mood!
+        </Link>
       </button>
-      <ul>
-        {
-          moodCategories.length
-            ? moodCategories
-              .map((item) => (<li>{`${item[0]} - ${item[1]} ${item[2] || ''}`}</li>))
-            : null
-        }
-      </ul>
     </>
   );
 }

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import MoodControllerContainer from './MoodControllerContainer';
@@ -27,17 +29,25 @@ describe('MoodControllerContainer', () => {
     brightness: '',
   }));
 
+  function renderMoodControllerContainer() {
+    return render(
+      <MemoryRouter>
+        <MoodControllerContainer />
+      </MemoryRouter>,
+    );
+  }
+
   describe('mood select field', () => {
     it('renders mood select fields', () => {
-      const { container } = render(<MoodControllerContainer />);
+      const { container } = renderMoodControllerContainer();
 
       expect(container).toHaveTextContent('차분하고 싶으세요 아니면 신나고 싶으세요?');
       expect(container).toHaveTextContent('밝은 느낌이 좋으세요? 아니면 어두운 느낌이 좋으세요?');
     });
 
-    context('when select mood energy', () => {
+    context('when select mood', () => {
       it('calls dispatch', () => {
-        const { getByLabelText } = render(<MoodControllerContainer />);
+        const { getByLabelText } = renderMoodControllerContainer();
 
         fireEvent.click(getByLabelText('차분한'));
 
@@ -64,7 +74,7 @@ describe('MoodControllerContainer', () => {
 
   describe('submit button', () => {
     it('renders submit button', () => {
-      const { container } = render(<MoodControllerContainer />);
+      const { container } = renderMoodControllerContainer();
       expect(container).toHaveTextContent('Play your mood!');
     });
 
@@ -75,7 +85,7 @@ describe('MoodControllerContainer', () => {
       }));
 
       it('calls dispatch', () => {
-        const { getByText } = render(<MoodControllerContainer />);
+        const { getByText } = renderMoodControllerContainer();
 
         fireEvent.click(getByText('Play your mood!'));
 
@@ -90,7 +100,7 @@ describe('MoodControllerContainer', () => {
       }));
 
       it("doesn't call any dispatch", () => {
-        const { getByText } = render(<MoodControllerContainer />);
+        const { getByText } = renderMoodControllerContainer();
 
         fireEvent.click(getByText('Play your mood!'));
 

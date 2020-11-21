@@ -4,6 +4,8 @@ import { render } from '@testing-library/react';
 
 import { useSelector } from 'react-redux';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import MoodControllerPage from './MoodControllerPage';
 
 jest.mock('react-redux');
@@ -19,7 +21,11 @@ test('MoodControllerPage', () => {
     },
   ));
 
-  const { container } = render(<MoodControllerPage />);
+  const { container } = render(
+    <MemoryRouter>
+      <MoodControllerPage />
+    </MemoryRouter>,
+  );
 
   expect(container).toHaveTextContent('오늘은 어떤 날인가요?');
   expect(container).toHaveTextContent('차분하고 싶으세요 아니면 신나고 싶으세요?');
