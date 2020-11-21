@@ -4,7 +4,7 @@ import Form from './styles/Form';
 import RadioWrap from './styles/RadioWrap';
 
 export default function RelaxValueForm({ onChange }) {
-  const formValues = [{ id: 'calm', text: '차분한' }, { id: 'uplifthing', text: '신나는' }];
+  const formValues = [{ id: 'calm', text: '차분한' }, { id: 'uplifting', text: '신나는' }];
 
   return (
     <Form>
