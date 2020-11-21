@@ -3,7 +3,7 @@ import React from 'react';
 import Form from './styles/Form';
 import RadioWrap from './styles/RadioWrap';
 
-export default function RelaxValueForm({ onChange }) {
+export default function MoodEnergyForm({ onChange }) {
   const formValues = [{ id: 'calm', text: '차분한' }, { id: 'uplifting', text: '신나는' }];
 
   return (
