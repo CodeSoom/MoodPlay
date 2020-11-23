@@ -1,8 +1,5 @@
 # Node.js
 node_modules/
 
-# jest
-coverage
-
 # dist
 dist/
