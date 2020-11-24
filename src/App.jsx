@@ -13,8 +13,8 @@ import MoodPlayPage from './MoodPlayPage';
 export default function App() {
   return (
     <Switch>
-      <Route exact path="/" component={MoodControllerPage} />
-      <Route exact path="/moodplay" component={MoodPlayPage} />
+      <Route exact path="/project-react-2-bbhye1" component={MoodControllerPage} />
+      <Route exact path="/project-react-2-bbhye1/moodplay" component={MoodPlayPage} />
     </Switch>
   );
 }
