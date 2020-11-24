@@ -29,17 +29,17 @@ describe('App', () => {
     );
   }
 
-  context('with path /', () => {
+  context('with path /project-react-2-bbhye1', () => {
     it('renders the Mood controller page', () => {
-      const { container } = renderApp({ path: '/' });
+      const { container } = renderApp({ path: '/project-react-2-bbhye1' });
 
       expect(container).toHaveTextContent('오늘은 어떤 날인가요?');
     });
   });
 
-  context('with path /moodplay', () => {
+  context('with path /project-react-2-bbhye1//moodplay', () => {
     it('renders the Mood controller page', () => {
-      const { container } = renderApp({ path: '/moodplay' });
+      const { container } = renderApp({ path: '/project-react-2-bbhye1/moodplay' });
 
       expect(container).toHaveTextContent('기분에 어울리는 장르들이에요!');
     });
