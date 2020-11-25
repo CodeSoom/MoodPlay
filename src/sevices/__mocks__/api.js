@@ -5,7 +5,13 @@ export function getMoodCategories() {
   ]);
 }
 
-// TODO DELETE
-export function XX() {
+export function getCategoryKeyword() {
+  return [
+    'Keyword1',
+    'Keyword2',
+  ];
+}
 
+export async function fetchMusic() {
+  return [];
 }

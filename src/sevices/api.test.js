@@ -1,4 +1,10 @@
-import { getMoodCategories } from './api';
+import {
+  getMoodCategories,
+  getCategoryKeyword,
+  fetchMusic,
+} from './api';
+
+jest.mock('./youtube.js');
 
 describe('api', () => {
   describe('getMoodCategories', () => {
@@ -45,6 +51,32 @@ describe('api', () => {
           ['팝', 'happy'],
         ]);
       });
+    });
+  });
+
+  describe('getCategoryKeyword', () => {
+    it('returns keyword', () => {
+      const keyword = getCategoryKeyword({
+        title: '뉴에이지',
+        tag: 'calm',
+      });
+
+      expect(keyword).toEqual('차분한 뉴에이지');
+    });
+  });
+
+  describe('fetchMusic', () => {
+    it('returns category music', async () => {
+      const data = await fetchMusic('차분한 뉴에이지');
+
+      expect(data).toEqual([{
+        snippet: {
+          channelTitle: 'channelTitle1',
+          description: 'description1',
+          title: 'title1',
+          thumbnails: {},
+        },
+      }]);
     });
   });
 });
