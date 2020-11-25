@@ -5,10 +5,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import reducer, {
   setMoodselectFields,
   setMoodCategories,
-  setSelectedCategory,
-  setCategoryMusic,
   loadMoodCategories,
-  loadMusic,
 } from './slice';
 
 const middlewares = getDefaultMiddleware();
@@ -56,84 +53,6 @@ describe('reducer', () => {
       expect(state.moodCategories).toEqual(moodCategories);
     });
   });
-
-  describe('setSelectedCategory', () => {
-    it('changes selectedCategory', () => {
-      const initialState = {
-        selectedCategory: '',
-      };
-
-      const selectedCategory = '뉴에이지';
-
-      const state = reducer(initialState, setSelectedCategory(selectedCategory));
-
-      expect(state.selectedCategory).toEqual(selectedCategory);
-    });
-  });
-
-  describe('setCategoryMusic', () => {
-    it('creates each category music', () => {
-      const initialState = {};
-
-      const title = '뉴에이지';
-
-      const music = [
-        {
-          snippet: {
-            channelTitle: 'channelTitle1;',
-            title: 'title1',
-          },
-        },
-      ];
-
-      const state = reducer(initialState, setCategoryMusic({ title, music }));
-
-      expect(state[title]).toEqual(music);
-    });
-
-    context('when same title category is exist', () => {
-      it('add music to same title category', () => {
-        const initialState = {
-          뉴에이지: [
-            {
-              snippet: {
-                channelTitle: 'channelTitle1;',
-                title: 'title1',
-              },
-            },
-          ],
-        };
-
-        const title = '뉴에이지';
-
-        const music = [
-          {
-            snippet: {
-              channelTitle: 'channelTitle2;',
-              title: 'title2',
-            },
-          },
-        ];
-
-        const state = reducer(initialState, setCategoryMusic({ title, music }));
-
-        expect(state[title]).toEqual([
-          {
-            snippet: {
-              channelTitle: 'channelTitle1;',
-              title: 'title1',
-            },
-          },
-          {
-            snippet: {
-              channelTitle: 'channelTitle2;',
-              title: 'title2',
-            },
-          },
-        ]);
-      });
-    });
-  });
 });
 
 describe('actions', () => {
@@ -162,31 +81,6 @@ describe('actions', () => {
             ['장르1', 'mood1', 'mood2'],
             ['장르2', 'mood1'],
           ],
-        },
-      ]);
-    });
-  });
-
-  describe('loadMusic', () => {
-    beforeEach(() => {
-      store = mockStore({});
-    });
-
-    it('runs setCategoryMusic', async () => {
-      await store.dispatch(loadMusic({
-        title: '어쿠스틱',
-        tag: '차분한',
-      }));
-
-      const actions = store.getActions();
-
-      expect(actions).toEqual([
-        {
-          type: 'application/setCategoryMusic',
-          payload: {
-            title: '어쿠스틱',
-            music: [],
-          },
         },
       ]);
     });

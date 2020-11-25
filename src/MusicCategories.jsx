@@ -26,7 +26,7 @@ const Card = styled.li({
   },
 });
 
-export default function MusicCategories({ moodCategories, onClick }) {
+export default function MusicCategories({ moodCategories }) {
   const tags = {
     calm: '차분한',
     uplifting: '신나는',
@@ -38,10 +38,7 @@ export default function MusicCategories({ moodCategories, onClick }) {
     <Cards>
       {
         moodCategories.map(([title, tag1, tag2]) => (
-          <Card
-            key={title}
-            onClick={() => onClick({ title, tag1, tag2 })}
-          >
+          <Card key={title}>
             <h3>{title}</h3>
             <p>
               #

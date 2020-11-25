@@ -1,7 +1,4 @@
-import youtube from './youtube';
-
 import categories from '../../data/categories';
-import categoryDetails from '../../data/categoryDetails';
 
 export function getMoodCategories(energy, brightness) {
   const energyTitle = energy !== 'none'
@@ -31,20 +28,6 @@ export function getMoodCategories(energy, brightness) {
   return moodCategories;
 }
 
-export function getCategoryKeyword({ title, tag }) {
-  const categoryKeyword = categoryDetails[tag]
-    .find((category) => category.title === title).keyword;
-
-  return categoryKeyword[0];
-}
-
-export async function fetchMusic(term) {
-  const response = await youtube.get('./search', {
-    params: {
-      q: term,
-    },
-  });
-
-  const data = response.data.items;
-  return data;
+// TODO DELETE
+export function XX() {
 }

@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  getMoodCategories,
-  getCategoryKeyword,
-  fetchMusic,
-} from './sevices/api';
+import { getMoodCategories } from './sevices/api';
 
 const { actions, reducer } = createSlice({
   name: 'application',
@@ -14,8 +10,6 @@ const { actions, reducer } = createSlice({
       brightness: '',
     },
     moodCategories: [],
-    selectedCategory: '',
-    selectedCategoryMusic: null,
   },
   reducers: {
     setMoodselectFields(state, { payload: { name, value } }) {
@@ -34,28 +28,12 @@ const { actions, reducer } = createSlice({
         moodCategories,
       };
     },
-
-    setSelectedCategory(state, { payload: selectedCategory }) {
-      return {
-        ...state,
-        selectedCategory,
-      };
-    },
-
-    setCategoryMusic(state, { payload: { title, music } }) {
-      return {
-        ...state,
-        [title]: state[title] ? [...state[title], ...music] : music,
-      };
-    },
   },
 });
 
 export const {
   setMoodselectFields,
   setMoodCategories,
-  setSelectedCategory,
-  setCategoryMusic,
 } = actions;
 
 export function loadMoodCategories() {
@@ -65,16 +43,6 @@ export function loadMoodCategories() {
     const moodCategories = getMoodCategories(energy, brightness);
 
     dispatch(setMoodCategories(moodCategories));
-  };
-}
-
-export function loadMusic({ title, tag }) {
-  return async (dispatch) => {
-    const categoryKeywords = getCategoryKeyword({ title, tag });
-
-    const music = await fetchMusic(categoryKeywords);
-
-    dispatch(setCategoryMusic({ title, music }));
   };
 }
 
