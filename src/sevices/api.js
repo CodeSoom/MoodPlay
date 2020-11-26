@@ -4,6 +4,14 @@ import categories from '../../data/categories';
 import categoryDetails from '../../data/categoryDetails';
 
 export function getMoodCategories(energy, brightness) {
+  if (energy === 'none' && brightness === 'none') {
+    const randomMood = ['calm', 'uplifting', 'happy', 'sad'][Math.floor(Math.random() * 4)];
+
+    const randomMoodCategories = categories[randomMood].map((title) => [title, randomMood]);
+
+    return randomMoodCategories;
+  }
+
   const energyTitle = energy !== 'none'
     ? categories[energy].map((title) => [title, energy])
     : [];
