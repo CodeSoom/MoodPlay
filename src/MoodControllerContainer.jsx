@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
@@ -15,10 +15,6 @@ import MoodBrightnessForm from './MoodBrightnessForm';
 export default function MoodControllerContainer() {
   const dispatch = useDispatch();
 
-  const { moodselectFields } = useSelector((state) => ({
-    moodselectFields: state.moodselectFields,
-  }));
-
   function handleChangeMood(event) {
     const { name, value } = event.target;
 
@@ -26,12 +22,6 @@ export default function MoodControllerContainer() {
   }
 
   function handleSubmitMood() {
-    const { energy, brightness } = moodselectFields;
-
-    if (!energy || !brightness) {
-      return;
-    }
-
     dispatch(loadMoodCategories());
   }
 

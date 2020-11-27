@@ -78,34 +78,12 @@ describe('MoodControllerContainer', () => {
       expect(container).toHaveTextContent('Play your mood!');
     });
 
-    context('with at least one selected mood', () => {
-      given('moodselectFields', () => ({
-        energy: 'calm',
-        brightness: 'none',
-      }));
+    it('calls dispatch', () => {
+      const { getByText } = renderMoodControllerContainer();
 
-      it('calls dispatch', () => {
-        const { getByText } = renderMoodControllerContainer();
+      fireEvent.click(getByText('Play your mood!'));
 
-        fireEvent.click(getByText('Play your mood!'));
-
-        expect(dispatch).toBeCalled();
-      });
-    });
-
-    context('without any selected mood', () => {
-      given('moodselectFields', () => ({
-        energy: '',
-        brightness: '',
-      }));
-
-      it("doesn't call any dispatch", () => {
-        const { getByText } = renderMoodControllerContainer();
-
-        fireEvent.click(getByText('Play your mood!'));
-
-        expect(dispatch).not.toBeCalled();
-      });
+      expect(dispatch).toBeCalled();
     });
   });
 });
