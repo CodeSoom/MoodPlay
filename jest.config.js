@@ -15,4 +15,5 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/global.js',
   },
+  coveragePathIgnorePatterns: ['<rootDir>/src/MusicPlayer'],
 };

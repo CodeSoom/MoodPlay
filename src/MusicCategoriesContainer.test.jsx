@@ -61,11 +61,16 @@ describe('MusicCategoriesContainer', () => {
         moodCategories: [],
         selectedCategory: '로파이',
         로파이: [{
+          id: {
+            videoId: 'xxx',
+          },
           snippet: {
             channelTitle: 'channelTitle1',
             description: 'description1',
             title: 'title1',
-            thumbnails: {},
+            thumbnails: {
+              default: { url: '' },
+            },
           },
         }],
       }));
@@ -77,6 +82,14 @@ describe('MusicCategoriesContainer', () => {
       expect(container).toHaveTextContent('title1');
       expect(container).toHaveTextContent('channelTitle1');
     });
+
+    it('calls dispatch', () => {
+      const { getByText } = render(<MusicCategoriesContainer />);
+
+      fireEvent.click(getByText('title1'));
+
+      expect(dispatch).toBeCalledTimes(1);
+    });
   });
 
   context('without selected category music', () => {
@@ -86,10 +99,63 @@ describe('MusicCategoriesContainer', () => {
       }));
     });
 
-    it('renders empty message', () => {
+    it('renders category empty message', () => {
       const { container } = render(<MusicCategoriesContainer />);
 
       expect(container).toHaveTextContent('카테고리를 선택해주세요');
+    });
+  });
+
+  context('with selected music', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        moodCategories: [],
+        selectedMusic: {
+          id: {
+            videoId: 'xxx',
+          },
+          snippet: {
+            channelTitle: 'essential1',
+            description: 'description1',
+            title: 'title1',
+            thumbnails: {
+              medium: {
+                height: 90,
+                url: 'https://aaa.com/default.jpg',
+                width: 120,
+              },
+            },
+          },
+        },
+      }));
+    });
+
+    it('renders music player with selected music', () => {
+      const { container } = render(<MusicCategoriesContainer />);
+
+      expect(container).toHaveTextContent('title1');
+      expect(container).toHaveTextContent('channel - essential1');
+
+      expect(container).toHaveTextContent('Play');
+      expect(container).toHaveTextContent('Pause');
+      expect(container).toHaveTextContent('Stop');
+    });
+  });
+
+  context('without selected music', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        moodCategories: [],
+        selectedMusic: null,
+      }));
+    });
+
+    it('renders mo music player', () => {
+      const { container } = render(<MusicCategoriesContainer />);
+
+      expect(container).not.toHaveTextContent('Play');
+      expect(container).not.toHaveTextContent('Pause');
+      expect(container).not.toHaveTextContent('Stop');
     });
   });
 });

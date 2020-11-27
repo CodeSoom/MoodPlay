@@ -6,6 +6,7 @@ import reducer, {
   setMoodselectFields,
   setMoodCategories,
   setSelectedCategory,
+  setSelectedMusic,
   setCategoryMusic,
   loadMoodCategories,
   loadMusic,
@@ -68,6 +69,36 @@ describe('reducer', () => {
       const state = reducer(initialState, setSelectedCategory(selectedCategory));
 
       expect(state.selectedCategory).toEqual(selectedCategory);
+    });
+  });
+
+  describe('setSelectedMusic', () => {
+    it('changes selectedMusic', () => {
+      const initialState = {
+        selectedMusic: null,
+      };
+
+      const selectedMusic = {
+        id: {
+          videoId: 'xxx',
+        },
+        snippet: {
+          channelTitle: 'essential2',
+          description: 'description2',
+          title: 'title2',
+          thumbnails: {
+            default: {
+              height: 90,
+              url: 'https://bbb.com/default.jpg',
+              width: 120,
+            },
+          },
+        },
+      };
+
+      const state = reducer(initialState, setSelectedMusic(selectedMusic));
+
+      expect(state.selectedMusic).toEqual(selectedMusic);
     });
   });
 

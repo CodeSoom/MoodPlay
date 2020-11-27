@@ -1,12 +1,17 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import MusicItems from './MusicItems';
 
-test('MusicItems', () => {
+describe('MusicItems', () => {
+  const handleClick = jest.fn();
+
   const music = [
     {
+      id: {
+        videoId: 'xxx',
+      },
       snippet: {
         channelTitle: 'essential1',
         description: 'description1',
@@ -21,6 +26,9 @@ test('MusicItems', () => {
       },
     },
     {
+      id: {
+        videoId: 'xxx',
+      },
       snippet: {
         channelTitle: 'essential2',
         description: 'description2',
@@ -36,15 +44,34 @@ test('MusicItems', () => {
     },
   ];
 
-  const { container, getByAltText } = render(<MusicItems music={music} />);
+  function renderMusicItems() {
+    return render(
+      <MusicItems
+        music={music}
+        onClick={handleClick}
+      />,
+    );
+  }
 
-  music.forEach(({
-    snippet: {
-      channelTitle, title, description, thumbnails,
-    },
-  }) => {
-    expect(container).toHaveTextContent(channelTitle);
-    expect(container).toHaveTextContent(title);
-    expect(getByAltText(description)).toHaveAttribute('src', thumbnails.default.url);
+  it('renders music items', () => {
+    const { container, getByAltText } = renderMusicItems();
+
+    music.forEach(({
+      snippet: {
+        channelTitle, title, description, thumbnails,
+      },
+    }) => {
+      expect(container).toHaveTextContent(channelTitle);
+      expect(container).toHaveTextContent(title);
+      expect(getByAltText(description)).toHaveAttribute('src', thumbnails.default.url);
+    });
+  });
+
+  it('listens onClick event', () => {
+    const { getByText } = renderMusicItems();
+
+    fireEvent.click(getByText('essential1'));
+
+    expect(handleClick).toBeCalled();
   });
 });
