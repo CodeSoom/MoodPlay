@@ -18,25 +18,33 @@ const MusicItem = styled.li({
   margin: '10px',
   border: '2px solid #f0f0f0',
   borderRadius: '5px',
+  cursor: 'pointer',
 });
 
-export default function MusicItems({ music }) {
+export default function MusicItems({ music, onClick }) {
   return (
     <MusicWrap>
       {
-        music.map(({
-          snippet: {
-            title, description, channelTitle, thumbnails,
-          },
-        }) => ((
-          <MusicItem key={title}>
-            <img src={thumbnails.default.url} alt={description} />
-            <div>
-              <p>{title}</p>
-              <small>{channelTitle}</small>
-            </div>
-          </MusicItem>
-        )))
+        music.map((musicItem) => {
+          const {
+            snippet: {
+              title, description, channelTitle, thumbnails,
+            },
+          } = musicItem;
+
+          return ((
+            <MusicItem
+              key={title}
+              onClick={() => onClick(musicItem)}
+            >
+              <img src={thumbnails.default.url} alt={description} />
+              <div>
+                <p>{title}</p>
+                <small>{channelTitle}</small>
+              </div>
+            </MusicItem>
+          ));
+        })
       }
     </MusicWrap>
   );

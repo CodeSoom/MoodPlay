@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   loadMusic,
   setSelectedCategory,
+  setSelectedMusic,
 } from './slice';
 
 import MusicCategories from './MusicCategories';
 import MusicItems from './MusicItems';
+import MusicPlayer from './MusicPlayer';
 
 import { get } from './utils';
 
@@ -30,6 +32,7 @@ export default function MusicCategoriesContainer() {
   const moodCategories = useSelector(get('moodCategories'));
   const selectedCategory = useSelector(get('selectedCategory'));
   const selectedCategoryMusic = useSelector(get(selectedCategory));
+  const selectedMusic = useSelector(get('selectedMusic'));
 
   const handleClickCategories = ({ title, tag1, tag2 }) => {
     dispatch(setSelectedCategory(title));
@@ -41,6 +44,10 @@ export default function MusicCategoriesContainer() {
     }
   };
 
+  const handleSelectMusic = (music) => {
+    dispatch(setSelectedMusic(music));
+  };
+
   return (
     <Wrap>
       <h2>기분에 어울리는 장르들이에요!</h2>
@@ -50,9 +57,10 @@ export default function MusicCategoriesContainer() {
       />
       {
         selectedCategoryMusic
-          ? (<MusicItems music={selectedCategoryMusic} />)
+          ? (<MusicItems music={selectedCategoryMusic} onClick={handleSelectMusic} />)
           : (<p>카테고리를 선택해주세요</p>)
       }
+      <MusicPlayer selectedMusic={selectedMusic} />
     </Wrap>
   );
 }
