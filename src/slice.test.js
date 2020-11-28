@@ -8,6 +8,7 @@ import reducer, {
   setSelectedCategory,
   setSelectedMusic,
   setCategoryMusic,
+  setNowPlayingMusicItems,
   loadMoodCategories,
   loadMusic,
 } from './slice';
@@ -99,6 +100,55 @@ describe('reducer', () => {
       const state = reducer(initialState, setSelectedMusic(selectedMusic));
 
       expect(state.selectedMusic).toEqual(selectedMusic);
+    });
+  });
+
+  describe('setNowPlayingMusicItems', () => {
+    it('changes nowPlayingMusicItems', () => {
+      const initialState = {
+        selectedMusic: null,
+      };
+
+      const nowPlayingMusicItems = [
+        {
+          id: {
+            videoId: 'xxx',
+          },
+          snippet: {
+            channelTitle: 'essential2',
+            description: 'description2',
+            title: 'title2',
+            thumbnails: {
+              default: {
+                height: 90,
+                url: 'https://bbb.com/default.jpg',
+                width: 120,
+              },
+            },
+          },
+        },
+        {
+          id: {
+            videoId: 'xxx',
+          },
+          snippet: {
+            channelTitle: 'essential2',
+            description: 'description2',
+            title: 'title2',
+            thumbnails: {
+              default: {
+                height: 90,
+                url: 'https://bbb.com/default.jpg',
+                width: 120,
+              },
+            },
+          },
+        },
+      ];
+
+      const state = reducer(initialState, setNowPlayingMusicItems(nowPlayingMusicItems));
+
+      expect(state.nowPlayingMusicItems).toEqual(nowPlayingMusicItems);
     });
   });
 

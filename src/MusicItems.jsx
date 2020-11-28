@@ -35,7 +35,7 @@ export default function MusicItems({ music, onClick }) {
           return ((
             <MusicItem
               key={title}
-              onClick={() => onClick(musicItem)}
+              onClick={() => onClick(musicItem, music)}
             >
               <img src={thumbnails.default.url} alt={description} />
               <div>
