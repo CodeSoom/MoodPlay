@@ -17,6 +17,7 @@ const { actions, reducer } = createSlice({
     selectedCategory: '',
     selectedMusic: null,
     selectedCategoryMusic: null,
+    nowPlayingMusicItems: [],
   },
   reducers: {
     setMoodselectFields(state, { payload: { name, value } }) {
@@ -56,6 +57,13 @@ const { actions, reducer } = createSlice({
         selectedMusic,
       };
     },
+
+    setNowPlayingMusicItems(state, { payload: nowPlayingMusicItems }) {
+      return {
+        ...state,
+        nowPlayingMusicItems,
+      };
+    },
   },
 });
 
@@ -65,6 +73,7 @@ export const {
   setSelectedCategory,
   setCategoryMusic,
   setSelectedMusic,
+  setNowPlayingMusicItems,
 } = actions;
 
 export function loadMoodCategories() {

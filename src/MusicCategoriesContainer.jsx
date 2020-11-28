@@ -8,11 +8,11 @@ import {
   loadMusic,
   setSelectedCategory,
   setSelectedMusic,
+  setNowPlayingMusicItems,
 } from './slice';
 
 import MusicCategories from './MusicCategories';
 import MusicItems from './MusicItems';
-import MusicPlayer from './MusicPlayer';
 
 import { get } from './utils';
 
@@ -23,7 +23,6 @@ const Wrap = styled.div({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  position: 'relative',
 });
 
 export default function MusicCategoriesContainer() {
@@ -32,7 +31,6 @@ export default function MusicCategoriesContainer() {
   const moodCategories = useSelector(get('moodCategories'));
   const selectedCategory = useSelector(get('selectedCategory'));
   const selectedCategoryMusic = useSelector(get(selectedCategory));
-  const selectedMusic = useSelector(get('selectedMusic'));
 
   const handleClickCategories = ({ title, tag1, tag2 }) => {
     dispatch(setSelectedCategory(title));
@@ -44,8 +42,10 @@ export default function MusicCategoriesContainer() {
     }
   };
 
-  const handleSelectMusic = (music) => {
-    dispatch(setSelectedMusic(music));
+  const handleSelectMusic = (selectedMusic, musicItems) => {
+    dispatch(setSelectedMusic(selectedMusic));
+
+    dispatch(setNowPlayingMusicItems(musicItems));
   };
 
   return (
@@ -60,7 +60,6 @@ export default function MusicCategoriesContainer() {
           ? (<MusicItems music={selectedCategoryMusic} onClick={handleSelectMusic} />)
           : (<p>카테고리를 선택해주세요</p>)
       }
-      <MusicPlayer selectedMusic={selectedMusic} />
     </Wrap>
   );
 }
