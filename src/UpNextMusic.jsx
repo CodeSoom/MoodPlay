@@ -23,7 +23,7 @@ const ListItem = styled.li({
   cursor: 'pointer',
 });
 
-export default function UpNextMusic({ nowPlayingMusicItems, selectedMusic }) {
+const UpNextMusic = React.memo(({ nowPlayingMusicItems, selectedMusic }) => {
   const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
   const upNextItems = getUpNextItems(nowPlayingMusicItems, selectedMusicIndex);
 
@@ -48,4 +48,6 @@ export default function UpNextMusic({ nowPlayingMusicItems, selectedMusic }) {
       </UpNextWrap>
     </>
   );
-}
+});
+
+export default UpNextMusic;

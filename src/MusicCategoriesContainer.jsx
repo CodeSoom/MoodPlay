@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -25,14 +25,14 @@ const Wrap = styled.div({
   justifyContent: 'center',
 });
 
-export default function MusicCategoriesContainer() {
+const MusicCategoriesContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const moodCategories = useSelector(get('moodCategories'));
   const selectedCategory = useSelector(get('selectedCategory'));
   const selectedCategoryMusic = useSelector(get(selectedCategory));
 
-  const handleClickCategories = ({ title, tag1, tag2 }) => {
+  const handleClickCategories = useCallback(({ title, tag1, tag2 }) => {
     dispatch(setSelectedCategory(title));
 
     dispatch(loadMusic({ title, tag: tag1 }));
@@ -40,13 +40,13 @@ export default function MusicCategoriesContainer() {
     if (tag2) {
       dispatch(loadMusic({ title, tag: tag2 }));
     }
-  };
+  }, [dispatch]);
 
-  const handleSelectMusic = (selectedMusic, musicItems) => {
+  const handleSelectMusic = useCallback((selectedMusic, musicItems) => {
     dispatch(setSelectedMusic(selectedMusic));
 
     dispatch(setNowPlayingMusicItems(musicItems));
-  };
+  }, [dispatch]);
 
   return (
     <Wrap>
@@ -62,4 +62,6 @@ export default function MusicCategoriesContainer() {
       }
     </Wrap>
   );
-}
+});
+
+export default MusicCategoriesContainer;

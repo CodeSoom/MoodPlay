@@ -26,7 +26,7 @@ const Card = styled.li({
   },
 });
 
-export default function MusicCategories({ moodCategories, onClick }) {
+const MusicCategories = React.memo(({ moodCategories, onClick }) => {
   const tags = {
     calm: '차분한',
     uplifting: '신나는',
@@ -54,4 +54,6 @@ export default function MusicCategories({ moodCategories, onClick }) {
       }
     </Cards>
   );
-}
+});
+
+export default MusicCategories;
