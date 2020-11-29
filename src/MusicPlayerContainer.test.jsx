@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -36,5 +36,23 @@ describe('MusicPlayerContainer', () => {
 
     expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
     expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
+  });
+
+  it('renders up next music items', () => {
+    const { container } = render(<MusicPlayerContainer />);
+
+    expect(container).toHaveTextContent(MUSICITEMS[3].snippet.title);
+    expect(container).toHaveTextContent(MUSICITEMS[4].snippet.title);
+    expect(container).toHaveTextContent(MUSICITEMS[0].snippet.title);
+  });
+
+  it('calls dispatch', () => {
+    const { getByText } = render(<MusicPlayerContainer />);
+
+    fireEvent.click(getByText(MUSICITEMS[3].snippet.title));
+    fireEvent.click(getByText(MUSICITEMS[4].snippet.title));
+    fireEvent.click(getByText(MUSICITEMS[0].snippet.title));
+
+    expect(dispatch).toBeCalledTimes(3);
   });
 });

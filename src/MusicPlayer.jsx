@@ -28,7 +28,11 @@ const PlayerWrap = styled.div({
   },
 });
 
-const MusicPlayer = React.memo(({ selectedMusic, nowPlayingMusicItems }) => {
+const MusicPlayer = React.memo(({
+  selectedMusic,
+  nowPlayingMusicItems,
+  handleSelectMusic,
+}) => {
   if (!selectedMusic) {
     return null;
   }
@@ -39,6 +43,7 @@ const MusicPlayer = React.memo(({ selectedMusic, nowPlayingMusicItems }) => {
       <UpNextMusic
         nowPlayingMusicItems={nowPlayingMusicItems}
         selectedMusic={selectedMusic}
+        onClick={handleSelectMusic}
       />
     </PlayerWrap>
   );

@@ -23,7 +23,11 @@ const ListItem = styled.li({
   cursor: 'pointer',
 });
 
-const UpNextMusic = React.memo(({ nowPlayingMusicItems, selectedMusic }) => {
+const UpNextMusic = React.memo(({
+  nowPlayingMusicItems,
+  selectedMusic,
+  onClick,
+}) => {
   const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
   const upNextItems = getUpNextItems(nowPlayingMusicItems, selectedMusicIndex);
 
@@ -38,6 +42,7 @@ const UpNextMusic = React.memo(({ nowPlayingMusicItems, selectedMusic }) => {
             return (
               <ListItem
                 key={title}
+                onClick={() => onClick(music)}
               >
                 <img src={thumbnails.default.url} alt={description} />
                 <p>{title}</p>
