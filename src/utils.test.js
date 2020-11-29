@@ -2,6 +2,7 @@ import {
   get,
   getSelectedMusicIndex,
   getUpNextItems,
+  getTime,
 } from './utils';
 
 test('get', () => {
@@ -51,4 +52,10 @@ test('getUpNextItems', () => {
     { id: { videoId: 'x3' } },
     { id: { videoId: 'x4' } },
   ]);
+});
+
+test('getTimes', () => {
+  expect(getTime(20304)).toBe('5:38:24');
+  expect(getTime(10203)).toBe('2:50:03');
+  expect(getTime(0)).toBe('0:00:00');
 });
