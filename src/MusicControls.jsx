@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import YouTube from 'react-youtube';
 
 import styled from '@emotion/styled';
+
+import { getTime } from './utils';
 
 const HideVideo = styled.div({
   position: 'fixed',
@@ -28,6 +30,13 @@ const Buttons = styled.div({
 });
 
 const MusicControls = React.memo(({ selectedMusic }) => {
+  const [music, setMusic] = useState(selectedMusic);
+  const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    setMusic(selectedMusic);
+  }, [selectedMusic]);
+
   const {
     id: { videoId },
     snippet: {
@@ -38,7 +47,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
         medium: { url },
       },
     },
-  } = selectedMusic;
+  } = music;
 
   const opts = {
     playerVars: {
@@ -51,12 +60,15 @@ const MusicControls = React.memo(({ selectedMusic }) => {
 
   const onReady = (event) => {
     player = event.target;
+    setDuration(player.getDuration());
+
     player.seekTo(0, true);
     player.playVideo();
   };
 
   const onStateChange = (event) => {
     player = event.target;
+    setDuration(player.getDuration());
   };
 
   const playVideo = () => {
@@ -92,6 +104,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <img src={url} alt={description} />
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
+      <small>{`duration: ${getTime(duration)}`}</small>
       <Buttons>
         <button type="button" onClick={playVideo}>Play</button>
         <button type="button" onClick={pauseVideo}>Pause</button>

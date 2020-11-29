@@ -20,3 +20,17 @@ export function getUpNextItems(musicItems, selectedMusicIndex) {
 
   return upNextItems;
 }
+
+export function getTime(time) {
+  const hours = Math.floor(time / 60 / 60);
+
+  const minutes = Math.floor((time / 60) % 60) >= 10
+    ? Math.floor((time / 60) % 60)
+    : `0${Math.floor((time / 60) % 60)}`;
+
+  const seconds = Math.floor(time % 60) >= 10
+    ? Math.floor(time % 60)
+    : `0${Math.floor(time % 60)}`;
+
+  return `${hours}:${minutes}:${seconds}`;
+}
