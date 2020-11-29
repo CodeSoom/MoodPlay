@@ -27,7 +27,7 @@ const Buttons = styled.div({
   },
 });
 
-export default function MusicControls({ selectedMusic }) {
+const MusicControls = React.memo(({ selectedMusic }) => {
   const {
     id: { videoId },
     snippet: {
@@ -99,4 +99,6 @@ export default function MusicControls({ selectedMusic }) {
       </Buttons>
     </>
   );
-}
+});
+
+export default MusicControls;

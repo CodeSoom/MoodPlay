@@ -21,31 +21,31 @@ const MusicItem = styled.li({
   cursor: 'pointer',
 });
 
-export default function MusicItems({ music, onClick }) {
-  return (
-    <MusicWrap>
-      {
-        music.map((musicItem) => {
-          const {
-            snippet: {
-              title, description, channelTitle, thumbnails,
-            },
-          } = musicItem;
+const MusicItems = React.memo(({ music, onClick }) => (
+  <MusicWrap>
+    {
+      music.map((musicItem) => {
+        const {
+          snippet: {
+            title, description, channelTitle, thumbnails,
+          },
+        } = musicItem;
 
-          return ((
-            <MusicItem
-              key={title}
-              onClick={() => onClick(musicItem, music)}
-            >
-              <img src={thumbnails.default.url} alt={description} />
-              <div>
-                <p>{title}</p>
-                <small>{channelTitle}</small>
-              </div>
-            </MusicItem>
-          ));
-        })
-      }
-    </MusicWrap>
-  );
-}
+        return ((
+          <MusicItem
+            key={title}
+            onClick={() => onClick(musicItem, music)}
+          >
+            <img src={thumbnails.default.url} alt={description} />
+            <div>
+              <p>{title}</p>
+              <small>{channelTitle}</small>
+            </div>
+          </MusicItem>
+        ));
+      })
+    }
+  </MusicWrap>
+));
+
+export default MusicItems;

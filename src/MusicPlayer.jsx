@@ -28,7 +28,7 @@ const PlayerWrap = styled.div({
   },
 });
 
-export default function MusicPlayer({ selectedMusic, nowPlayingMusicItems }) {
+const MusicPlayer = React.memo(({ selectedMusic, nowPlayingMusicItems }) => {
   if (!selectedMusic) {
     return null;
   }
@@ -42,4 +42,6 @@ export default function MusicPlayer({ selectedMusic, nowPlayingMusicItems }) {
       />
     </PlayerWrap>
   );
-}
+});
+
+export default MusicPlayer;
