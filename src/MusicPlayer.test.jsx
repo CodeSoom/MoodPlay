@@ -39,17 +39,17 @@ describe('MusicPlayer', () => {
     });
   });
 
-  // context('without selected music and now playing music items', () => {
-  //   const selectedMusic = null;
-  //   const nowPlayingMusicItems = [];
+  context('without selected music and now playing music items', () => {
+    const selectedMusic = null;
+    const nowPlayingMusicItems = [];
 
-  //   it('renders empty message', () => {
-  //     const { container } = render(<MusicPlayer
-  //       selectedMusic={selectedMusic}
-  //       nowPlayingMusicItems={nowPlayingMusicItems}
-  //     />);
+    it('renders empty message', () => {
+      const { container } = render(<MusicPlayer
+        selectedMusic={selectedMusic}
+        nowPlayingMusicItems={nowPlayingMusicItems}
+      />);
 
-  //     expect(container).toHaveTextContent('재생중인 음악이 없습니다!');
-  //   });
-  // });
+      expect(container).toHaveTextContent('재생중인 음악이 없습니다!');
+    });
+  });
 });
