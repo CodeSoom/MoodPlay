@@ -86,13 +86,25 @@ export function loadMoodCategories() {
   };
 }
 
-export function loadMusic({ title, tag }) {
-  return async (dispatch) => {
-    const categoryKeywords = getCategoryKeyword({ title, tag });
+export function loadMusic({ title, tag1, tag2 }) {
+  return async (dispatch, getState) => {
+    const state = getState();
 
-    const music = await fetchMusic(categoryKeywords);
+    if (state[title]) return;
 
-    dispatch(setCategoryMusic({ title, music }));
+    const firstCateGoryKeywords = getCategoryKeyword({ title, tag: tag1 });
+
+    const firstCategoryMusic = await fetchMusic(firstCateGoryKeywords);
+
+    dispatch(setCategoryMusic({ title, music: firstCategoryMusic }));
+
+    if (tag2) {
+      const secondCategoryKeywords = getCategoryKeyword({ title, tag: tag2 });
+
+      const secondCategoryMusic = await fetchMusic(secondCategoryKeywords);
+
+      dispatch(setCategoryMusic({ title, music: secondCategoryMusic }));
+    }
   };
 }
 

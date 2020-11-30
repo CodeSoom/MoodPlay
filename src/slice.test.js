@@ -253,23 +253,74 @@ describe('actions', () => {
       store = mockStore({});
     });
 
-    it('runs setCategoryMusic', async () => {
-      await store.dispatch(loadMusic({
-        title: '어쿠스틱',
-        tag: '차분한',
-      }));
+    context('when music items in the same title category exist', () => {
+      it('runs nothing', async () => {
+        store = mockStore({
+          어쿠스틱: [{ id: 1 }, { id: 2 }],
+        });
 
-      const actions = store.getActions();
+        await store.dispatch(loadMusic({
+          title: '어쿠스틱',
+          tag: '차분한',
+        }));
 
-      expect(actions).toEqual([
-        {
-          type: 'application/setCategoryMusic',
-          payload: {
-            title: '어쿠스틱',
-            music: [],
+        const actions = store.getActions();
+        expect(actions).toEqual([]);
+      });
+    });
+
+    context('when music items in the same title category do not exist and with only one category', () => {
+      it('runs setCategoryMusic once', async () => {
+        store = mockStore({});
+
+        await store.dispatch(loadMusic({
+          title: '어쿠스틱',
+          tag1: '차분한',
+        }));
+
+        const actions = store.getActions();
+
+        expect(actions).toEqual([
+          {
+            type: 'application/setCategoryMusic',
+            payload: {
+              title: '어쿠스틱',
+              music: [],
+            },
           },
-        },
-      ]);
+        ]);
+      });
+    });
+
+    context('when music items in the same title category do not exist and with two category', () => {
+      it('runs setCategoryMusic twice', async () => {
+        store = mockStore({});
+
+        await store.dispatch(loadMusic({
+          title: '어쿠스틱',
+          tag1: '차분한',
+          tag2: '밝은',
+        }));
+
+        const actions = store.getActions();
+
+        expect(actions).toEqual([
+          {
+            type: 'application/setCategoryMusic',
+            payload: {
+              title: '어쿠스틱',
+              music: [],
+            },
+          },
+          {
+            type: 'application/setCategoryMusic',
+            payload: {
+              title: '어쿠스틱',
+              music: [],
+            },
+          },
+        ]);
+      });
     });
   });
 });

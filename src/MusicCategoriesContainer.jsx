@@ -37,11 +37,7 @@ const MusicCategoriesContainer = React.memo(() => {
   const handleClickCategories = useCallback(({ title, tag1, tag2 }) => {
     dispatch(setSelectedCategory(title));
 
-    dispatch(loadMusic({ title, tag: tag1 }));
-
-    if (tag2) {
-      dispatch(loadMusic({ title, tag: tag2 }));
-    }
+    dispatch(loadMusic({ title, tag1, tag2 }));
   }, [dispatch]);
 
   const handleSelectMusic = useCallback((selectedMusic, musicItems) => {
