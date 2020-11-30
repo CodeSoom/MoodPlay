@@ -3,11 +3,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Cards = styled.ul({
-  height: '18%',
   width: '100%',
   display: 'flex',
   flexDirection: 'rows',
   marginTop: '30px',
+  overflowX: 'scroll',
 });
 
 const Card = styled.li({
