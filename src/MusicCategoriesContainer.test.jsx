@@ -35,24 +35,13 @@ describe('MusicCategoriesContainer', () => {
     expect(container).toHaveTextContent('#밝은');
   });
 
-  context('when click category with one tag', () => {
-    it('calls dispatch twice', () => {
-      const { getByText } = render(<MusicCategoriesContainer />);
+  it('calls dispatch twice', () => {
+    const { getByText } = render(<MusicCategoriesContainer />);
 
-      fireEvent.click(getByText('어쿠스틱'));
+    fireEvent.click(getByText('뉴에이지'));
+    fireEvent.click(getByText('어쿠스틱'));
 
-      expect(dispatch).toBeCalledTimes(2);
-    });
-  });
-
-  context('when click category with two tags', () => {
-    it('calls dispatch three times', () => {
-      const { getByText } = render(<MusicCategoriesContainer />);
-
-      fireEvent.click(getByText('뉴에이지'));
-
-      expect(dispatch).toBeCalledTimes(3);
-    });
+    expect(dispatch).toBeCalledTimes(4);
   });
 
   context('with selected category music', () => {
@@ -83,7 +72,7 @@ describe('MusicCategoriesContainer', () => {
       expect(container).toHaveTextContent('channelTitle1');
     });
 
-    it('calls dispatch', () => {
+    it('calls dispatch twice', () => {
       const { getByText } = render(<MusicCategoriesContainer />);
 
       fireEvent.click(getByText('title1'));
