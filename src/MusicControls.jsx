@@ -30,6 +30,14 @@ const Buttons = styled.div({
 });
 
 const MusicControls = React.memo(({ selectedMusic }) => {
+  if (!selectedMusic) {
+    return (
+      <>
+        <p>재생중인 음악이 없습니다!</p>
+      </>
+    );
+  }
+
   const [music, setMusic] = useState(selectedMusic);
   const [duration, setDuration] = useState(0);
 

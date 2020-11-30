@@ -28,6 +28,10 @@ const UpNextMusic = React.memo(({
   selectedMusic,
   onClick,
 }) => {
+  if (!selectedMusic || !nowPlayingMusicItems) {
+    return null;
+  }
+
   const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
   const upNextItems = getUpNextItems(nowPlayingMusicItems, selectedMusicIndex);
 

@@ -17,7 +17,9 @@ import MusicItems from './MusicItems';
 import { get } from './utils';
 
 const Wrap = styled.div({
-  width: '100vw',
+  position: 'fixed',
+  left: '0',
+  width: 'calc(100vw - 400px)',
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',

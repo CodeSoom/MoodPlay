@@ -6,6 +6,8 @@ import MusicControls from './MusicControls';
 import UpNextMusic from './UpNextMusic';
 
 const PlayerWrap = styled.div({
+  position: 'fixed',
+  right: '0',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -32,21 +34,15 @@ const MusicPlayer = React.memo(({
   selectedMusic,
   nowPlayingMusicItems,
   handleSelectMusic,
-}) => {
-  if (!selectedMusic) {
-    return null;
-  }
-
-  return (
-    <PlayerWrap>
-      <MusicControls selectedMusic={selectedMusic} />
-      <UpNextMusic
-        nowPlayingMusicItems={nowPlayingMusicItems}
-        selectedMusic={selectedMusic}
-        onClick={handleSelectMusic}
-      />
-    </PlayerWrap>
-  );
-});
+}) => ((
+  <PlayerWrap>
+    <MusicControls selectedMusic={selectedMusic} />
+    <UpNextMusic
+      nowPlayingMusicItems={nowPlayingMusicItems}
+      selectedMusic={selectedMusic}
+      onClick={handleSelectMusic}
+    />
+  </PlayerWrap>
+)));
 
 export default MusicPlayer;
