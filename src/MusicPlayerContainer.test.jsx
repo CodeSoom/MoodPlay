@@ -20,39 +20,57 @@ describe('MusicPlayerContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
   });
 
-  context('with selected music and now playing music items', () => {
-    useSelector.mockImplementation((selector) => selector({
-      selectedMusic: SELECTEDMUSIC,
-      nowPlayingMusicItems: MUSICITEMS,
+  function mockSelector(selectedMusic, nowPlayingMusicItems) {
+    return useSelector.mockImplementation((selector) => selector({
+      selectedMusic,
+      nowPlayingMusicItems,
     }));
+  }
+
+  context('with selected music and now playing music items', () => {
+    it('renders music player', () => {
+      mockSelector(SELECTEDMUSIC, MUSICITEMS);
+
+      const { container } = render(<MusicPlayerContainer />);
+
+      expect(container).toHaveTextContent('Play');
+      expect(container).toHaveTextContent('Pause');
+      expect(container).toHaveTextContent('Play');
+
+      expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
+      expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
+    });
+
+    it('renders up next music items', () => {
+      mockSelector(SELECTEDMUSIC, MUSICITEMS);
+
+      const { container } = render(<MusicPlayerContainer />);
+
+      expect(container).toHaveTextContent(MUSICITEMS[3].snippet.title);
+      expect(container).toHaveTextContent(MUSICITEMS[4].snippet.title);
+      expect(container).toHaveTextContent(MUSICITEMS[0].snippet.title);
+    });
+
+    it('calls dispatch', () => {
+      mockSelector(SELECTEDMUSIC, MUSICITEMS);
+
+      const { getByText } = render(<MusicPlayerContainer />);
+
+      fireEvent.click(getByText(MUSICITEMS[3].snippet.title));
+      fireEvent.click(getByText(MUSICITEMS[4].snippet.title));
+      fireEvent.click(getByText(MUSICITEMS[0].snippet.title));
+
+      expect(dispatch).toBeCalledTimes(3);
+    });
   });
 
-  it('renders music player', () => {
-    const { container } = render(<MusicPlayerContainer />);
+  context('without selected music and now playing music items', () => {
+    it('renders empty message', () => {
+      mockSelector();
 
-    expect(container).toHaveTextContent('Play');
-    expect(container).toHaveTextContent('Pause');
-    expect(container).toHaveTextContent('Play');
+      const { container } = render(<MusicPlayerContainer />);
 
-    expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
-    expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
-  });
-
-  it('renders up next music items', () => {
-    const { container } = render(<MusicPlayerContainer />);
-
-    expect(container).toHaveTextContent(MUSICITEMS[3].snippet.title);
-    expect(container).toHaveTextContent(MUSICITEMS[4].snippet.title);
-    expect(container).toHaveTextContent(MUSICITEMS[0].snippet.title);
-  });
-
-  it('calls dispatch', () => {
-    const { getByText } = render(<MusicPlayerContainer />);
-
-    fireEvent.click(getByText(MUSICITEMS[3].snippet.title));
-    fireEvent.click(getByText(MUSICITEMS[4].snippet.title));
-    fireEvent.click(getByText(MUSICITEMS[0].snippet.title));
-
-    expect(dispatch).toBeCalledTimes(3);
+      expect(container).toHaveTextContent('재생중인 음악이 없습니다!');
+    });
   });
 });
