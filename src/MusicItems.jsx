@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 const MusicWrap = styled.ul({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+  height: '80%',
+  overflowY: 'scroll',
 });
 
 const MusicItem = styled.li({
