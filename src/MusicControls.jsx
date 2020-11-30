@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import YouTube from 'react-youtube';
+import YouTube from '@u-wave/react-youtube';
 
 import styled from '@emotion/styled';
 
@@ -38,12 +38,9 @@ const MusicControls = React.memo(({ selectedMusic }) => {
     );
   }
 
-  const [music, setMusic] = useState(selectedMusic);
   const [duration, setDuration] = useState(0);
-
-  useEffect(() => {
-    setMusic(selectedMusic);
-  }, [selectedMusic]);
+  const [paused, setPaused] = useState(false);
+  const [player, setPlayer] = useState();
 
   const {
     id: { videoId },
@@ -55,68 +52,60 @@ const MusicControls = React.memo(({ selectedMusic }) => {
         medium: { url },
       },
     },
-  } = music;
+  } = selectedMusic;
 
-  const opts = {
-    playerVars: {
-      start: 0,
-      autoplay: 1,
-    },
+  const handlePause = () => {
+    setPaused(true);
   };
 
-  let player;
+  const handlePlayerPause = () => {
+    setPaused(true);
+  };
 
-  const onReady = (event) => {
-    player = event.target;
+  const handlePlay = () => {
+    setPaused(false);
+  };
+
+  const handlePlayerPlay = () => {
+    setPaused(false);
+  };
+
+  const handleStateChange = (event) => {
+    setPlayer(event.target);
     setDuration(player.getDuration());
-
-    player.seekTo(0, true);
-    player.playVideo();
   };
 
-  const onStateChange = (event) => {
-    player = event.target;
+  const handleReady = (event) => {
+    setPlayer(event.target);
+    player.seekTo(0, true);
     setDuration(player.getDuration());
-  };
-
-  const playVideo = () => {
-    player.playVideo();
-  };
-
-  const pauseVideo = () => {
-    player.pauseVideo();
-  };
-
-  const stopVideo = () => {
-    if (player.getCurrentTime() < 5) {
-      player.seekTo(0, true);
-      player.pauseVideo();
-      return;
-    }
-
-    player.seekTo(0, true);
-    player.playVideo();
   };
 
   return (
     <>
       <HideVideo>
         <YouTube
-          title="youtube"
-          videoId={videoId}
-          opts={opts}
-          onReady={onReady}
-          onStateChange={onStateChange}
+          video={videoId}
+          width={640}
+          height={480}
+          autoplay
+          controls={false}
+          paused={paused}
+          onPause={handlePlayerPause}
+          onPlaying={handlePlayerPlay}
+          onStateChange={handleStateChange}
+          onReady={handleReady}
         />
       </HideVideo>
+
       <img src={url} alt={description} />
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
       <small>{`duration: ${getTime(duration)}`}</small>
+
       <Buttons>
-        <button type="button" onClick={playVideo}>Play</button>
-        <button type="button" onClick={pauseVideo}>Pause</button>
-        <button type="button" onClick={stopVideo}>Stop</button>
+        <button type="button" onClick={handlePlay}>Play</button>
+        <button type="button" onClick={handlePause}>Paused</button>
       </Buttons>
     </>
   );
