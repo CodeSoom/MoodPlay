@@ -17,10 +17,20 @@ module.exports = {
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.png?$/,
+        exclude: /node_modules/,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]?[hash]',
+          publicPath: './dist/src/assets',
+          limit: 10000,
+        },
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'css'],
+    extensions: ['.js', '.jsx', 'css', 'png'],
   },
   devServer: {
     historyApiFallback: true,

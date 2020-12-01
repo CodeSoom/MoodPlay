@@ -4,6 +4,9 @@ import YouTube from '@u-wave/react-youtube';
 
 import styled from '@emotion/styled';
 
+import PlayIcon from './assets/images/icons/play_w.png';
+import PauseIcon from './assets/images/icons/pause_w.png';
+
 import { getTime } from './utils';
 
 const HideVideo = styled.div({
@@ -19,23 +22,29 @@ const Buttons = styled.div({
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: '30px',
+});
 
-  '& button': {
-    border: '0',
-    borderRadius: '7px',
-    padding: '10px 20px',
-    margin: '0 10px',
-    background: '#f0f0f0',
-  },
+const PlayButton = styled.button({
+  background: `url(${PlayIcon}) no-repeat`,
+  backgroundSize: '50px',
+  width: '50px',
+  height: '50px',
+  border: '0',
+  color: 'transparent',
+});
+
+const PauseButton = styled.button({
+  background: `url(${PauseIcon}) no-repeat`,
+  backgroundSize: '50px',
+  width: '50px',
+  height: '50px',
+  border: '0',
+  color: 'transparent',
 });
 
 const MusicControls = React.memo(({ selectedMusic }) => {
   if (!selectedMusic) {
-    return (
-      <>
-        <p>재생중인 음악이 없습니다!</p>
-      </>
-    );
+    return (<p>재생중인 음악이 없습니다!</p>);
   }
 
   const [duration, setDuration] = useState(0);
@@ -104,8 +113,25 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <small>{`duration: ${getTime(duration)}`}</small>
 
       <Buttons>
-        <button type="button" onClick={handlePlay}>Play</button>
-        <button type="button" onClick={handlePause}>Paused</button>
+        {
+          paused
+            ? (
+              <PlayButton
+                type="button"
+                onClick={handlePlay}
+              >
+                Play
+              </PlayButton>
+            )
+            : (
+              <PauseButton
+                type="button"
+                onClick={handlePause}
+              >
+                Paused
+              </PauseButton>
+            )
+        }
       </Buttons>
     </>
   );
