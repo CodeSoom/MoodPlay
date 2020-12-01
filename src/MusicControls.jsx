@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import YouTube from '@u-wave/react-youtube';
 
@@ -67,12 +67,6 @@ const MusicControls = React.memo(({ selectedMusic }) => {
     return (<p>재생중인 음악이 없습니다!</p>);
   }
 
-  const [player, setPlayer] = useState();
-  const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [muted, setMuted] = useState(false);
-
   const {
     id: { videoId },
     snippet: {
@@ -84,6 +78,27 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       },
     },
   } = selectedMusic;
+
+  const [player, setPlayer] = useState();
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    let timeId;
+
+    if (!paused) {
+      timeId = setInterval(() => {
+        setCurrentTime(player.getCurrentTime());
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timeId);
+    };
+  }, [paused, player]);
 
   const handlePause = () => {
     setPaused(true);
@@ -147,7 +162,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <img src={url} alt={description} />
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
-      <small>{`duration: ${getTime(duration)}`}</small>
+      <p>{`${getTime(currentTime)} / ${getTime(duration)}`}</p>
 
       <SoundControlWrap>
         <SoundButton
