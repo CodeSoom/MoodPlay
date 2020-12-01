@@ -9,7 +9,7 @@ import PauseIcon from './assets/images/icons/pause_w.png';
 import VolumeIcon from './assets/images/icons/speaker_w.png';
 import MuteIcon from './assets/images/icons/mute_w.png';
 
-import { getTime } from './utils';
+import { getTime, getProgressTime } from './utils';
 
 const HideVideo = styled.div({
   position: 'fixed',
@@ -62,6 +62,20 @@ const SoundButton = styled.button(({ muted }) => ({
   marginRight: '5px',
 }));
 
+const ProgressBar = styled.input(({ value }) => ({
+  width: '300px',
+  height: '6px',
+  backgroundImage: `-webkit-gradient(linear,
+    left top, 
+    right top, 
+    color-stop(${value}%, red),
+    color-stop(${value}%, #f0f0f0))`,
+
+  '&: focus': {
+    outline: '0',
+  },
+}));
+
 const MusicControls = React.memo(({ selectedMusic }) => {
   if (!selectedMusic) {
     return (<p>재생중인 음악이 없습니다!</p>);
@@ -82,6 +96,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
   const [player, setPlayer] = useState();
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [muted, setMuted] = useState(false);
@@ -92,6 +107,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
     if (!paused) {
       timeId = setInterval(() => {
         setCurrentTime(player.getCurrentTime());
+        setProgress((player.getCurrentTime() / player.getDuration()) * 100);
       }, 1000);
     }
 
@@ -129,6 +145,14 @@ const MusicControls = React.memo(({ selectedMusic }) => {
     setMuted(true);
   };
 
+  const handleProgess = (event) => {
+    setProgress(+event.target.value);
+
+    const progressTime = getProgressTime(duration, progress);
+
+    player.seekTo(progressTime, true);
+  };
+
   const handleStateChange = (event) => {
     setPlayer(event.target);
     setDuration(player.getDuration());
@@ -163,6 +187,16 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
       <p>{`${getTime(currentTime)} / ${getTime(duration)}`}</p>
+
+      <ProgressBar
+        type="range"
+        value={progress}
+        min={0}
+        max={100}
+        step={0.1}
+        onChange={handleProgess}
+        onClick={handleProgess}
+      />
 
       <SoundControlWrap>
         <SoundButton

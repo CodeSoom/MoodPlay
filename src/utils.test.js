@@ -3,6 +3,7 @@ import {
   getSelectedMusicIndex,
   getUpNextItems,
   getTime,
+  getProgressTime,
 } from './utils';
 
 test('get', () => {
@@ -58,4 +59,13 @@ test('getTimes', () => {
   expect(getTime(20304)).toBe('5:38:24');
   expect(getTime(10203)).toBe('2:50:03');
   expect(getTime(0)).toBe('0:00:00');
+});
+
+test('getProgressTime', () => {
+  const duration = 20730;
+  const progressRatio = [20, 50, 80];
+
+  expect(getProgressTime(duration, progressRatio[0])).toBe(4146);
+  expect(getProgressTime(duration, progressRatio[1])).toBe(10365);
+  expect(getProgressTime(duration, progressRatio[2])).toBe(16584);
 });
