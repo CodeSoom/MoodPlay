@@ -34,3 +34,7 @@ export function getTime(time) {
 
   return `${hours}:${minutes}:${seconds}`;
 }
+
+export function getProgressTime(duration, progressRatio) {
+  return (duration / 100) * progressRatio;
+}
