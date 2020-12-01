@@ -6,6 +6,8 @@ import styled from '@emotion/styled';
 
 import PlayIcon from './assets/images/icons/play_w.png';
 import PauseIcon from './assets/images/icons/pause_w.png';
+import VolumeIcon from './assets/images/icons/speaker_w.png';
+import MuteIcon from './assets/images/icons/mute_w.png';
 
 import { getTime } from './utils';
 
@@ -22,6 +24,14 @@ const Buttons = styled.div({
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: '30px',
+});
+
+const SoundControlWrap = styled.div({
+  display: 'flex',
+  flexDirection: 'rows',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: '5px',
 });
 
 const PlayButton = styled.button({
@@ -42,14 +52,26 @@ const PauseButton = styled.button({
   color: 'transparent',
 });
 
+const SoundButton = styled.button(({ muted }) => ({
+  background: `url(${muted ? MuteIcon : VolumeIcon}) no-repeat`,
+  backgroundSize: '15px',
+  width: '15px',
+  height: '15px',
+  border: '0',
+  fontSize: '0',
+  marginRight: '5px',
+}));
+
 const MusicControls = React.memo(({ selectedMusic }) => {
   if (!selectedMusic) {
     return (<p>재생중인 음악이 없습니다!</p>);
   }
 
+  const [player, setPlayer] = useState();
   const [duration, setDuration] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [player, setPlayer] = useState();
+  const [volume, setVolume] = useState(0.5);
+  const [muted, setMuted] = useState(false);
 
   const {
     id: { videoId },
@@ -79,6 +101,19 @@ const MusicControls = React.memo(({ selectedMusic }) => {
     setPaused(false);
   };
 
+  const handleVolume = (event) => {
+    setVolume(parseFloat(event.target.value));
+  };
+
+  const handleMuted = () => {
+    if (muted) {
+      setMuted(false);
+      return;
+    }
+
+    setMuted(true);
+  };
+
   const handleStateChange = (event) => {
     setPlayer(event.target);
     setDuration(player.getDuration());
@@ -100,6 +135,8 @@ const MusicControls = React.memo(({ selectedMusic }) => {
           autoplay
           controls={false}
           paused={paused}
+          volume={volume}
+          muted={muted}
           onPause={handlePlayerPause}
           onPlaying={handlePlayerPlay}
           onStateChange={handleStateChange}
@@ -111,6 +148,24 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
       <small>{`duration: ${getTime(duration)}`}</small>
+
+      <SoundControlWrap>
+        <SoundButton
+          type="button"
+          muted={muted}
+          onClick={handleMuted}
+        >
+          Muted
+        </SoundButton>
+        <input
+          type="range"
+          value={volume}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={handleVolume}
+        />
+      </SoundControlWrap>
 
       <Buttons>
         {
