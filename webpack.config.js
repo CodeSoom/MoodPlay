@@ -20,11 +20,10 @@ module.exports = {
       {
         test: /\.png?$/,
         exclude: /node_modules/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]',
           publicPath: './dist/src/assets',
-          limit: 10000,
         },
       },
     ],

@@ -14,6 +14,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/global.js',
+    '\\.(jpg|png)$': '<rootDir>/__mocks__/fileMock.js',
   },
   coveragePathIgnorePatterns: ['<rootDir>/src/MusicControls'],
 };
