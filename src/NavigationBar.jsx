@@ -44,6 +44,9 @@ function NavigationBar() {
         <Icon>
           <Link to="/project-react-2-bbhye1/moodplay">홈</Link>
         </Icon>
+        <Icon>
+          <Link to="/project-react-2-bbhye1/myplay">마이 플레이</Link>
+        </Icon>
       </Icons>
     </Wrap>
   );

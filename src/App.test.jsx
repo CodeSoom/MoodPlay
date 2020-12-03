@@ -18,6 +18,7 @@ describe('App', () => {
         brightness: '',
       },
       moodCategories: [],
+      myPlaylists: [],
     },
   ));
 
@@ -48,6 +49,14 @@ describe('App', () => {
       const { container } = renderApp({ path: '/project-react-2-bbhye1/moodplay' });
 
       expect(container).toHaveTextContent('기분에 어울리는 장르들이에요!');
+    });
+  });
+
+  context('with path /project-react-2-bbhye1/myplay', () => {
+    it('renders the Mood controller page', () => {
+      const { container } = renderApp({ path: '/project-react-2-bbhye1/myplay' });
+
+      expect(container).toHaveTextContent('마이 플레이리스트');
     });
   });
 });

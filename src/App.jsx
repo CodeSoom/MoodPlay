@@ -11,6 +11,7 @@ import './assets/css/global.css';
 
 import MoodControllerPage from './MoodControllerPage';
 import MoodPlayPage from './MoodPlayPage';
+import MyPlayPage from './MyPlayPage';
 import NavigationBar from './NavigationBar';
 
 const Wrap = styled.div({
@@ -25,6 +26,7 @@ export default function App() {
       <Switch>
         <Route exact path="/project-react-2-bbhye1" component={MoodControllerPage} />
         <Route exact path="/project-react-2-bbhye1/moodplay" component={MoodPlayPage} />
+        <Route exact path="/project-react-2-bbhye1/myplay" component={MyPlayPage} />
       </Switch>
     </Wrap>
   );
