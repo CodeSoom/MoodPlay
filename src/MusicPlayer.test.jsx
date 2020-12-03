@@ -19,9 +19,6 @@ describe('MusicPlayer', () => {
         nowPlayingMusicItems={nowPlayingMusicItems}
       />);
 
-      expect(container).toHaveTextContent('Play');
-      expect(container).toHaveTextContent('Pause');
-      expect(container).toHaveTextContent('Play');
 
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
