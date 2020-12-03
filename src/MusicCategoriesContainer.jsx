@@ -18,8 +18,8 @@ import { get } from './utils';
 
 const Wrap = styled.div({
   position: 'fixed',
-  left: '0',
-  width: 'calc(100vw - 400px)',
+  left: '100px',
+  width: 'calc(100vw - 500px)',
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',

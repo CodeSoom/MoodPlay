@@ -5,14 +5,15 @@ import styled from '@emotion/styled';
 import MoodControllerContainer from './MoodControllerContainer';
 
 const Wrap = styled.div({
-  width: '100vw',
+  position: 'fixed',
+  top: '0',
+  left: '100px',
+  width: '100%',
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  position: 'relative',
-
 });
 
 export default function MoodControllerPage() {
