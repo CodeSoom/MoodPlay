@@ -29,6 +29,12 @@ describe('App', () => {
     );
   }
 
+  it('renders navigation bar', () => {
+    const { container } = renderApp({ path: '/project-react-2-bbhye1' });
+    expect(container).toHaveTextContent('무드 선택');
+    expect(container).toHaveTextContent('홈');
+  });
+
   context('with path /project-react-2-bbhye1', () => {
     it('renders the Mood controller page', () => {
       const { container } = renderApp({ path: '/project-react-2-bbhye1' });
