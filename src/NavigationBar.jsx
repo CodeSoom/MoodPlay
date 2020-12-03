@@ -34,7 +34,7 @@ const Icon = styled.li({
   borderRadius: '10px',
 });
 
-function NevigationBar() {
+function NavigationBar() {
   return (
     <Wrap>
       <Icons>
@@ -49,4 +49,4 @@ function NevigationBar() {
   );
 }
 
-export default Nevigation;
+export default NavigationBar;

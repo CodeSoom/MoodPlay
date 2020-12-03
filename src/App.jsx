@@ -11,7 +11,7 @@ import './assets/css/global.css';
 
 import MoodControllerPage from './MoodControllerPage';
 import MoodPlayPage from './MoodPlayPage';
-import NevigationBar from './NevigationBar';
+import NavigationBar from './NavigationBar';
 
 const Wrap = styled.div({
   display: 'flex',
@@ -21,7 +21,7 @@ const Wrap = styled.div({
 export default function App() {
   return (
     <Wrap>
-      <NevigationBar />
+      <NavigationBar />
       <Switch>
         <Route exact path="/project-react-2-bbhye1" component={MoodControllerPage} />
         <Route exact path="/project-react-2-bbhye1/moodplay" component={MoodPlayPage} />
