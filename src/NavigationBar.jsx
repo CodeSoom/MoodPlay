@@ -39,10 +39,10 @@ function NavigationBar() {
     <Wrap>
       <Icons>
         <Icon>
-          <Link to="/project-react-2-bbhye1">Mood Select</Link>
+          <Link to="/project-react-2-bbhye1">무드 선택</Link>
         </Icon>
         <Icon>
-          <Link to="/project-react-2-bbhye1/moodplay">Home</Link>
+          <Link to="/project-react-2-bbhye1/moodplay">홈</Link>
         </Icon>
       </Icons>
     </Wrap>
