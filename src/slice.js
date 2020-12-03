@@ -6,6 +6,8 @@ import {
   fetchMusic,
 } from './sevices/api';
 
+import MYPLAYLISTS from '../fixtures/myplaylists';
+
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
@@ -18,6 +20,7 @@ const { actions, reducer } = createSlice({
     selectedMusic: null,
     selectedCategoryMusic: null,
     nowPlayingMusicItems: [],
+    myPlaylists: MYPLAYLISTS,
   },
   reducers: {
     setMoodselectFields(state, { payload: { name, value } }) {
