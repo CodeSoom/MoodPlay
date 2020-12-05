@@ -9,6 +9,7 @@ import {
   setStoreTextFormOpenState,
   setStoreTextInput,
   storePlaylistTitle,
+  storePlaylistMusic,
 } from './slice';
 
 import StoreMusicModal from './StoreMusicModal';
@@ -33,6 +34,7 @@ const StoreMusicContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const myPlaylists = useSelector(get('myPlaylists'));
+  const selectedMusic = useSelector(get('selectedMusic'));
   const storeOpenState = useSelector(get('storeOpenState'));
   const storeTextInput = useSelector(get('storeTextInput'));
   const storeTextFormOpenState = useSelector(get('storeTextFormOpenState'));
@@ -55,6 +57,12 @@ const StoreMusicContainer = React.memo(() => {
     dispatch(storePlaylistTitle());
   }, [dispatch]);
 
+  const handleCheckPlaylist = useCallback(({ checked, playlistTitle }) => {
+    if (checked) {
+      dispatch(storePlaylistMusic(playlistTitle));
+    }
+  }, [dispatch]);
+
   return (
     <>
       {
@@ -65,12 +73,14 @@ const StoreMusicContainer = React.memo(() => {
             >
               <StoreMusicModal
                 myPlaylists={myPlaylists}
+                selectedMusic={selectedMusic}
                 storeTextFormOpenState={storeTextFormOpenState}
                 storeTextInput={storeTextInput}
                 onCloseStore={handleStoreOpenState}
                 onAddPlaylist={handleAddPlaylist}
                 onOpenTextForm={handleTextFormOpen}
                 onChangeTextInput={handleTextInputChange}
+                onCheckPlaylist={handleCheckPlaylist}
               />
             </ModalWrap>
           )

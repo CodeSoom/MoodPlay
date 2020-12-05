@@ -114,6 +114,21 @@ const { actions, reducer } = createSlice({
         ],
       };
     },
+
+    addPlaylistMusic(state, { payload: { playlistTitle, selectedMusic } }) {
+      return {
+        ...state,
+        myPlaylists: state.myPlaylists.map((playlist) => {
+          if (playlist.playlistTitle === playlistTitle) {
+            return ({
+              playlistTitle,
+              playlists: [...playlist.playlists, selectedMusic],
+            });
+          }
+          return playlist;
+        }),
+      };
+    },
   },
 });
 
@@ -129,6 +144,7 @@ export const {
   setStoreTextFormOpenState,
   setStoreTextInput,
   addPlaylistTitle,
+  addPlaylistMusic,
 } = actions;
 
 export function loadMoodCategories() {
@@ -174,6 +190,18 @@ export function storePlaylistTitle() {
     saveItem('moodPlay', myPlaylists);
 
     dispatch(setStoreTextInput(''));
+  };
+}
+
+export function storePlaylistMusic(playlistTitle) {
+  return (dispatch, getState) => {
+    const { selectedMusic } = getState();
+
+    dispatch(addPlaylistMusic({ playlistTitle, selectedMusic }));
+
+    const { myPlaylists } = getState();
+
+    saveItem('moodPlay', myPlaylists);
   };
 }
 
