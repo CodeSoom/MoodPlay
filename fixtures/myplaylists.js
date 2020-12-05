@@ -1,6 +1,6 @@
 const myPlaylists = [
   {
-    playlistTitle: 'My Playlit 1',
+    playlistTitle: 'My Playlist 1',
     playlists: [
       {
         id: {
@@ -145,7 +145,7 @@ const myPlaylists = [
       }],
   },
   {
-    playlistTitle: 'My Playlit 2',
+    playlistTitle: 'My Playlist 2',
     playlists: [
       {
         id: {

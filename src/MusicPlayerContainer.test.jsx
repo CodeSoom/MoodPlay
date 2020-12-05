@@ -33,9 +33,9 @@ describe('MusicPlayerContainer', () => {
 
       const { container } = render(<MusicPlayerContainer />);
 
-
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
+      expect(container).toHaveTextContent('저장');
     });
 
     it('renders up next music items', () => {
@@ -57,7 +57,9 @@ describe('MusicPlayerContainer', () => {
       fireEvent.click(getByText(MUSICITEMS[4].snippet.title));
       fireEvent.click(getByText(MUSICITEMS[0].snippet.title));
 
-      expect(dispatch).toBeCalledTimes(3);
+      fireEvent.click(getByText('저장'));
+
+      expect(dispatch).toBeCalledTimes(4);
     });
   });
 
