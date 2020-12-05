@@ -13,8 +13,10 @@ import reducer, {
   setStoreOpenState,
   setStoreTextFormOpenState,
   setStoreTextInput,
+  addPlaylistTitle,
   loadMoodCategories,
   loadMusic,
+  storePlaylistTitle,
 } from './slice';
 
 const middlewares = getDefaultMiddleware();
@@ -294,6 +296,25 @@ describe('reducer', () => {
       expect(state.storeTextInput).toEqual(storeTextInput);
     });
   });
+
+  describe('addPlaylistTitle', () => {
+    it('changes myPlaylists', () => {
+      const initialState = {
+        myPlaylists: [],
+      };
+
+      const playlistTitle = '집중하고 싶을 때 듣는 음악';
+
+      const state = reducer(initialState, addPlaylistTitle(playlistTitle));
+
+      expect(state.myPlaylists).toEqual([
+        {
+          playlistTitle,
+          playlists: [],
+        },
+      ]);
+    });
+  });
 });
 
 describe('actions', () => {
@@ -400,6 +421,32 @@ describe('actions', () => {
           },
         ]);
       });
+    });
+  });
+
+  describe('storePlaylistTitle', () => {
+    beforeEach(() => {
+      store = mockStore({
+        storeTextInput: '집중할 때 들는 음악',
+        myPlaylists: [],
+      });
+    });
+
+    it('runs addPlaylistTitle and setStoreTextInput', () => {
+      store.dispatch(storePlaylistTitle());
+
+      const actions = store.getActions();
+
+      expect(actions).toEqual([
+        {
+          type: 'application/addPlaylistTitle',
+          payload: '집중할 때 들는 음악',
+        },
+        {
+          type: 'application/setStoreTextInput',
+          payload: '',
+        },
+      ]);
     });
   });
 });

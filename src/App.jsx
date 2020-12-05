@@ -5,9 +5,15 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+
 import styled from '@emotion/styled';
 
 import './assets/css/global.css';
+
+import { loadItem } from './sevices/storage';
+
+import { setMyPlaylists } from './slice';
 
 import MoodControllerPage from './MoodControllerPage';
 import MoodPlayPage from './MoodPlayPage';
@@ -20,6 +26,14 @@ const Wrap = styled.div({
 });
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  const myPlaylists = loadItem('moodPlay');
+
+  if (myPlaylists) {
+    dispatch(setMyPlaylists(myPlaylists));
+  }
+
   return (
     <Wrap>
       <NavigationBar />

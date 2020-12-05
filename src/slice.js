@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { saveItem } from './sevices/storage';
+
 import {
   getMoodCategories,
   getCategoryKeyword,
   fetchMusic,
 } from './sevices/api';
-
-import MYPLAYLISTS from '../fixtures/myplaylists';
 
 const { actions, reducer } = createSlice({
   name: 'application',
@@ -20,7 +20,10 @@ const { actions, reducer } = createSlice({
     selectedMusic: null,
     selectedCategoryMusic: null,
     nowPlayingMusicItems: [],
-    myPlaylists: MYPLAYLISTS,
+    myPlaylists: [{
+      playlistTitle: '플레이리스트',
+      playlists: [],
+    }],
     storeOpenState: false,
     storeTextFormOpenState: false,
     storeTextInput: '',
@@ -98,6 +101,19 @@ const { actions, reducer } = createSlice({
         storeTextInput,
       };
     },
+
+    addPlaylistTitle(state, { payload: playlistTitle }) {
+      return {
+        ...state,
+        myPlaylists: [
+          ...state.myPlaylists,
+          {
+            playlistTitle,
+            playlists: [],
+          },
+        ],
+      };
+    },
   },
 });
 
@@ -112,6 +128,7 @@ export const {
   setStoreOpenState,
   setStoreTextFormOpenState,
   setStoreTextInput,
+  addPlaylistTitle,
 } = actions;
 
 export function loadMoodCategories() {
@@ -143,6 +160,20 @@ export function loadMusic({ title, tag1, tag2 }) {
 
       dispatch(setCategoryMusic({ title, music: secondCategoryMusic }));
     }
+  };
+}
+
+export function storePlaylistTitle() {
+  return (dispatch, getState) => {
+    const { storeTextInput } = getState();
+
+    dispatch(addPlaylistTitle(storeTextInput));
+
+    const { myPlaylists } = getState();
+
+    saveItem('moodPlay', myPlaylists);
+
+    dispatch(setStoreTextInput(''));
   };
 }
 

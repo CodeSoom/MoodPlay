@@ -8,6 +8,7 @@ import {
   setStoreOpenState,
   setStoreTextFormOpenState,
   setStoreTextInput,
+  storePlaylistTitle,
 } from './slice';
 
 import StoreMusicModal from './StoreMusicModal';
@@ -51,8 +52,7 @@ const StoreMusicContainer = React.memo(() => {
   }, [dispatch]);
 
   const handleAddPlaylist = useCallback(() => {
-    dispatch(setStoreTextInput(''));
-    // TODO: store playlist title to localStorage
+    dispatch(storePlaylistTitle());
   }, [dispatch]);
 
   return (
