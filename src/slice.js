@@ -129,6 +129,22 @@ const { actions, reducer } = createSlice({
         }),
       };
     },
+
+    removePlaylistMusic(state, { payload: { playlistTitle, selectedMusic } }) {
+      return {
+        ...state,
+        myPlaylists: state.myPlaylists.map((playlist) => {
+          if (playlist.playlistTitle === playlistTitle) {
+            return ({
+              playlistTitle,
+              playlists: playlist.playlists
+                .filter(({ id: { videoId } }) => videoId !== selectedMusic.id.videoId),
+            });
+          }
+          return playlist;
+        }),
+      };
+    },
   },
 });
 
@@ -145,6 +161,7 @@ export const {
   setStoreTextInput,
   addPlaylistTitle,
   addPlaylistMusic,
+  removePlaylistMusic,
 } = actions;
 
 export function loadMoodCategories() {
@@ -198,6 +215,18 @@ export function storePlaylistMusic(playlistTitle) {
     const { selectedMusic } = getState();
 
     dispatch(addPlaylistMusic({ playlistTitle, selectedMusic }));
+
+    const { myPlaylists } = getState();
+
+    saveItem('moodPlay', myPlaylists);
+  };
+}
+
+export function deletePlaylistMusic(playlistTitle) {
+  return (dispatch, getState) => {
+    const { selectedMusic } = getState();
+
+    dispatch(removePlaylistMusic({ playlistTitle, selectedMusic }));
 
     const { myPlaylists } = getState();
 
