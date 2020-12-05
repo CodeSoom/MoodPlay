@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import MusicPlayerContainer from './MusicPlayerContainer';
 import MusicCategoriesContainer from './MusicCategoriesContainer';
+import StoreMusicContainer from './StoreMusicContainer';
 
 const Wrap = styled.div({
   height: '100vh',
@@ -16,6 +17,7 @@ export default function MoodPlayPage() {
     <Wrap>
       <MusicCategoriesContainer />
       <MusicPlayerContainer />
+      <StoreMusicContainer />
     </Wrap>
   );
 }

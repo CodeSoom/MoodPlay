@@ -21,6 +21,9 @@ const { actions, reducer } = createSlice({
     selectedCategoryMusic: null,
     nowPlayingMusicItems: [],
     myPlaylists: MYPLAYLISTS,
+    storeOpenState: false,
+    storeTextFormOpenState: false,
+    storeTextInput: '',
   },
   reducers: {
     setMoodselectFields(state, { payload: { name, value } }) {
@@ -67,6 +70,34 @@ const { actions, reducer } = createSlice({
         nowPlayingMusicItems,
       };
     },
+
+    setMyPlaylists(state, { payload: myPlaylists }) {
+      return {
+        ...state,
+        myPlaylists,
+      };
+    },
+
+    setStoreOpenState(state) {
+      return {
+        ...state,
+        storeOpenState: !state.storeOpenState,
+      };
+    },
+
+    setStoreTextFormOpenState(state) {
+      return {
+        ...state,
+        storeTextFormOpenState: !state.storeTextFormOpenState,
+      };
+    },
+
+    setStoreTextInput(state, { payload: storeTextInput }) {
+      return {
+        ...state,
+        storeTextInput,
+      };
+    },
   },
 });
 
@@ -77,6 +108,10 @@ export const {
   setCategoryMusic,
   setSelectedMusic,
   setNowPlayingMusicItems,
+  setMyPlaylists,
+  setStoreOpenState,
+  setStoreTextFormOpenState,
+  setStoreTextInput,
 } = actions;
 
 export function loadMoodCategories() {

@@ -9,6 +9,10 @@ import reducer, {
   setSelectedMusic,
   setCategoryMusic,
   setNowPlayingMusicItems,
+  setMyPlaylists,
+  setStoreOpenState,
+  setStoreTextFormOpenState,
+  setStoreTextInput,
   loadMoodCategories,
   loadMusic,
 } from './slice';
@@ -150,69 +154,144 @@ describe('reducer', () => {
 
       expect(state.nowPlayingMusicItems).toEqual(nowPlayingMusicItems);
     });
-  });
 
-  describe('setCategoryMusic', () => {
-    it('creates each category music', () => {
-      const initialState = {};
-
-      const title = '뉴에이지';
-
-      const music = [
-        {
-          snippet: {
-            channelTitle: 'channelTitle1;',
-            title: 'title1',
-          },
-        },
-      ];
-
-      const state = reducer(initialState, setCategoryMusic({ title, music }));
-
-      expect(state[title]).toEqual(music);
-    });
-
-    context('when same title category is exist', () => {
-      it('add music to same title category', () => {
-        const initialState = {
-          뉴에이지: [
-            {
-              snippet: {
-                channelTitle: 'channelTitle1;',
-                title: 'title1',
-              },
-            },
-          ],
-        };
+    describe('setCategoryMusic', () => {
+      it('creates each category music', () => {
+        const initialState = {};
 
         const title = '뉴에이지';
 
         const music = [
           {
             snippet: {
-              channelTitle: 'channelTitle2;',
-              title: 'title2',
+              channelTitle: 'channelTitle1;',
+              title: 'title1',
             },
           },
         ];
 
         const state = reducer(initialState, setCategoryMusic({ title, music }));
 
-        expect(state[title]).toEqual([
-          {
-            snippet: {
-              channelTitle: 'channelTitle1;',
-              title: 'title1',
-            },
-          },
-          {
-            snippet: {
-              channelTitle: 'channelTitle2;',
-              title: 'title2',
-            },
-          },
-        ]);
+        expect(state[title]).toEqual(music);
       });
+
+      context('when same title category is exist', () => {
+        it('add music to same title category', () => {
+          const initialState = {
+            뉴에이지: [
+              {
+                snippet: {
+                  channelTitle: 'channelTitle1;',
+                  title: 'title1',
+                },
+              },
+            ],
+          };
+
+          const title = '뉴에이지';
+
+          const music = [
+            {
+              snippet: {
+                channelTitle: 'channelTitle2;',
+                title: 'title2',
+              },
+            },
+          ];
+
+          const state = reducer(initialState, setCategoryMusic({ title, music }));
+
+          expect(state[title]).toEqual([
+            {
+              snippet: {
+                channelTitle: 'channelTitle1;',
+                title: 'title1',
+              },
+            },
+            {
+              snippet: {
+                channelTitle: 'channelTitle2;',
+                title: 'title2',
+              },
+            },
+          ]);
+        });
+      });
+    });
+  });
+
+  describe('setMyPlaylists', () => {
+    it('changes myPlaylists', () => {
+      const initialState = {
+        myPlaylists: [],
+      };
+
+      const myPlaylists = [
+        {
+          playlistTitle: 'My Playlit 1',
+          playlists: [
+            {
+              id: {
+                videoId: 'xxx',
+              },
+              snippet: {
+                channelTitle: 'essential2',
+                description: 'description2',
+                title: 'title2',
+                thumbnails: {
+                  default: {
+                    height: 90,
+                    url: 'https://bbb.com/default.jpg',
+                    width: 120,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      ];
+
+      const state = reducer(initialState, setMyPlaylists(myPlaylists));
+
+      expect(state.myPlaylists).toEqual(myPlaylists);
+    });
+  });
+
+  describe('setStoreOpenState', () => {
+    it('changes storeOpenState', () => {
+      const initialState = {
+        storeOpenState: false,
+      };
+
+      const state = reducer(initialState, setStoreOpenState());
+
+      expect(state.storeOpenState).toEqual(true);
+    });
+  });
+
+  describe('setStoreTextFormOpenState', () => {
+    it('changes storeTextFormOpenState', () => {
+      const initialState = {
+        storeTextFormOpenState: false,
+      };
+
+      const state = reducer(initialState, setStoreTextFormOpenState());
+
+      expect(state.storeTextFormOpenState).toEqual(true);
+    });
+  });
+
+  describe('setStoreTextInput', () => {
+    it('changes storeTextInput', () => {
+      const initialState = {
+        storeTextInput: '',
+      };
+
+      const storeTextInput = '집중하고 싶을 때';
+
+      const state = reducer(initialState, setStoreTextInput(storeTextInput));
+
+      expect(state.storeTextInput).toEqual(storeTextInput);
     });
   });
 });

@@ -34,9 +34,13 @@ const MusicPlayer = React.memo(({
   selectedMusic,
   nowPlayingMusicItems,
   handleSelectMusic,
+  handleStoreOpenState,
 }) => ((
   <PlayerWrap>
-    <MusicControls selectedMusic={selectedMusic} />
+    <MusicControls
+      selectedMusic={selectedMusic}
+      onStoreMusic={handleStoreOpenState}
+    />
     <UpNextMusic
       nowPlayingMusicItems={nowPlayingMusicItems}
       selectedMusic={selectedMusic}

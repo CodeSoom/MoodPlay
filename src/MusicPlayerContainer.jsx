@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSelectedMusic } from './slice';
+import { setSelectedMusic, setStoreOpenState } from './slice';
 
 import MusicPlayer from './MusicPlayer';
 
@@ -18,11 +18,18 @@ export default function MusicPlayerContainer() {
     dispatch(setSelectedMusic(music));
   }, [dispatch]);
 
+  const handleStoreOpenState = useCallback(() => {
+    dispatch(setStoreOpenState());
+  }, [dispatch]);
+
   return (
-    <MusicPlayer
-      selectedMusic={selectedMusic}
-      nowPlayingMusicItems={nowPlayingMusicItems}
-      handleSelectMusic={handleSelectMusic}
-    />
+    <>
+      <MusicPlayer
+        selectedMusic={selectedMusic}
+        nowPlayingMusicItems={nowPlayingMusicItems}
+        handleSelectMusic={handleSelectMusic}
+        handleStoreOpenState={handleStoreOpenState}
+      />
+    </>
   );
 }

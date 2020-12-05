@@ -76,7 +76,9 @@ const ProgressBar = styled.input(({ value }) => ({
   },
 }));
 
-const MusicControls = React.memo(({ selectedMusic }) => {
+const MusicControls = React.memo(({
+  selectedMusic, onStoreMusic,
+}) => {
   if (!selectedMusic) {
     return (<p>재생중인 음악이 없습니다!</p>);
   }
@@ -187,6 +189,7 @@ const MusicControls = React.memo(({ selectedMusic }) => {
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
       <p>{`${getTime(currentTime)} / ${getTime(duration)}`}</p>
+      <button type="button" onClick={onStoreMusic}>저장</button>
 
       <ProgressBar
         type="range"

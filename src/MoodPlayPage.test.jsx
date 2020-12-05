@@ -14,6 +14,7 @@ test('MusicCategoriesContainer', () => {
       ['뉴에이지', 'calm', 'happy'],
       ['어쿠스틱', 'calm', 'happy'],
     ],
+    myPlaylists: [],
   }));
 
   const { container } = render(
