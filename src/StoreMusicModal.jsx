@@ -37,12 +37,14 @@ const AddPlaylist = styled.div({
 
 const StoreMusicModal = React.memo(({
   myPlaylists,
+  selectedMusic,
   storeTextFormOpenState,
   storeTextInput,
   onCloseStore,
   onAddPlaylist,
   onOpenTextForm,
   onChangeTextInput,
+  onCheckPlaylist,
 }) => ((
   <Modal>
     <ModalTitle>
@@ -58,10 +60,15 @@ const StoreMusicModal = React.memo(({
     <form>
       {
         myPlaylists
-          .map(({ playlistTitle }) => (
+          .map(({ playlistTitle, playlists }) => (
             <PlaylistCheckbox
               key={playlistTitle}
               id={playlistTitle}
+              onChange={onCheckPlaylist}
+              checkState={
+                playlists
+                  .find(({ id: { videoId } }) => videoId === selectedMusic.id.videoId)
+              }
             />
           ))
       }

@@ -45,6 +45,7 @@ describe('StoreMusicContainer', () => {
 
     useSelector.mockImplementation((selector) => selector({
       myPlaylists,
+      selectedMusic: { id: { videoId: 'aaa' } },
       storeOpenState,
     }));
 
@@ -62,6 +63,7 @@ describe('StoreMusicContainer', () => {
     it('renders my playlist checkboxes', () => {
       useSelector.mockImplementation((selector) => selector({
         myPlaylists,
+        selectedMusic: { id: { videoId: 'aaa' } },
         storeOpenState,
       }));
 
@@ -70,6 +72,28 @@ describe('StoreMusicContainer', () => {
       myPlaylists.forEach(({ playlistTitle }) => {
         expect(getByLabelText(playlistTitle)).not.toBeNull();
       });
+    });
+
+    it('calls dispatch', () => {
+      useSelector.mockImplementation((selector) => selector({
+        myPlaylists,
+        selectedMusic: { id: { videoId: 'aaa' } },
+        storeOpenState,
+      }));
+
+      const { getByLabelText } = render(<StoreMusicContainer />);
+
+      myPlaylists.forEach(({ playlistTitle }) => {
+        fireEvent.click(getByLabelText(playlistTitle));
+
+        expect(getByLabelText(playlistTitle)).toBeChecked();
+
+        fireEvent.click(getByLabelText(playlistTitle));
+
+        expect(getByLabelText(playlistTitle)).not.toBeChecked();
+      });
+
+      expect(dispatch).toBeCalledTimes(2);
     });
   });
 

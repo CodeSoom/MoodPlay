@@ -16,12 +16,14 @@ describe('StoreMusicModal', () => {
 
   function renderStoreMusicModal({
     myPlaylists = [],
+    selectedMusic = { id: { videoId: 'aaa' } },
     storeTextFormOpenState = false,
     storeTextInput = '',
   }) {
     return render(
       <StoreMusicModal
         myPlaylists={myPlaylists}
+        selectedMusic={selectedMusic}
         storeTextFormOpenState={storeTextFormOpenState}
         storeTextInput={storeTextInput}
         onCloseStore={handleClick}

@@ -28,7 +28,14 @@ const InputCheckbox = styled.input({
   },
 });
 
-export default function PlaylistCheckbox({ id }) {
+export default function PlaylistCheckbox({ id, onChange, checkState }) {
+  const handleChange = (event) => {
+    const { checked } = event.target;
+    const playlistTitle = id;
+
+    onChange({ checked, playlistTitle });
+  };
+
   return (
     <PlaylistItem>
       <InputLabel htmlFor={id}>
@@ -37,6 +44,8 @@ export default function PlaylistCheckbox({ id }) {
           id={id}
           name="playlist"
           value={id}
+          onChange={handleChange}
+          checked={checkState}
         />
         {id}
       </InputLabel>

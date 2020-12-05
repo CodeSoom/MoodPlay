@@ -14,9 +14,11 @@ import reducer, {
   setStoreTextFormOpenState,
   setStoreTextInput,
   addPlaylistTitle,
+  addPlaylistMusic,
   loadMoodCategories,
   loadMusic,
   storePlaylistTitle,
+  storePlaylistMusic,
 } from './slice';
 
 const middlewares = getDefaultMiddleware();
@@ -315,6 +317,42 @@ describe('reducer', () => {
       ]);
     });
   });
+
+  describe('addPlaylistMusic', () => {
+    it('changes myPlaylists', () => {
+      const initialState = {
+        myPlaylists: [{
+          playlistTitle: 'playlist 1',
+          playlists: [],
+        },
+        {
+          playlistTitle: 'playlist 2',
+          playlists: [],
+        }],
+      };
+
+      const playlistTitle = 'playlist 1';
+      const selectedMusic = {
+        id: {
+          videoId: 'xxx',
+        },
+        snippet: {},
+      };
+
+      const state = reducer(initialState, addPlaylistMusic({ playlistTitle, selectedMusic }));
+
+      expect(state.myPlaylists).toEqual([
+        {
+          playlistTitle: 'playlist 1',
+          playlists: [selectedMusic],
+        },
+        {
+          playlistTitle: 'playlist 2',
+          playlists: [],
+        },
+      ]);
+    });
+  });
 });
 
 describe('actions', () => {
@@ -445,6 +483,43 @@ describe('actions', () => {
         {
           type: 'application/setStoreTextInput',
           payload: '',
+        },
+      ]);
+    });
+  });
+
+  describe('storePlaylistMusic', () => {
+    beforeEach(() => {
+      store = mockStore({
+        myPlaylists: [],
+        selectedMusic: {
+          id: {
+            videoId: 'xxx',
+          },
+          snippet: {},
+        },
+      });
+    });
+
+    it('runs addPlaylistTitle and setStoreTextInput', () => {
+      const playlistTitle = '플레이리스트';
+
+      store.dispatch(storePlaylistMusic(playlistTitle));
+
+      const actions = store.getActions();
+
+      expect(actions).toEqual([
+        {
+          type: 'application/addPlaylistMusic',
+          payload: {
+            playlistTitle,
+            selectedMusic: {
+              id: {
+                videoId: 'xxx',
+              },
+              snippet: {},
+            },
+          },
         },
       ]);
     });
