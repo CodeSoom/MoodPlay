@@ -15,10 +15,12 @@ import reducer, {
   setStoreTextInput,
   addPlaylistTitle,
   addPlaylistMusic,
+  removePlaylistMusic,
   loadMoodCategories,
   loadMusic,
   storePlaylistTitle,
   storePlaylistMusic,
+  deletePlaylistMusic,
 } from './slice';
 
 const middlewares = getDefaultMiddleware();
@@ -353,6 +355,48 @@ describe('reducer', () => {
       ]);
     });
   });
+
+  describe('removePlaylistMusic', () => {
+    it('changes myPlaylists', () => {
+      const initialState = {
+        myPlaylists: [{
+          playlistTitle: 'playlist 1',
+          playlists: [
+            { id: { videoId: 'xxx1' } },
+            { id: { videoId: 'xxx2' } },
+          ],
+        },
+        {
+          playlistTitle: 'playlist 2',
+          playlists: [
+            { id: { videoId: 'xxx1' } },
+            { id: { videoId: 'xxx3' } },
+          ],
+        }],
+      };
+
+      const playlistTitle = 'playlist 1';
+      const selectedMusic = { id: { videoId: 'xxx1' } };
+
+      const state = reducer(initialState, removePlaylistMusic({ playlistTitle, selectedMusic }));
+
+      expect(state.myPlaylists).toEqual([{
+        playlistTitle: 'playlist 1',
+        playlists: [
+          {
+            id: { videoId: 'xxx2' },
+          },
+        ],
+      },
+      {
+        playlistTitle: 'playlist 2',
+        playlists: [
+          { id: { videoId: 'xxx1' } },
+          { id: { videoId: 'xxx3' } },
+        ],
+      }]);
+    });
+  });
 });
 
 describe('actions', () => {
@@ -519,6 +563,33 @@ describe('actions', () => {
               },
               snippet: {},
             },
+          },
+        },
+      ]);
+    });
+  });
+
+  describe('deletePlaylistMusic', () => {
+    beforeEach(() => {
+      store = mockStore({
+        myPlaylists: [],
+        selectedMusic: { id: { videoId: 'xxx1' } },
+      });
+    });
+
+    it('runs removePlaylistMusic', () => {
+      const playlistTitle = 'playlist 1';
+
+      store.dispatch(deletePlaylistMusic(playlistTitle));
+
+      const actions = store.getActions();
+
+      expect(actions).toEqual([
+        {
+          type: 'application/removePlaylistMusic',
+          payload: {
+            playlistTitle,
+            selectedMusic: { id: { videoId: 'xxx1' } },
           },
         },
       ]);

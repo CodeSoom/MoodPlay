@@ -10,6 +10,7 @@ import {
   setStoreTextInput,
   storePlaylistTitle,
   storePlaylistMusic,
+  deletePlaylistMusic,
 } from './slice';
 
 import StoreMusicModal from './StoreMusicModal';
@@ -58,9 +59,12 @@ const StoreMusicContainer = React.memo(() => {
   }, [dispatch]);
 
   const handleCheckPlaylist = useCallback(({ checked, playlistTitle }) => {
-    if (checked) {
-      dispatch(storePlaylistMusic(playlistTitle));
+    if (!checked) {
+      dispatch(deletePlaylistMusic(playlistTitle));
+      return;
     }
+
+    dispatch(storePlaylistMusic(playlistTitle));
   }, [dispatch]);
 
   return (

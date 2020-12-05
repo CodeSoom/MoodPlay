@@ -93,7 +93,7 @@ describe('StoreMusicContainer', () => {
         expect(getByLabelText(playlistTitle)).not.toBeChecked();
       });
 
-      expect(dispatch).toBeCalledTimes(2);
+      expect(dispatch).toBeCalledTimes(4);
     });
   });
 
