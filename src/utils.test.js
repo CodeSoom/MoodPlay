@@ -34,25 +34,48 @@ test('getSelectedMusicIndex', () => {
   expect(getSelectedMusicIndex(musicItems, b)).toBe(3);
 });
 
-test('getUpNextItems', () => {
-  const musicItems = [
-    { id: { videoId: 'x1' } },
-    { id: { videoId: 'x2' } },
-    { id: { videoId: 'x3' } },
-    { id: { videoId: 'x4' } },
-    { id: { videoId: 'x5' } },
-  ];
+describe('getUpNextItems', () => {
+  context('with more than four music items', () => {
+    const musicItems = [
+      { id: { videoId: 'x1' } },
+      { id: { videoId: 'x2' } },
+      { id: { videoId: 'x3' } },
+      { id: { videoId: 'x4' } },
+      { id: { videoId: 'x5' } },
+    ];
 
-  expect(getUpNextItems(musicItems, 3)).toStrictEqual([
-    { id: { videoId: 'x5' } },
-    { id: { videoId: 'x1' } },
-    { id: { videoId: 'x2' } },
-  ]);
-  expect(getUpNextItems(musicItems, 0)).toStrictEqual([
-    { id: { videoId: 'x2' } },
-    { id: { videoId: 'x3' } },
-    { id: { videoId: 'x4' } },
-  ]);
+    it('returns next three items', () => {
+      expect(getUpNextItems(musicItems, 3)).toStrictEqual([
+        { id: { videoId: 'x5' } },
+        { id: { videoId: 'x1' } },
+        { id: { videoId: 'x2' } },
+      ]);
+      expect(getUpNextItems(musicItems, 0)).toStrictEqual([
+        { id: { videoId: 'x2' } },
+        { id: { videoId: 'x3' } },
+        { id: { videoId: 'x4' } },
+      ]);
+    });
+  });
+
+  context('with less than three music items', () => {
+    const musicItems = [
+      { id: { videoId: 'x1' } },
+      { id: { videoId: 'x2' } },
+      { id: { videoId: 'x3' } },
+    ];
+
+    it('returns all next items', () => {
+      expect(getUpNextItems(musicItems, 2)).toStrictEqual([
+        { id: { videoId: 'x1' } },
+        { id: { videoId: 'x2' } },
+      ]);
+      expect(getUpNextItems(musicItems, 1)).toStrictEqual([
+        { id: { videoId: 'x3' } },
+        { id: { videoId: 'x1' } },
+      ]);
+    });
+  });
 });
 
 test('getTimes', () => {
