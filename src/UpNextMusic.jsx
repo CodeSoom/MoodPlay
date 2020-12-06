@@ -7,6 +7,18 @@ import {
   getUpNextItems,
 } from './utils';
 
+const Wrap = styled.ul({
+  width: '354px',
+  display: 'flex',
+  flexDirection: 'column',
+  marginTop: '3vh',
+});
+
+const NextSongs = styled.p({
+  fontSize: '32px',
+  fontWeight: '900',
+});
+
 const UpNextWrap = styled.ul({
   display: 'flex',
   flexDirection: 'row',
@@ -19,9 +31,20 @@ const UpNextWrap = styled.ul({
 });
 
 const ListItem = styled.li({
-  margin: '0 7px',
+  width: '111px',
+  height: '145px',
+  margin: '15px 7px',
   cursor: 'pointer',
 });
+
+const Thumbnail = styled.div(({ url }) => ({
+  background: `url(${url}) no-repeat`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  borderRadius: '30px',
+  width: '111px',
+  height: '111px',
+}));
 
 const UpNextMusic = React.memo(({
   nowPlayingMusicItems,
@@ -36,8 +59,8 @@ const UpNextMusic = React.memo(({
   const upNextItems = getUpNextItems(nowPlayingMusicItems, selectedMusicIndex);
 
   return (
-    <>
-      <p>UpNext</p>
+    <Wrap>
+      <NextSongs>Next songs</NextSongs>
       <UpNextWrap>
         {
           upNextItems.map((music) => {
@@ -48,14 +71,14 @@ const UpNextMusic = React.memo(({
                 key={title}
                 onClick={() => onClick(music)}
               >
-                <img src={thumbnails.default.url} alt={description} />
+                <Thumbnail url={thumbnails.default.url} alt={description} />
                 <p>{title}</p>
               </ListItem>
             );
           })
         }
       </UpNextWrap>
-    </>
+    </Wrap>
   );
 });
 

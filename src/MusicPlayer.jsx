@@ -10,24 +10,15 @@ const PlayerWrap = styled.div({
   right: '0',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'space-around',
   alignItems: 'center',
-  width: '400px',
+  width: '438px',
   height: '100vh',
-  border: '3px solid #888',
-  borderRadius: '10px',
+  padding: '181px 0 127px 0',
+  borderRadius: '0 48px 48px 0',
 
-  background: '#000',
+  background: '#1B1A20',
   color: '#fff',
-
-  '& p': {
-    marginTop: '50px',
-    textAlign: 'center',
-  },
-
-  '& small': {
-    color: '#999',
-  },
 });
 
 const MusicPlayer = React.memo(({

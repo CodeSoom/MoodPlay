@@ -6,8 +6,8 @@ import MoodControllerContainer from './MoodControllerContainer';
 
 const Wrap = styled.div({
   position: 'fixed',
-  left: '100px',
-  width: '100%',
+  left: '234px',
+  width: 'calc(100% - 234px)',
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',
