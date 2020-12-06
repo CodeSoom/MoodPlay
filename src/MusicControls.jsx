@@ -4,10 +4,13 @@ import YouTube from '@u-wave/react-youtube';
 
 import styled from '@emotion/styled';
 
-import PlayIcon from './assets/images/icons/play_w.png';
-import PauseIcon from './assets/images/icons/pause_w.png';
-import VolumeIcon from './assets/images/icons/speaker_w.png';
-import MuteIcon from './assets/images/icons/mute_w.png';
+import {
+  PlayIcon,
+  PauseIcon,
+  VolumeIcon,
+  MuteIcon,
+  StoreIcon,
+} from './assets/images';
 
 import { getTime, getProgressTime } from './utils';
 
@@ -61,6 +64,19 @@ const SoundButton = styled.button(({ muted }) => ({
   fontSize: '0',
   marginRight: '5px',
 }));
+
+const StoreButton = styled.button({
+  background: `url(${StoreIcon}) no-repeat`,
+  backgroundSize: '48px',
+  width: '48px',
+  height: '48px',
+  border: '0',
+  fontSize: '0',
+
+  '&: focus': {
+    outline: 0,
+  },
+});
 
 const ProgressBar = styled.input(({ value }) => ({
   width: '300px',
@@ -189,7 +205,6 @@ const MusicControls = React.memo(({
       <p>{title}</p>
       <small>{`channel - ${channelTitle}`}</small>
       <p>{`${getTime(currentTime)} / ${getTime(duration)}`}</p>
-      <button type="button" onClick={onStoreMusic}>저장</button>
 
       <ProgressBar
         type="range"
@@ -218,6 +233,7 @@ const MusicControls = React.memo(({
           onChange={handleVolume}
         />
       </SoundControlWrap>
+      <StoreButton type="button" onClick={onStoreMusic}>저장</StoreButton>
 
       <Buttons>
         {

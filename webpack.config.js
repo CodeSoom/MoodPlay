@@ -18,19 +18,18 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.png?$/,
-        exclude: /node_modules/,
-        loader: 'url-loader',
-        options: {
-          name: '[name].[ext]?[hash]',
-          publicPath: './dist/src/assets',
-          limit: 10000,
+        test: /\.(png|jpg|gif|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]?[hash]',
+          },
         },
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'css', 'png'],
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
     historyApiFallback: true,
