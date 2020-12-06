@@ -6,11 +6,11 @@ import styled from '@emotion/styled';
 
 const Wrap = styled.div({
   color: '#fff',
-  width: '100px',
+  width: '234px',
   height: '100vh',
-  backgroundColor: '#000',
-  border: '3px solid #888',
-  borderRadius: '10px',
+  backgroundColor: '#1B1A20',
+  borderRadius: '48px 0 0 48px',
+
   padding: '100px 15px',
 });
 

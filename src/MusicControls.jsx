@@ -14,19 +14,68 @@ import {
 
 import { getTime, getProgressTime } from './utils';
 
+const MusicControlsWrap = styled.div({
+  width: '317px',
+});
+
 const HideVideo = styled.div({
   position: 'fixed',
   top: '-5000px',
-  border: '1px solid red',
   opacity: 0,
 });
 
-const Buttons = styled.div({
+const MusicImage = styled.div(({ url }) => ({
+  background: `url(${url}) no-repeat`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  width: '317px',
+  height: '238px',
+}));
+
+const TitleBoxAndStoreButtonWrap = styled.div({
+  width: '100%',
   display: 'flex',
-  flexDirection: 'rows',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop: '30px',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginTop: '27px',
+});
+
+const TitleBox = styled.div({
+  width: '80%',
+
+  '& p': {
+    textAlign: 'left',
+  },
+
+  '& small': {
+    color: '#999',
+  },
+});
+
+const ProgressBar = styled.input(({ value }) => ({
+  width: '100%',
+  height: '7px',
+  borderRadius: '7px',
+  backgroundImage: `-webkit-gradient(linear,
+    left top, 
+    right top, 
+    color-stop(${value}%, #f89428),
+    color-stop(${value}%, #29292f))`,
+
+  '&: focus': {
+    outline: '0',
+  },
+}));
+
+const TimelineAndSoundWrap = styled.div({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+});
+
+const Timeline = styled.p({
+  fontSize: '13px',
 });
 
 const SoundControlWrap = styled.div({
@@ -37,33 +86,60 @@ const SoundControlWrap = styled.div({
   marginTop: '5px',
 });
 
+const SoundControl = styled.input(({ value }) => ({
+  width: '149px',
+  height: '7px',
+  borderRadius: '7px',
+  backgroundImage: `-webkit-gradient(linear,
+    left top, 
+    right top, 
+    color-stop(${value * 100}%, #dbdbdb),
+    color-stop(${value * 100}%, #29292f))`,
+
+  '&: focus': {
+    outline: '0',
+  },
+}));
+
+const SoundButton = styled.button(({ muted }) => ({
+  background: `url(${muted ? MuteIcon : VolumeIcon}) no-repeat`,
+  backgroundSize: '14px',
+  width: '14px',
+  height: '10px',
+  border: '0',
+  fontSize: '0',
+  marginRight: '5px',
+
+  '&: focus': {
+    outline: 0,
+  },
+}));
+
+const Buttons = styled.div({
+  display: 'flex',
+  flexDirection: 'rows',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: '30px',
+});
+
 const PlayButton = styled.button({
   background: `url(${PlayIcon}) no-repeat`,
-  backgroundSize: '50px',
-  width: '50px',
-  height: '50px',
+  backgroundSize: '48px',
+  width: '48px',
+  height: '48px',
   border: '0',
-  color: 'transparent',
+  fontSize: '0',
 });
 
 const PauseButton = styled.button({
   background: `url(${PauseIcon}) no-repeat`,
-  backgroundSize: '50px',
-  width: '50px',
-  height: '50px',
-  border: '0',
-  color: 'transparent',
-});
-
-const SoundButton = styled.button(({ muted }) => ({
-  background: `url(${muted ? MuteIcon : VolumeIcon}) no-repeat`,
-  backgroundSize: '15px',
-  width: '15px',
-  height: '15px',
+  backgroundSize: '48px',
+  width: '48px',
+  height: '48px',
   border: '0',
   fontSize: '0',
-  marginRight: '5px',
-}));
+});
 
 const StoreButton = styled.button({
   background: `url(${StoreIcon}) no-repeat`,
@@ -77,20 +153,6 @@ const StoreButton = styled.button({
     outline: 0,
   },
 });
-
-const ProgressBar = styled.input(({ value }) => ({
-  width: '300px',
-  height: '6px',
-  backgroundImage: `-webkit-gradient(linear,
-    left top, 
-    right top, 
-    color-stop(${value}%, red),
-    color-stop(${value}%, #f0f0f0))`,
-
-  '&: focus': {
-    outline: '0',
-  },
-}));
 
 const MusicControls = React.memo(({
   selectedMusic, onStoreMusic,
@@ -183,7 +245,7 @@ const MusicControls = React.memo(({
   };
 
   return (
-    <>
+    <MusicControlsWrap>
       <HideVideo>
         <YouTube
           video={videoId}
@@ -201,10 +263,14 @@ const MusicControls = React.memo(({
         />
       </HideVideo>
 
-      <img src={url} alt={description} />
-      <p>{title}</p>
-      <small>{`channel - ${channelTitle}`}</small>
-      <p>{`${getTime(currentTime)} / ${getTime(duration)}`}</p>
+      <MusicImage url={url} alt={description} />
+      <TitleBoxAndStoreButtonWrap>
+        <TitleBox>
+          <p>{title}</p>
+          <small>{`channel - ${channelTitle}`}</small>
+        </TitleBox>
+        <StoreButton type="button" onClick={onStoreMusic}>저장</StoreButton>
+      </TitleBoxAndStoreButtonWrap>
 
       <ProgressBar
         type="range"
@@ -216,24 +282,26 @@ const MusicControls = React.memo(({
         onClick={handleProgess}
       />
 
-      <SoundControlWrap>
-        <SoundButton
-          type="button"
-          muted={muted}
-          onClick={handleMuted}
-        >
-          Muted
-        </SoundButton>
-        <input
-          type="range"
-          value={volume}
-          min={0}
-          max={1}
-          step={0.01}
-          onChange={handleVolume}
-        />
-      </SoundControlWrap>
-      <StoreButton type="button" onClick={onStoreMusic}>저장</StoreButton>
+      <TimelineAndSoundWrap>
+        <Timeline>{`${getTime(currentTime)} / ${getTime(duration)}`}</Timeline>
+        <SoundControlWrap>
+          <SoundButton
+            type="button"
+            muted={muted}
+            onClick={handleMuted}
+          >
+            Muted
+          </SoundButton>
+          <SoundControl
+            type="range"
+            value={volume}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={handleVolume}
+          />
+        </SoundControlWrap>
+      </TimelineAndSoundWrap>
 
       <Buttons>
         {
@@ -256,7 +324,7 @@ const MusicControls = React.memo(({
             )
         }
       </Buttons>
-    </>
+    </MusicControlsWrap>
   );
 });
 
