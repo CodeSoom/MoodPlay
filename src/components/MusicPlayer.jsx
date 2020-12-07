@@ -10,11 +10,10 @@ const PlayerWrap = styled.div({
   right: '0',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-around',
   alignItems: 'center',
   width: '438px',
   height: '100vh',
-  padding: '181px 0 127px 0',
+  paddingTop: '8.5vh',
   borderRadius: '0 48px 48px 0',
 
   background: '#1B1A20',

@@ -11,40 +11,47 @@ const Wrap = styled.ul({
   width: '354px',
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '3vh',
+  marginTop: '3.7vh',
+  paddingTop: '5vh',
+  borderTop: '1px solid #474747',
 });
 
 const NextSongs = styled.p({
-  fontSize: '32px',
+  fontSize: '28px',
   fontWeight: '900',
+  marginBottom: '47px',
 });
 
 const UpNextWrap = styled.ul({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   '& p': {
     fontSize: '0.6em',
     textAlign: 'center',
-    marginTop: '5px',
   },
 });
 
 const ListItem = styled.li({
-  width: '111px',
-  height: '145px',
-  margin: '15px 7px',
+  width: '110px',
   cursor: 'pointer',
+  marginRight: '9.5px',
 });
 
 const Thumbnail = styled.div(({ url }) => ({
   background: `url(${url}) no-repeat`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  borderRadius: '30px',
-  width: '111px',
-  height: '111px',
+  borderRadius: '12px',
+  width: '110px',
+  height: '110px',
 }));
+
+const Title = styled.p({
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});
 
 const UpNextMusic = React.memo(({
   nowPlayingMusicItems,
@@ -72,7 +79,7 @@ const UpNextMusic = React.memo(({
                 onClick={() => onClick(music)}
               >
                 <Thumbnail url={thumbnails.default.url} alt={description} />
-                <p>{title}</p>
+                <Title>{title}</Title>
               </ListItem>
             );
           })
