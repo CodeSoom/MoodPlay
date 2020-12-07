@@ -10,8 +10,11 @@ export function getSelectedMusicIndex(musicItems, selectedMusic) {
 }
 
 export function getUpNextItems(musicItems, selectedMusicIndex) {
-  const newArray = musicItems.length > 3
-    ? new Array(3) : new Array(musicItems.length - 1);
+  const UPNEXT_ITEM_COUNT = 3;
+
+  const newArray = musicItems.length > UPNEXT_ITEM_COUNT
+    ? new Array(UPNEXT_ITEM_COUNT) : new Array(musicItems.length - 1);
+
   const upNextItems = newArray
     .fill('')
     .map((a, i) => musicItems[
