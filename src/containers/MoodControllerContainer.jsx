@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 import {
   setMoodselectFields,
   loadMoodCategories,
-} from './slice';
+} from '../redux/slice';
 
-import MoodEnergyForm from './MoodEnergyForm';
-import MoodBrightnessForm from './MoodBrightnessForm';
+import MoodEnergyForm from '../components/MoodEnergyForm';
+import MoodBrightnessForm from '../components/MoodBrightnessForm';
 
 export default function MoodControllerContainer() {
   const dispatch = useDispatch();

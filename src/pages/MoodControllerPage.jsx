@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import MoodControllerContainer from './MoodControllerContainer';
+import MoodControllerContainer from '../containers/MoodControllerContainer';
 
 const Wrap = styled.div({
   position: 'fixed',

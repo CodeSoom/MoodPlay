@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import {
   getSelectedMusicIndex,
   getUpNextItems,
-} from './utils';
+} from '../utils/utils';
 
 const Wrap = styled.ul({
   width: '354px',

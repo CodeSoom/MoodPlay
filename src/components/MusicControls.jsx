@@ -10,9 +10,9 @@ import {
   VolumeIcon,
   MuteIcon,
   StoreIcon,
-} from './assets/images';
+} from '../assets/images';
 
-import { getTime, getProgressTime } from './utils';
+import { getTime, getProgressTime } from '../utils/utils';
 
 const MusicControlsWrap = styled.div({
   width: '317px',

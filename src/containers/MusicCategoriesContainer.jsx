@@ -9,12 +9,12 @@ import {
   setSelectedCategory,
   setSelectedMusic,
   setNowPlayingMusicItems,
-} from './slice';
+} from '../redux/slice';
 
-import MusicCategories from './MusicCategories';
-import MusicItems from './MusicItems';
+import MusicCategories from '../components/MusicCategories';
+import MusicItems from '../components/MusicItems';
 
-import { get } from './utils';
+import { get } from '../utils/utils';
 
 const Wrap = styled.div({
   position: 'fixed',

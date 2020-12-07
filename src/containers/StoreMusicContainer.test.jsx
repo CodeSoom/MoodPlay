@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import StoreMusicContainer from './StoreMusicContainer';
 
-import MYPLAYLISTS from '../fixtures/myplaylists';
+import MYPLAYLISTS from '../../fixtures/myplaylists';
 
 jest.mock('react-redux');
 

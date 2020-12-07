@@ -4,8 +4,8 @@ import { render } from '@testing-library/react';
 
 import MusicPlayer from './MusicPlayer';
 
-import MUSICITEMS from '../fixtures/musicItems';
-import SELECTEDMUSIC from '../fixtures/selectedMusic';
+import MUSICITEMS from '../../fixtures/musicItems';
+import SELECTEDMUSIC from '../../fixtures/selectedMusic';
 
 describe('MusicPlayer', () => {
   context('with selected music and now playing music items', () => {
@@ -18,7 +18,6 @@ describe('MusicPlayer', () => {
         selectedMusic={selectedMusic}
         nowPlayingMusicItems={nowPlayingMusicItems}
       />);
-
 
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);

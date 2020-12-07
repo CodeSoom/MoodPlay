@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import MusicItems from './MusicItems';
 
-import MUSICITEMS from '../fixtures/musicItems';
+import MUSICITEMS from '../../fixtures/musicItems';
 
 describe('MusicItems', () => {
   const handleClick = jest.fn();

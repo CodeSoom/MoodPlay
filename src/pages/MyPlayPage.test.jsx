@@ -8,7 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import MyPlayPage from './MyPlayPage';
 
-import MYPLAYLISTS from '../fixtures/myplaylists';
+import MYPLAYLISTS from '../../fixtures/myplaylists';
 
 jest.mock('react-redux');
 
