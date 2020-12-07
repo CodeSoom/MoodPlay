@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styled from '@emotion/styled';
 
-import { setSelectedMusic, setNowPlayingMusicItems } from './slice';
+import { setSelectedMusic, setNowPlayingMusicItems } from '../redux/slice';
 
-import MyPlaylist from './MyPlaylist';
+import MyPlaylist from '../components/MyPlaylist';
 
-import { get } from './utils';
+import { get } from '../utils/utils';
 
 const Wrap = styled.div({
   position: 'fixed',

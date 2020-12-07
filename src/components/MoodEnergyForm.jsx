@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Form from './styles/Form';
-import RadioWrap from './styles/RadioWrap';
+import Form from '../styles/Form';
+import RadioWrap from '../styles/RadioWrap';
 
 const MoodEnergyForm = React.memo(({ onChange }) => {
   const formValues = [{ id: 'calm', text: '차분한' }, { id: 'uplifting', text: '신나는' }];

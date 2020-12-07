@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSelectedMusic, setStoreOpenState } from './slice';
+import { setSelectedMusic, setStoreOpenState } from '../redux/slice';
 
-import MusicPlayer from './MusicPlayer';
+import MusicPlayer from '../components/MusicPlayer';
 
-import { get } from './utils';
+import { get } from '../utils/utils';
 
 export default function MusicPlayerContainer() {
   const dispatch = useDispatch();

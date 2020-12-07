@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import StoreMusicModal from './StoreMusicModal';
 
-import MYPLAYLISTS from '../fixtures/myplaylists';
+import MYPLAYLISTS from '../../fixtures/myplaylists';
 
 describe('StoreMusicModal', () => {
   const handleClick = jest.fn();

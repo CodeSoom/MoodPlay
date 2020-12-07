@@ -11,11 +11,11 @@ import {
   storePlaylistTitle,
   storePlaylistMusic,
   deletePlaylistMusic,
-} from './slice';
+} from '../redux/slice';
 
-import StoreMusicModal from './StoreMusicModal';
+import StoreMusicModal from '../components/StoreMusicModal';
 
-import { get } from './utils';
+import { get } from '../utils/utils';
 
 const ModalWrap = styled.div({
   position: 'fixed',

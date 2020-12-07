@@ -2,9 +2,9 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import MusicPlayerContainer from './MusicPlayerContainer';
-import MyPlaylistsContainer from './MyPlaylistsContainer';
-import StoreMusicContainer from './StoreMusicContainer';
+import MusicPlayerContainer from '../containers/MusicPlayerContainer';
+import MyPlaylistsContainer from '../containers/MyPlaylistsContainer';
+import StoreMusicContainer from '../containers/StoreMusicContainer';
 
 const Wrap = styled.div({
   height: '100vh',

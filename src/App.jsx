@@ -13,12 +13,12 @@ import './assets/css/global.css';
 
 import { loadItem } from './sevices/storage';
 
-import { setMyPlaylists } from './slice';
+import { setMyPlaylists } from './redux/slice';
 
-import MoodControllerPage from './MoodControllerPage';
-import MoodPlayPage from './MoodPlayPage';
-import MyPlayPage from './MyPlayPage';
-import NavigationBar from './NavigationBar';
+import MoodControllerPage from './pages/MoodControllerPage';
+import MoodPlayPage from './pages/MoodPlayPage';
+import MyPlayPage from './pages/MyPlayPage';
+import NavigationBar from './components/NavigationBar';
 
 const Wrap = styled.div({
   display: 'flex',

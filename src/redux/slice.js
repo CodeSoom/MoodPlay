@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { saveItem } from './sevices/storage';
+import { saveItem } from '../sevices/storage';
 
 import {
   getMoodCategories,
   getCategoryKeyword,
   fetchMusic,
-} from './sevices/api';
+} from '../sevices/api';
 
 const { actions, reducer } = createSlice({
   name: 'application',
