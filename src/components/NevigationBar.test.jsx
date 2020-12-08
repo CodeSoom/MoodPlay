@@ -13,7 +13,7 @@ test('NavigationBar', () => {
     </MemoryRouter>,
   );
 
-  expect(container).toHaveTextContent('무드 선택');
+  expect(container).toHaveTextContent('무드선택');
   expect(container).toHaveTextContent('홈');
-  expect(container).toHaveTextContent('마이 플레이');
+  expect(container).toHaveTextContent('마이플레이');
 });
