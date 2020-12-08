@@ -15,6 +15,9 @@ import HomeIconActive from './images/icons/home-a.png';
 import MoodControllerIconActive from './images/icons/selet-mood-icon-a.png';
 import MyPlayIconActive from './images/icons/myplaylist-a.png';
 
+import CategoriesNextIcon from './images/icons/categories_next.png';
+import CategoriesPreviousIcon from './images/icons/categories_prev.png';
+
 export {
   PlayIcon,
   PauseIcon,
@@ -31,4 +34,6 @@ export {
   HomeIconActive,
   MoodControllerIconActive,
   MyPlayIconActive,
+  CategoriesNextIcon,
+  CategoriesPreviousIcon,
 };

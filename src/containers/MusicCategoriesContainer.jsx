@@ -19,12 +19,18 @@ import { get } from '../utils/utils';
 const Wrap = styled.div({
   position: 'fixed',
   left: '234px',
-  width: 'calc(100vw - 672px)',
-  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
+  padding: '68px 95px',
+  width: 'calc(100vw - 672px)',
+  height: '100vh',
+  background: '#0f0f0f',
+  color: '#fff',
+});
+
+const MusicCategoriesTitle = styled.h2({
+  fontsize: '28px',
+  fontWeight: '900',
 });
 
 const MusicCategoriesContainer = React.memo(() => {
@@ -48,9 +54,12 @@ const MusicCategoriesContainer = React.memo(() => {
 
   return (
     <Wrap>
-      <h2>기분에 어울리는 장르들이에요!</h2>
+      <MusicCategoriesTitle>
+        기분에 어울리는 장르들이에요!
+      </MusicCategoriesTitle>
       <MusicCategories
         moodCategories={moodCategories}
+        selectedCategory={selectedCategory}
         onClick={handleClickCategories}
       />
       {
