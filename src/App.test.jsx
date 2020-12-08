@@ -45,8 +45,9 @@ describe('App', () => {
 
   it('renders navigation bar', () => {
     const { container } = renderApp({ path: '/project-react-2-bbhye1' });
-    expect(container).toHaveTextContent('무드 선택');
+    expect(container).toHaveTextContent('무드선택');
     expect(container).toHaveTextContent('홈');
+    expect(container).toHaveTextContent('마이플레이');
   });
 
   context('with path /project-react-2-bbhye1', () => {
