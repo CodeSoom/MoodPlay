@@ -48,7 +48,7 @@ const Card = styled.li(({ selectState }) => ({
   cursor: 'pointer',
 
   '& h3': {
-    fontsize: '20px',
+    fontSize: '20px',
     fontWeight: 400,
   },
 

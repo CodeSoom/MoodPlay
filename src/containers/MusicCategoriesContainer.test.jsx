@@ -68,6 +68,7 @@ describe('MusicCategoriesContainer', () => {
     it('renders selected category music', () => {
       const { container } = render(<MusicCategoriesContainer />);
 
+      expect(container).toHaveTextContent('로파이');
       expect(container).toHaveTextContent('title1');
       expect(container).toHaveTextContent('channelTitle1');
     });

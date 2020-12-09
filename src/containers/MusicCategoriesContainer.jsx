@@ -29,7 +29,7 @@ const Wrap = styled.div({
 });
 
 const MusicCategoriesTitle = styled.h2({
-  fontsize: '28px',
+  fontSize: '28px',
   fontWeight: '900',
 });
 
@@ -64,7 +64,14 @@ const MusicCategoriesContainer = React.memo(() => {
       />
       {
         selectedCategoryMusic
-          ? (<MusicItems music={selectedCategoryMusic} onClick={handleSelectMusic} />)
+          ? (
+            <MusicItems
+              music={selectedCategoryMusic}
+              selectedCategory={selectedCategory}
+              onClick={handleSelectMusic}
+            />
+          )
+
           : (<p>카테고리를 선택해주세요</p>)
       }
     </Wrap>
