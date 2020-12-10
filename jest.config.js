@@ -17,7 +17,7 @@ module.exports = {
     '\\.(png|jpg)$': '<rootDir>/__mocks__/fileMock.js',
   },
   coveragePathIgnorePatterns: [
-    '<rootDir>/src/MusicControls',
+    '<rootDir>/src/components/MusicControls',
     '<rootDir>/src/assets/images',
   ],
 };
