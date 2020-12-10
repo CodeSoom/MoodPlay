@@ -92,7 +92,7 @@ function NavigationBar() {
       <Logo />
       <IconItems>
         <IconItem>
-          <Link to="/project-react-2-bbhye1">
+          <Link to="/">
             <Icon
               url={MoodControllerIcon}
               hover={MoodControllerIconHover}
@@ -103,7 +103,7 @@ function NavigationBar() {
         </IconItem>
 
         <IconItem>
-          <Link to="/project-react-2-bbhye1/moodplay">
+          <Link to="/moodplay">
             <Icon
               url={HomeIcon}
               hover={HomeIconHover}
@@ -114,7 +114,7 @@ function NavigationBar() {
         </IconItem>
 
         <IconItem>
-          <Link to="/project-react-2-bbhye1/myplay">
+          <Link to="/myplay">
             <Icon
               url={MyPlayIcon}
               hover={MyPlayIconHover}

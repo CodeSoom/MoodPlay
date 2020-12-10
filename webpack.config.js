@@ -23,6 +23,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]?[hash]',
+            outputPath: './dist/',
           },
         },
       },
@@ -42,8 +43,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './dist/'),
     filename: 'main.js',
-    publicPath: '/project-react-2-bbhye1',
   },
 };

@@ -34,7 +34,7 @@ export default function MoodControllerContainer() {
         onChange={handleChangeMood}
       />
       <button type="button" onClick={handleSubmitMood}>
-        <Link to="/project-react-2-bbhye1/moodplay">
+        <Link to="/moodplay">
           Play your mood!
         </Link>
       </button>
