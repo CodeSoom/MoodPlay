@@ -8,13 +8,15 @@ import { MemoryRouter } from 'react-router-dom';
 
 import MyPlayPage from './MyPlayPage';
 
-import MYPLAYLISTS from '../../fixtures/myplaylists';
-
 jest.mock('react-redux');
 
 test('MyPlayPage', () => {
   useSelector.mockImplementation((selector) => selector({
-    myPlaylists: MYPLAYLISTS,
+    selectedPlaylist: '플레이리스트',
+    myPlaylists: [{
+      playlistTitle: '플레이리스트',
+      playlists: [],
+    }],
   }));
 
   const { container } = render(

@@ -43,3 +43,9 @@ export function getTime(time) {
 export function getProgressTime(duration, progressRatio) {
   return (duration / 100) * progressRatio;
 }
+
+export function getPlaylistMusic(myPlaylists, selectedPlaylist) {
+  const playlistMusic = myPlaylists
+    .find(({ playlistTitle }) => playlistTitle === selectedPlaylist).playlists;
+  return playlistMusic;
+}

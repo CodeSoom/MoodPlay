@@ -13,10 +13,10 @@ describe('MusicItems', () => {
     handleClick.mockClear();
   });
 
-  function renderMusicItems({ music = [], selectedCategory = '' }) {
+  function renderMusicItems({ music = [], musicItemsTitle = '' }) {
     return render(
       <MusicItems
-        selectedCategory={selectedCategory}
+        musicItemsTitle={musicItemsTitle}
         music={music}
         onClick={handleClick}
       />,
@@ -24,11 +24,11 @@ describe('MusicItems', () => {
   }
 
   it('renders category title', () => {
-    const selectedCategory = '어쿠스틱';
+    const musicItemsTitle = '어쿠스틱';
 
-    const { container } = renderMusicItems({ selectedCategory });
+    const { container } = renderMusicItems({ musicItemsTitle });
 
-    expect(container).toHaveTextContent(selectedCategory);
+    expect(container).toHaveTextContent(musicItemsTitle);
   });
 
   it('renders music items', () => {

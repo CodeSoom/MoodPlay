@@ -20,6 +20,7 @@ const { actions, reducer } = createSlice({
     selectedMusic: null,
     selectedCategoryMusic: null,
     nowPlayingMusicItems: [],
+    selectedPlaylist: '플레이리스트',
     myPlaylists: [{
       playlistTitle: '플레이리스트',
       playlists: [],
@@ -64,6 +65,13 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         selectedMusic,
+      };
+    },
+
+    setSelectedPlaylist(state, { payload: selectedPlaylist }) {
+      return {
+        ...state,
+        selectedPlaylist,
       };
     },
 
@@ -154,6 +162,7 @@ export const {
   setSelectedCategory,
   setCategoryMusic,
   setSelectedMusic,
+  setSelectedPlaylist,
   setNowPlayingMusicItems,
   setMyPlaylists,
   setStoreOpenState,
