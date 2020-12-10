@@ -38,9 +38,9 @@ export default function App() {
     <Wrap>
       <NavigationBar />
       <Switch>
-        <Route exact path="/project-react-2-bbhye1" component={MoodControllerPage} />
-        <Route exact path="/project-react-2-bbhye1/moodplay" component={MoodPlayPage} />
-        <Route exact path="/project-react-2-bbhye1/myplay" component={MyPlayPage} />
+        <Route exact path="/" component={MoodControllerPage} />
+        <Route exact path="/moodplay" component={MoodPlayPage} />
+        <Route exact path="/myplay" component={MyPlayPage} />
       </Switch>
     </Wrap>
   );

@@ -11,7 +11,7 @@
     "build": "webpack --mode production --config webpack.config.js",
     "build:dev": "webpack --mode development --config webpack.config.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --remote upstream"
   },
   "repository": {
     "type": "git",
