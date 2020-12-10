@@ -44,7 +44,7 @@ describe('App', () => {
   }
 
   it('renders navigation bar', () => {
-    const { container } = renderApp({ path: '/project-react-2-bbhye1' });
+    const { container } = renderApp({ path: '/' });
     expect(container).toHaveTextContent('무드선택');
     expect(container).toHaveTextContent('홈');
     expect(container).toHaveTextContent('마이플레이');
@@ -52,15 +52,15 @@ describe('App', () => {
 
   context('with path /project-react-2-bbhye1', () => {
     it('renders the Mood controller page', () => {
-      const { container } = renderApp({ path: '/project-react-2-bbhye1' });
+      const { container } = renderApp({ path: '/' });
 
       expect(container).toHaveTextContent('오늘은 어떤 날인가요?');
     });
   });
 
-  context('with path /project-react-2-bbhye1//moodplay', () => {
+  context('with path /project-react-2-bbhye1/moodplay', () => {
     it('renders the Mood controller page', () => {
-      const { container } = renderApp({ path: '/project-react-2-bbhye1/moodplay' });
+      const { container } = renderApp({ path: '/moodplay' });
 
       expect(container).toHaveTextContent('기분에 어울리는 장르들이에요!');
     });
@@ -68,7 +68,7 @@ describe('App', () => {
 
   context('with path /project-react-2-bbhye1/myplay', () => {
     it('renders the Mood controller page', () => {
-      const { container } = renderApp({ path: '/project-react-2-bbhye1/myplay' });
+      const { container } = renderApp({ path: '/myplay' });
 
       expect(container).toHaveTextContent('마이 플레이리스트');
     });
