@@ -12,9 +12,15 @@ import {
   StoreIcon,
   BeforeSecondsIcon,
   AfterSecondsIcon,
+  PreviousMusicIcon,
+  NextMusicIcon,
 } from '../assets/images';
 
-import { getTime, getProgressTime } from '../utils/utils';
+import {
+  getTime,
+  getProgressTime,
+  getSelectedMusicIndex,
+} from '../utils/utils';
 
 const MusicControlsWrap = styled.div({
   width: '342px',
@@ -190,7 +196,7 @@ const Buttons = styled.div({
 
 const IconButton = styled.button(({ url }) => ({
   fontSize: '0',
-  marginRight: '7px',
+  marginRight: '4px',
   width: '48px',
   height: '48px',
   border: '0',
@@ -203,7 +209,7 @@ const IconButton = styled.button(({ url }) => ({
 }));
 
 const MusicControls = React.memo(({
-  selectedMusic, onStoreMusic,
+  nowPlayingMusicItems, selectedMusic, onClick, onStoreMusic,
 }) => {
   if (!selectedMusic) {
     return (<p>재생중인 음악이 없습니다!</p>);
@@ -298,6 +304,26 @@ const MusicControls = React.memo(({
     player.seekTo(player.getCurrentTime() + 10, true);
   };
 
+  const handleSelectPreviousMusic = () => {
+    const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
+    if (selectedMusicIndex === 0) {
+      onClick(nowPlayingMusicItems[nowPlayingMusicItems.length - 1]);
+      return;
+    }
+
+    onClick(nowPlayingMusicItems[selectedMusicIndex - 1]);
+  };
+
+  const handleSelectNextMusic = () => {
+    const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
+    if (selectedMusicIndex === nowPlayingMusicItems.length - 1) {
+      onClick(nowPlayingMusicItems[0]);
+      return;
+    }
+
+    onClick(nowPlayingMusicItems[selectedMusicIndex + 1]);
+  };
+
   const handleStateChange = (event) => {
     setPlayer(event.target);
     setDuration(player.getDuration());
@@ -375,7 +401,14 @@ const MusicControls = React.memo(({
             url={BeforeSecondsIcon}
             onClick={handleBeforeTenSeconds}
           >
-            before ten seconds
+            Before ten seconds
+          </IconButton>
+          <IconButton
+            type="button"
+            url={PreviousMusicIcon}
+            onClick={handleSelectPreviousMusic}
+          >
+            Previous music
           </IconButton>
           {
             paused
@@ -398,6 +431,13 @@ const MusicControls = React.memo(({
                 </IconButton>
               )
           }
+          <IconButton
+            type="button"
+            url={NextMusicIcon}
+            onClick={handleSelectNextMusic}
+          >
+            Next music
+          </IconButton>
           <IconButton
             type="button"
             url={AfterSecondsIcon}
