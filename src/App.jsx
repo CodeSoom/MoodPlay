@@ -18,6 +18,7 @@ import { setMyPlaylists } from './redux/slice';
 import MoodControllerPage from './pages/MoodControllerPage';
 import MoodPlayPage from './pages/MoodPlayPage';
 import MyPlayPage from './pages/MyPlayPage';
+import MusicPlayerPage from './pages/MusicPlayerPage';
 import NavigationBar from './components/NavigationBar';
 
 const Wrap = styled.div({
@@ -41,6 +42,10 @@ export default function App() {
         <Route exact path="/" component={MoodControllerPage} />
         <Route exact path="/moodplay" component={MoodPlayPage} />
         <Route exact path="/myplay" component={MyPlayPage} />
+      </Switch>
+
+      <Switch>
+        <Route exact path={['/moodplay', '/myplay']} component={MusicPlayerPage} />
       </Switch>
     </Wrap>
   );
