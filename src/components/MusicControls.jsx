@@ -10,6 +10,8 @@ import {
   VolumeIcon,
   MuteIcon,
   StoreIcon,
+  BeforeSecondsIcon,
+  AfterSecondsIcon,
 } from '../assets/images';
 
 import { getTime, getProgressTime } from '../utils/utils';
@@ -188,6 +190,7 @@ const Buttons = styled.div({
 
 const IconButton = styled.button(({ url }) => ({
   fontSize: '0',
+  marginRight: '7px',
   width: '48px',
   height: '48px',
   border: '0',
@@ -278,6 +281,23 @@ const MusicControls = React.memo(({
     player.seekTo(progressTime, true);
   };
 
+  const handleBeforeTenSeconds = () => {
+    if (player.getCurrentTime() <= 10) {
+      setCurrentTime(0);
+      player.seekTo(0, true);
+      return;
+    }
+
+    setCurrentTime(player.getCurrentTime() - 10);
+    player.seekTo(player.getCurrentTime() - 10, true);
+  };
+
+  const handleAfterTenSeconds = () => {
+    setCurrentTime(player.getCurrentTime() + 10);
+
+    player.seekTo(player.getCurrentTime() + 10, true);
+  };
+
   const handleStateChange = (event) => {
     setPlayer(event.target);
     setDuration(player.getDuration());
@@ -349,34 +369,50 @@ const MusicControls = React.memo(({
       </InfoBox>
 
       <Buttons>
-        {
-          paused
-            ? (
-              <IconButton
-                type="button"
-                url={PlayIcon}
-                onClick={handlePlay}
-              >
-                Play
-              </IconButton>
-            )
-            : (
-              <IconButton
-                type="button"
-                url={PauseIcon}
-                onClick={handlePause}
-              >
-                Paused
-              </IconButton>
-            )
-        }
+        <div>
+          <IconButton
+            type="button"
+            url={BeforeSecondsIcon}
+            onClick={handleBeforeTenSeconds}
+          >
+            before ten seconds
+          </IconButton>
+          {
+            paused
+              ? (
+                <IconButton
+                  type="button"
+                  url={PlayIcon}
+                  onClick={handlePlay}
+                >
+                  Play
+                </IconButton>
+              )
+              : (
+                <IconButton
+                  type="button"
+                  url={PauseIcon}
+                  onClick={handlePause}
+                >
+                  Paused
+                </IconButton>
+              )
+          }
+          <IconButton
+            type="button"
+            url={AfterSecondsIcon}
+            onClick={handleAfterTenSeconds}
+          >
+            After ten seconds
+          </IconButton>
+        </div>
         <IconButton
           type="button"
           url={StoreIcon}
           onClick={onStoreMusic}
         >
           저장
-         </IconButton>
+        </IconButton>
       </Buttons>
     </MusicControlsWrap>
   );
