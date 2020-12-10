@@ -3,6 +3,8 @@ import PauseIcon from './images/icons/pause_y.png';
 import VolumeIcon from './images/icons/sound_on.png';
 import MuteIcon from './images/icons/sound_off.png';
 import StoreIcon from './images/icons/bookmark.png';
+import BeforeSecondsIcon from './images/icons/before-seconds.png';
+import AfterSecondsIcon from './images/icons/after-seconds.png';
 
 import LogoIcon from './images/icons/Logo.png';
 import HomeIcon from './images/icons/home-i.png';
@@ -24,6 +26,8 @@ export {
   VolumeIcon,
   MuteIcon,
   StoreIcon,
+  BeforeSecondsIcon,
+  AfterSecondsIcon,
   LogoIcon,
   HomeIcon,
   MoodControllerIcon,
