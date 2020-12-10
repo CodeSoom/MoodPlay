@@ -22,6 +22,11 @@ import MyPlayIconActive from './images/icons/myplaylist-a.png';
 import CategoriesNextIcon from './images/icons/categories_next.png';
 import CategoriesPreviousIcon from './images/icons/categories_prev.png';
 
+import MoodBackground from './images/icons/moodbutton_i.png';
+import MoodBackgroundHover from './images/icons/moodbutton_h.png';
+import MoodBackgroundActive from './images/icons/moodbutton_a.png';
+import MoodBackgroundSelected from './images/icons/moodbutton_s.png';
+
 export {
   PlayIcon,
   PauseIcon,
@@ -44,4 +49,8 @@ export {
   MyPlayIconActive,
   CategoriesNextIcon,
   CategoriesPreviousIcon,
+  MoodBackground,
+  MoodBackgroundHover,
+  MoodBackgroundActive,
+  MoodBackgroundSelected,
 };

@@ -12,8 +12,8 @@ const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     moodselectFields: {
-      energy: 'none',
-      brightness: 'none',
+      energy: '',
+      brightness: '',
     },
     moodCategories: [],
     selectedCategory: '',
