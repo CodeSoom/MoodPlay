@@ -7,6 +7,7 @@ import reducer, {
   setMoodCategories,
   setSelectedCategory,
   setSelectedMusic,
+  setSelectedPlaylist,
   setCategoryMusic,
   setNowPlayingMusicItems,
   setMyPlaylists,
@@ -110,6 +111,20 @@ describe('reducer', () => {
       const state = reducer(initialState, setSelectedMusic(selectedMusic));
 
       expect(state.selectedMusic).toEqual(selectedMusic);
+    });
+  });
+
+  describe('setSelectedPlaylist', () => {
+    it('changes selectedPlaylist', () => {
+      const initialState = {
+        selectedPlaylist: '',
+      };
+
+      const selectedPlaylist = '운동할 때 플레이리스트';
+
+      const state = reducer(initialState, setSelectedPlaylist(selectedPlaylist));
+
+      expect(state.selectedPlaylist).toEqual(selectedPlaylist);
     });
   });
 

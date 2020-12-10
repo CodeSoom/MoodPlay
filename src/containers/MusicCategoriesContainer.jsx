@@ -67,7 +67,7 @@ const MusicCategoriesContainer = React.memo(() => {
           ? (
             <MusicItems
               music={selectedCategoryMusic}
-              selectedCategory={selectedCategory}
+              musicItemsTitle={selectedCategory}
               onClick={handleSelectMusic}
             />
           )

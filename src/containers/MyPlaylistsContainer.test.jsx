@@ -13,8 +13,19 @@ jest.mock('react-redux');
 describe('MyPlaylistsContainer', () => {
   const dispatch = jest.fn();
 
-  const playlistTitle = '공부할 때 들을 음악';
-  const playlists = MUSICITEMS;
+  const myPlaylists = [{
+    playlistTitle: '플레이리스트 1',
+    playlists: [],
+  },
+  {
+    playlistTitle: '플레이리스트 2',
+    playlists: MUSICITEMS,
+  },
+  {
+    playlistTitle: '플레이리스트 3',
+    playlists: [],
+  }];
+  const selectedPlaylist = '플레이리스트 2';
 
   beforeEach(() => {
     dispatch.mockClear();
@@ -22,38 +33,56 @@ describe('MyPlaylistsContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
 
     useSelector.mockImplementation((selector) => selector({
-      myPlaylists: [{
-        playlistTitle,
-        playlists,
-      }],
+      myPlaylists,
+      selectedPlaylist,
     }));
   });
 
-  it('renders my playlists', () => {
-    const { container, getByAltText } = render(<MyPlaylistsContainer />);
+  it('renders title', () => {
+    const { container } = render(<MyPlaylistsContainer />);
 
     expect(container).toHaveTextContent('마이 플레이리스트');
+  });
 
-    expect(container).toHaveTextContent(playlistTitle);
+  it('renders playlist titles', () => {
+    const { container } = render(<MyPlaylistsContainer />);
 
-    playlists.forEach(({
-      snippet: {
-        title, channelTitle, description, thumbnails,
-      },
-    }) => {
-      expect(container).toHaveTextContent(title);
-      expect(container).toHaveTextContent(channelTitle);
-      expect(getByAltText(description)).toHaveAttribute('src', thumbnails.default.url);
+    myPlaylists.forEach(({ playlistTitle }) => {
+      expect(container).toHaveTextContent(playlistTitle);
     });
   });
 
-  it('calls dispatch twice', () => {
-    const { getByText } = render(<MyPlaylistsContainer />);
+  it('renders selected playlist musics', () => {
+    const { container } = render(<MyPlaylistsContainer />);
 
-    playlists.forEach(({ snippet: { title } }) => {
+    MUSICITEMS.forEach(({
+      snippet: { title, channelTitle },
+    }) => {
+      expect(container).toHaveTextContent(title);
+      expect(container).toHaveTextContent(channelTitle);
+    });
+  });
+
+  it('calls dispatch', () => {
+    const { getByText, getAllByText } = render(<MyPlaylistsContainer />);
+
+    MUSICITEMS.forEach(({
+      snippet: { title },
+    }) => {
       fireEvent.click(getByText(title));
     });
 
-    expect(dispatch).toBeCalledTimes(playlists.length * 2);
+    expect(dispatch).toBeCalledTimes(MUSICITEMS.length * 2);
+
+    myPlaylists.forEach(({ playlistTitle }) => {
+      const clickablePlaylistTitle = getAllByText(playlistTitle)[0];
+
+      fireEvent.click(clickablePlaylistTitle);
+
+      expect(dispatch).toBeCalledWith({
+        payload: playlistTitle,
+        type: 'application/setSelectedPlaylist',
+      });
+    });
   });
 });

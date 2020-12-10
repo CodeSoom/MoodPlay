@@ -85,12 +85,12 @@ const ChannelTitle = styled.small({
 
 const MusicItems = React.memo(({
   music,
-  selectedCategory,
+  musicItemsTitle,
   onClick,
 }) => ((
   <Wrap>
     <MusicItemsTitle>
-      {selectedCategory}
+      {musicItemsTitle}
     </MusicItemsTitle>
 
     <MusicItemsWrap>

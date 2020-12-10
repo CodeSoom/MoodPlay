@@ -30,7 +30,11 @@ describe('App', () => {
           brightness: '',
         },
         moodCategories: [],
-        myPlaylists: [],
+        selectedPlaylist: '플레이리스트',
+        myPlaylists: [{
+          playlistTitle: '플레이리스트',
+          playlists: [],
+        }],
       },
     ));
   });
