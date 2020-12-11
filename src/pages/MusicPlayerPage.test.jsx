@@ -21,5 +21,6 @@ test('MusicPlayerPage', () => {
     </MemoryRouter>,
   );
 
+  expect(container).toHaveTextContent('Playing now');
   expect(container).toHaveTextContent('Next songs');
 });

@@ -36,9 +36,11 @@ describe('MusicPlayerContainer', () => {
 
       const { container } = render(<MusicPlayerContainer />);
 
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
+
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.title);
       expect(container).toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
-      expect(container).toHaveTextContent('저장');
     });
 
     it('renders up next music items', () => {
@@ -67,12 +69,17 @@ describe('MusicPlayerContainer', () => {
   });
 
   context('without selected music and now playing music items', () => {
-    it('renders empty message', () => {
+    it('renders empty music player', () => {
       mockSelector();
 
       const { container } = render(<MusicPlayerContainer />);
 
-      expect(container).toHaveTextContent('재생중인 음악이 없습니다!');
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
+
+      expect(container).not.toHaveTextContent(SELECTEDMUSIC.snippet.title);
+      expect(container).not.toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
+      expect(container).toHaveTextContent('재생중인 음악이 없습니다.');
     });
   });
 });
