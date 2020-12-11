@@ -7,11 +7,14 @@ import { MemoryRouter } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 
 describe('NavigationBar', () => {
+  const path = '/';
+
   function renderNavigationBar(moodCategories) {
     return render((
       <MemoryRouter>
         <NavigationBar
           moodCategories={moodCategories}
+          path={path}
         />
       </MemoryRouter>
     ));
