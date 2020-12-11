@@ -50,13 +50,13 @@ describe('App', () => {
   }
 
   it('renders navigation bar', () => {
-    const { container } = renderApp({ path: '/' });
+    const { container } = renderApp({ path: '' });
     expect(container).toHaveTextContent('Moodplay');
     expect(container).toHaveTextContent('무드선택');
     expect(container).toHaveTextContent('마이플레이');
   });
 
-  context('with path /project-react-2-bbhye1', () => {
+  context('with path /', () => {
     it('renders the Mood controller page', () => {
       const { container } = renderApp({ path: '/' });
 
@@ -64,19 +64,33 @@ describe('App', () => {
     });
   });
 
-  context('with path /project-react-2-bbhye1/moodplay', () => {
+  context('with path /moodplay', () => {
     it('renders the Mood controller page', () => {
       const { container } = renderApp({ path: '/moodplay' });
 
       expect(container).toHaveTextContent('기분에 어울리는 장르들이에요!');
     });
+
+    it('renders Music player', () => {
+      const { container } = renderApp({ path: '/moodplay' });
+
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
+    });
   });
 
-  context('with path /project-react-2-bbhye1/myplay', () => {
+  context('with path /myplay', () => {
     it('renders the Mood controller page', () => {
       const { container } = renderApp({ path: '/myplay' });
 
       expect(container).toHaveTextContent('마이 플레이리스트');
+    });
+
+    it('renders Music player', () => {
+      const { container } = renderApp({ path: '/moodplay' });
+
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
     });
   });
 
@@ -88,7 +102,7 @@ describe('App', () => {
     });
 
     it('calls dispatch with "setMyPlaylists" action', () => {
-      renderApp({ path: '/project-react-2-bbhye1' });
+      renderApp({ path: '/' });
 
       expect(dispatch).toBeCalledWith({
         type: 'application/setMyPlaylists',
@@ -103,7 +117,7 @@ describe('App', () => {
     });
 
     it('calls dispatch with "setMyPlaylists" action', () => {
-      renderApp({ path: '/project-react-2-bbhye1' });
+      renderApp({ path: '/' });
 
       expect(dispatch).not.toBeCalled();
     });
