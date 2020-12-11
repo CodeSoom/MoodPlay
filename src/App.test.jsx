@@ -49,8 +49,8 @@ describe('App', () => {
 
   it('renders navigation bar', () => {
     const { container } = renderApp({ path: '/' });
+    expect(container).toHaveTextContent('Moodplay');
     expect(container).toHaveTextContent('무드선택');
-    expect(container).toHaveTextContent('홈');
     expect(container).toHaveTextContent('마이플레이');
   });
 

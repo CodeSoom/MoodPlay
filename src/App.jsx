@@ -19,7 +19,7 @@ import MoodControllerPage from './pages/MoodControllerPage';
 import MoodPlayPage from './pages/MoodPlayPage';
 import MyPlayPage from './pages/MyPlayPage';
 import MusicPlayerPage from './pages/MusicPlayerPage';
-import NavigationBar from './components/NavigationBar';
+import NavigationBarContainer from './containers/NavigationBarContainer';
 
 const Wrap = styled.div({
   display: 'flex',
@@ -37,7 +37,8 @@ export default function App() {
 
   return (
     <Wrap>
-      <NavigationBar />
+      <NavigationBarContainer />
+
       <Switch>
         <Route exact path="/" component={MoodControllerPage} />
         <Route exact path="/moodplay" component={MoodPlayPage} />
