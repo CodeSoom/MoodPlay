@@ -10,7 +10,6 @@ import {
   setSelectedPlaylist,
 } from '../redux/slice';
 
-// import MyPlaylist from '../components/MyPlaylist';
 import PlaylistTitles from '../components/PlaylistTitles';
 import MusicItems from '../components/MusicItems';
 

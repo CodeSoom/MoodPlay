@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-import styled from '@emotion/styled';
+import {
+  Slider,
+  Wrap,
+  Cards,
+  Card,
+  SliderControlButton,
+} from '../styles/slider';
 
 import { PLAYLIST_CARD_WIDTH } from '../styles/constants';
 
@@ -9,88 +15,12 @@ import {
   CategoriesPreviousIcon,
 } from '../assets/images';
 
-const Slider = styled.div({
-  position: 'relative',
-  marginTop: '30px',
-  width: '98%',
-  height: '20vh',
-});
-
-const Wrap = styled.div({
-  position: 'relative',
-  height: '20vh',
-  overflowX: 'hidden',
-});
-
-const Cards = styled.ul(({ width, position }) => ({
-  position: 'absolute',
-  top: '0',
-  left: '0',
-  display: 'flex',
-  flexDirection: 'rows',
-  width: `${width}px`,
-  height: '20vh',
-  transform: `translateX(-${position}px)`,
-  transition: 'transform 0.5s ease',
-}));
-
-const Card = styled.li(({ selectState }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  margin: '0 4px',
-  padding: '5vh 17px',
-  width: `${selectState ? '255px' : '215px'}`,
-  height: '20vh',
-  border: `${selectState ? '3px solid #F89428' : 'none'}`,
-  background: '#181818',
-  borderRadius: '32px',
-  cursor: 'pointer',
-
-  '& h3': {
-    fontSize: '20px',
-    fontWeight: 400,
-  },
-
-  '& p': {
-    color: '#bdbdbd',
-    fontsize: '18px',
-  },
-
-  '&: hover': {
-    width: '255px',
-  },
-}));
-
-const SliderControlButton = styled.button(({ url, position }) => ({
-  fontSize: '0',
-  position: 'absolute',
-  top: '50%',
-  [position]: '-38px',
-  width: '76px',
-  height: '76px',
-  border: '0',
-  background: `url(${url}) no-repeat`,
-  backgroundSize: '76px',
-  transform: 'translateY(-50%)',
-
-  '&: focus': {
-    outline: 0,
-  },
-
-  '&: hover': {
-    transform: 'translateY(-50%) scale(1.05)',
-  },
-
-  '&: active': {
-    transform: 'translateY(-50%) scale(1.05)',
-  },
-}));
-
-export default function PlaylistTitles({ myPlaylists, selectedPlaylist, onClick }) {
-  const CARDS_WIDTH = PLAYLIST_CARD_WIDTH * (myPlaylists.length + 1);
-
+export default function PlaylistTitles({
+  myPlaylists, selectedPlaylist, onClick,
+}) {
   const [position, setPosition] = useState(0);
+
+  const CARDS_WIDTH = PLAYLIST_CARD_WIDTH * (myPlaylists.length + 1);
 
   const handleClickPlaylistTitle = (playlistTitle, index) => {
     onClick((playlistTitle));
@@ -127,6 +57,7 @@ export default function PlaylistTitles({ myPlaylists, selectedPlaylist, onClick 
             <Card
               key={playlistTitle}
               data-testid={playlistTitle}
+              width={PLAYLIST_CARD_WIDTH}
               selectState={selectedPlaylist === playlistTitle}
               onClick={() => handleClickPlaylistTitle(playlistTitle, index)}
             >
