@@ -18,6 +18,7 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [
     '<rootDir>/src/components/MusicControls',
+    '<rootDir>/src/styles/musicControls',
     '<rootDir>/src/assets/images',
   ],
 };

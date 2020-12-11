@@ -8,7 +8,7 @@ import MUSICITEMS from '../../fixtures/musicItems';
 import SELECTEDMUSIC from '../../fixtures/selectedMusic';
 
 describe('MusicPlayer', () => {
-  context('with selected music and now playing music items', () => {
+  context('with selected music', () => {
     const nowPlayingMusicItems = MUSICITEMS;
 
     const selectedMusic = MUSICITEMS[2];
@@ -35,17 +35,22 @@ describe('MusicPlayer', () => {
     });
   });
 
-  context('without selected music and now playing music items', () => {
+  context('without selected music', () => {
     const selectedMusic = null;
-    const nowPlayingMusicItems = [];
+    const nowPlayingMusicItems = MUSICITEMS;
 
-    it('renders empty message', () => {
+    it('renders empty music player', () => {
       const { container } = render(<MusicPlayer
         selectedMusic={selectedMusic}
         nowPlayingMusicItems={nowPlayingMusicItems}
       />);
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
 
-      expect(container).toHaveTextContent('재생중인 음악이 없습니다!');
+      expect(container).not.toHaveTextContent(SELECTEDMUSIC.snippet.title);
+      expect(container).not.toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
+
+      expect(container).toHaveTextContent('재생중인 음악이 없습니다.');
     });
   });
 });

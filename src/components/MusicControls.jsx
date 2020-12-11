@@ -51,6 +51,7 @@ const MusicControls = React.memo(({
           <ProgressBar
             type="range"
             value={0}
+            onChange={() => { }}
           />
           <Timeline>0:00:00</Timeline>
         </TimelineWrap>
@@ -65,11 +66,12 @@ const MusicControls = React.memo(({
           <SoundControl
             type="range"
             value="0"
+            onChange={() => { }}
           />
         </SoundControlWrap>
         <InfoBox>
           <TitleBox>
-            <Title>재생목록이 없어요!</Title>
+            <Title>재생중인 음악이 없습니다.</Title>
           </TitleBox>
         </InfoBox>
 
