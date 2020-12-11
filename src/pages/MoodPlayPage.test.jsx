@@ -8,7 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import MoodPlayPage from './MoodPlayPage';
 
-test('MusicCategoriesContainer', () => {
+test('MoodPlayPage', () => {
   useSelector.mockImplementation((selector) => selector({
     moodCategories: [
       ['뉴에이지', 'calm', 'happy'],
