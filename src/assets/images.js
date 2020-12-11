@@ -7,6 +7,7 @@ import BeforeSecondsIcon from './images/icons/before-seconds.png';
 import AfterSecondsIcon from './images/icons/after-seconds.png';
 import PreviousMusicIcon from './images/icons/before-music.png';
 import NextMusicIcon from './images/icons/after-music.png';
+import EmptyMusicImage from './images/icons/empty-music.png';
 
 import LogoIcon from './images/icons/Logo.png';
 import HomeIcon from './images/icons/home-i.png';
@@ -37,6 +38,7 @@ export {
   AfterSecondsIcon,
   PreviousMusicIcon,
   NextMusicIcon,
+  EmptyMusicImage,
   LogoIcon,
   HomeIcon,
   MoodControllerIcon,
