@@ -20,7 +20,10 @@ describe('MusicPlayerContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
   });
 
-  function mockSelector(selectedMusic, nowPlayingMusicItems) {
+  function mockSelector(
+    selectedMusic = null,
+    nowPlayingMusicItems = [],
+  ) {
     return useSelector.mockImplementation((selector) => selector({
       selectedMusic,
       nowPlayingMusicItems,

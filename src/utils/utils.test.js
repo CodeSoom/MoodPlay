@@ -1,6 +1,5 @@
 import {
   get,
-  getSelectedMusicIndex,
   getUpNextItems,
   getTime,
   getProgressTime,
@@ -19,22 +18,6 @@ test('get', () => {
   expect(g(state)).toBeUndefined();
 });
 
-test('getSelectedMusicIndex', () => {
-  const musicItems = [
-    { id: { videoId: 'x1' } },
-    { id: { videoId: 'x2' } },
-    { id: { videoId: 'x3' } },
-    { id: { videoId: 'x4' } },
-    { id: { videoId: 'x5' } },
-  ];
-
-  const a = { id: { videoId: 'x3' } };
-  const b = { id: { videoId: 'x4' } };
-
-  expect(getSelectedMusicIndex(musicItems, a)).toBe(2);
-  expect(getSelectedMusicIndex(musicItems, b)).toBe(3);
-});
-
 describe('getUpNextItems', () => {
   context('with more than four music items', () => {
     const musicItems = [
@@ -46,12 +29,12 @@ describe('getUpNextItems', () => {
     ];
 
     it('returns next three items', () => {
-      expect(getUpNextItems(musicItems, 3)).toStrictEqual([
+      expect(getUpNextItems(musicItems, musicItems[3])).toStrictEqual([
         { id: { videoId: 'x5' } },
         { id: { videoId: 'x1' } },
         { id: { videoId: 'x2' } },
       ]);
-      expect(getUpNextItems(musicItems, 0)).toStrictEqual([
+      expect(getUpNextItems(musicItems, musicItems[0])).toStrictEqual([
         { id: { videoId: 'x2' } },
         { id: { videoId: 'x3' } },
         { id: { videoId: 'x4' } },
@@ -67,11 +50,11 @@ describe('getUpNextItems', () => {
     ];
 
     it('returns all next items', () => {
-      expect(getUpNextItems(musicItems, 2)).toStrictEqual([
+      expect(getUpNextItems(musicItems, musicItems[2])).toStrictEqual([
         { id: { videoId: 'x1' } },
         { id: { videoId: 'x2' } },
       ]);
-      expect(getUpNextItems(musicItems, 1)).toStrictEqual([
+      expect(getUpNextItems(musicItems, musicItems[1])).toStrictEqual([
         { id: { videoId: 'x3' } },
         { id: { videoId: 'x1' } },
       ]);

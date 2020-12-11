@@ -11,6 +11,8 @@ import MusicPlayerPage from './MusicPlayerPage';
 test('MusicPlayerPage', () => {
   useSelector.mockImplementation((selector) => selector({
     myPlaylists: [],
+    selectedMusic: null,
+    nowPlayingMusicItems: [],
   }));
 
   const { container } = render(
@@ -19,6 +21,5 @@ test('MusicPlayerPage', () => {
     </MemoryRouter>,
   );
 
-  expect(container).toHaveTextContent('Playing now');
   expect(container).toHaveTextContent('Next songs');
 });
