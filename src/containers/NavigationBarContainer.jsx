@@ -1,8 +1,10 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
+
+import styled from '@emotion/styled';
 
 import NavigationBar from '../components/NavigationBar';
 
@@ -14,6 +16,8 @@ import { BACKGROUND_COLOR_DARKGRAY } from '../styles/constants';
 
 function NavigationBarContainer() {
   const moodCategories = useSelector(get('moodCategories'));
+
+  const path = useLocation().pathname;
 
   const Wrap = styled.div({
     display: 'flex',
@@ -42,6 +46,7 @@ function NavigationBarContainer() {
       <Logo>Moodplay</Logo>
       <NavigationBar
         moodCategories={moodCategories}
+        path={path}
       />
     </Wrap>
   );
