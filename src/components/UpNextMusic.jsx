@@ -2,10 +2,9 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import {
-  getSelectedMusicIndex,
-  getUpNextItems,
-} from '../utils/utils';
+import _ from 'lodash';
+
+import { getUpNextItems } from '../utils/utils';
 
 const Wrap = styled.ul({
   width: '354px',
@@ -58,12 +57,9 @@ const UpNextMusic = React.memo(({
   selectedMusic,
   onClick,
 }) => {
-  if (!selectedMusic || !nowPlayingMusicItems) {
-    return null;
-  }
-
-  const selectedMusicIndex = getSelectedMusicIndex(nowPlayingMusicItems, selectedMusic);
-  const upNextItems = getUpNextItems(nowPlayingMusicItems, selectedMusicIndex);
+  const upNextItems = _.isNull(selectedMusic)
+    ? []
+    : getUpNextItems(nowPlayingMusicItems, selectedMusic);
 
   return (
     <Wrap>

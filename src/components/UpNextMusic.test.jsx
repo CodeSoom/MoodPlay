@@ -9,22 +9,23 @@ import MUSICITEMS from '../../fixtures/musicItems';
 describe('UpNextMusic', () => {
   const handleClick = jest.fn();
 
-  function renderUpNextMusic(nowPlayingMusicItems, selectedMusic) {
+  function renderUpNextMusic(selectedMusic) {
     return render(
       <UpNextMusic
         selectedMusic={selectedMusic}
-        nowPlayingMusicItems={nowPlayingMusicItems}
+        nowPlayingMusicItems={MUSICITEMS}
         onClick={handleClick}
       />,
     );
   }
 
-  context('with nowPlayingMusicItems and selectedMusic', () => {
-    const nowPlayingMusicItems = MUSICITEMS;
+  context('with selectedMusic', () => {
     const selectedMusic = MUSICITEMS[3];
 
     it('renders up next music items', () => {
-      const { container } = renderUpNextMusic(nowPlayingMusicItems, selectedMusic);
+      const { container } = renderUpNextMusic(selectedMusic);
+
+      expect(container).toHaveTextContent('Next songs');
 
       expect(container).toHaveTextContent(MUSICITEMS[4].snippet.title);
       expect(container).toHaveTextContent(MUSICITEMS[0].snippet.title);
@@ -32,7 +33,7 @@ describe('UpNextMusic', () => {
     });
 
     it('listens click event', () => {
-      const { getByText } = renderUpNextMusic(nowPlayingMusicItems, selectedMusic);
+      const { getByText } = renderUpNextMusic(selectedMusic);
 
       fireEvent.click(getByText(MUSICITEMS[4].snippet.title));
       fireEvent.click(getByText(MUSICITEMS[0].snippet.title));
@@ -42,11 +43,17 @@ describe('UpNextMusic', () => {
     });
   });
 
-  context('without nowPlayingMusicItems and selectedMusic', () => {
-    it('renders nothing', () => {
-      const { container } = renderUpNextMusic();
+  context('without selectedMusic', () => {
+    const selectedMusic = null;
 
-      expect(container).toBeEmptyDOMElement();
+    it('renders no up next music items', () => {
+      const { container } = renderUpNextMusic(selectedMusic);
+
+      expect(container).toHaveTextContent('Next songs');
+
+      expect(container).not.toHaveTextContent(MUSICITEMS[4].snippet.title);
+      expect(container).not.toHaveTextContent(MUSICITEMS[0].snippet.title);
+      expect(container).not.toHaveTextContent(MUSICITEMS[1].snippet.title);
     });
   });
 });

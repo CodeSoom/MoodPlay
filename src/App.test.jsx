@@ -35,6 +35,8 @@ describe('App', () => {
           playlistTitle: '플레이리스트',
           playlists: [],
         }],
+        nowPlayingMusicItems: [],
+        selectedMusic: null,
       },
     ));
   });

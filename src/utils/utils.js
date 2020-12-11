@@ -1,27 +1,21 @@
+import _ from 'lodash';
+
 export function get(key) {
   return (obj) => obj[key];
 }
 
-export function getSelectedMusicIndex(musicItems, selectedMusic) {
-  const selectedMusicIndex = musicItems
-    .findIndex((musicItem) => musicItem.id.videoId === selectedMusic.id.videoId);
+export function getUpNextItems(musicItems, selectedMusic) {
+  const selectedMusicIndex = _.findIndex(musicItems, ['id', selectedMusic.id]);
 
-  return selectedMusicIndex;
-}
-
-export function getUpNextItems(musicItems, selectedMusicIndex) {
   const UPNEXT_ITEM_COUNT = 3;
 
-  const newArray = musicItems.length > UPNEXT_ITEM_COUNT
-    ? new Array(UPNEXT_ITEM_COUNT) : new Array(musicItems.length - 1);
+  const upNextItemsLength = musicItems.length > UPNEXT_ITEM_COUNT
+    ? UPNEXT_ITEM_COUNT
+    : musicItems.length - 1;
 
-  const upNextItems = newArray
-    .fill('')
-    .map((a, i) => musicItems[
-      selectedMusicIndex + 1 + i < musicItems.length
-        ? selectedMusicIndex + 1 + i
-        : -(musicItems.length - (selectedMusicIndex + 1 + i))
-    ]);
+  const upNextItems = _
+    .fill(new Array(upNextItemsLength))
+    .map((a, i) => musicItems[(selectedMusicIndex + 1 + i) % musicItems.length]);
 
   return upNextItems;
 }
