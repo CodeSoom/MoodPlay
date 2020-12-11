@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 
-import styled from '@emotion/styled';
-
 import { useSelector, useDispatch } from 'react-redux';
+
+import styled from '@emotion/styled';
 
 import {
   loadMusic,

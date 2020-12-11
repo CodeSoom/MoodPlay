@@ -31,7 +31,7 @@ const Card = styled.li(({ selectState, width }) => ({
   justifyContent: 'space-between',
   margin: '0 4px',
   padding: '5vh 17px',
-  width: `${selectState ? `${width + 40}px` : `${width}px`}`,
+  width: `${selectState ? `${width + 70}px` : `${width}px`}`,
   height: '20vh',
   border: `${selectState ? '3px solid #F89428' : 'none'}`,
   background: '#181818',
@@ -49,7 +49,7 @@ const Card = styled.li(({ selectState, width }) => ({
   },
 
   '&: hover': {
-    width: `${width + 40}px`,
+    width: `${width + 70}px`,
   },
 }));
 
