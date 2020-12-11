@@ -46,7 +46,7 @@ describe('PlaylistTitles', () => {
     const { getByTestId } = renderPlaylistTitles(selectedPlaylistTitle);
 
     expect(getByTestId(myPlaylists[1].playlistTitle)).toHaveStyle({
-      width: '255px',
+      width: '285px',
       border: '3px solid #F89428',
     });
 
