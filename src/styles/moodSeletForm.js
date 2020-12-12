@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import {
   MoodBackground,
   MoodBackgroundHover,
@@ -7,13 +9,22 @@ import {
   MoodBackgroundSelected,
 } from '../assets/images';
 
-const Form = styled.form({
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const Form = styled.form(() => mq({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: '20px',
-});
+
+  '& h2': {
+    fontSize: ['3.2vw', '1.8vw'],
+    fontWeight: 'bold',
+  },
+}));
 
 const RadioWrap = styled.div({
   display: 'flex',
@@ -24,15 +35,15 @@ const RadioWrap = styled.div({
   borderRadius: '5px',
 });
 
-const Label = styled.label(({ checked }) => ({
-  fontSize: '32px',
+const Label = styled.label(({ checked }) => mq({
+  fontSize: ['3.2vw', '2vw'],
   fontWeight: 'bold',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   margin: '0 17px',
-  width: '32vh',
-  height: '13vh',
+  width: ['23vw', '15vw'],
+  height: ['10vw', '6.5vw'],
   background: `url(${checked ? MoodBackgroundSelected : MoodBackground}) no-repeat`,
   backgroundSize: 'contain',
 
