@@ -1,13 +1,21 @@
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import {
   VolumeIcon,
   MuteIcon,
 } from '../assets/images';
 
-const MusicControlsWrap = styled.div({
-  width: '342px',
-});
+const mq = facepaint([
+  '@media(min-width: 350px)',
+  '@media(min-width: 400px)',
+  '@media(min-width: 438px)',
+]);
+
+const MusicControlsWrap = styled.div(() => mq({
+  width: ['70%', '70%', '70%', '342px'],
+}));
 
 const HideVideo = styled.div({
   position: 'fixed',
@@ -15,21 +23,21 @@ const HideVideo = styled.div({
   opacity: 0,
 });
 
-const PlayingNow = styled.p({
-  fontSize: '28px',
+const PlayingNow = styled.p(() => mq({
+  fontSize: ['1.2em', '1.6em', '2em', '2em'],
   fontWeight: '900',
-  marginBottom: '46px',
-});
+  marginBottom: '1em',
+}));
 
-const MusicImage = styled.div(({ url }) => ({
+const MusicImage = styled.div(({ url }) => (() => mq({
   marginBottom: '16px',
   width: '100%',
-  height: '238px',
+  height: ['150px', '190px', '200px', '238px'],
   borderRadius: '12px',
   background: `url(${url}) no-repeat`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-}));
+})));
 
 const TimelineWrap = styled.div({
   display: 'flex',
@@ -177,15 +185,14 @@ const Buttons = styled.div({
   marginTop: '33px',
 });
 
-const IconButton = styled.button(({ url }) => ({
+const IconButton = styled.button(({ url }) => mq({
   fontSize: '0',
   marginRight: '4px',
-  width: '48px',
-  height: '48px',
+  width: ['28px', '35px', '40px', '48px'],
+  height: ['28px', '35px', '40px', '48px'],
   border: '0',
   background: `url(${url}) no-repeat`,
-  backgroundSize: '48px',
-
+  backgroundSize: ['28px', '35px', '40px', '48px'],
   '&: focus': {
     outline: 0,
   },

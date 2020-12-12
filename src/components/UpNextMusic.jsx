@@ -2,24 +2,32 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import _ from 'lodash';
 
 import { getUpNextItems } from '../utils/utils';
 
-const Wrap = styled.ul({
-  width: '354px',
-  display: 'flex',
+const mq = facepaint([
+  '@media(min-width: 350px)',
+  '@media(min-width: 400px)',
+  '@media(min-width: 438px)',
+]);
+
+const Wrap = styled.ul(() => mq({
+  width: ['80%', '80%', '80%', '342px'],
+  display: ['none', 'none', 'none', 'flex'],
   flexDirection: 'column',
   marginTop: '3.7vh',
   paddingTop: '5vh',
   borderTop: '1px solid #474747',
-});
+}));
 
-const NextSongs = styled.p({
-  fontSize: '28px',
+const NextSongs = styled.p(() => mq({
+  fontSize: ['1.2em', '1.6em', '2em', '2em'],
   fontWeight: '900',
-  marginBottom: '47px',
-});
+  marginBottom: '1em',
+}));
 
 const UpNextWrap = styled.ul({
   display: 'flex',
