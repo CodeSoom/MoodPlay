@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import {
   loadMusic,
   setSelectedCategory,
@@ -16,22 +18,27 @@ import MusicItems from '../components/MusicItems';
 
 import { get } from '../utils/utils';
 
-const Wrap = styled.div({
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const Wrap = styled.div(() => mq({
   position: 'fixed',
-  left: '234px',
+  top: 0,
+  left: [0, '12vw'],
   display: 'flex',
   flexDirection: 'column',
-  padding: '68px 95px',
-  width: 'calc(100vw - 672px)',
+  padding: ['13vh 10vw', '68px 95px'],
+  width: ['100vw', 'calc(88vw - 438px)'],
   height: '100vh',
   background: '#0f0f0f',
   color: '#fff',
-});
+}));
 
-const MusicCategoriesTitle = styled.h2({
-  fontSize: '28px',
+const MusicCategoriesTitle = styled.h2(() => mq({
+  fontSize: ['2.3vh', '3vh'],
   fontWeight: '900',
-});
+}));
 
 const MusicCategoriesContainer = React.memo(() => {
   const dispatch = useDispatch();

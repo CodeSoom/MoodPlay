@@ -40,23 +40,20 @@ describe('PlaylistTitles', () => {
     });
   });
 
-  it('renders selected playlist title with different styles', () => {
+  it('renders selected playlist title with border', () => {
     const selectedPlaylistTitle = myPlaylists[1].playlistTitle;
 
     const { getByTestId } = renderPlaylistTitles(selectedPlaylistTitle);
 
     expect(getByTestId(myPlaylists[1].playlistTitle)).toHaveStyle({
-      width: '285px',
       border: '3px solid #F89428',
     });
 
     expect(getByTestId(myPlaylists[0].playlistTitle)).toHaveStyle({
-      width: `${PLAYLIST_CARD_WIDTH}px`,
       border: 'none',
     });
 
     expect(getByTestId(myPlaylists[2].playlistTitle)).toHaveStyle({
-      width: `${PLAYLIST_CARD_WIDTH}px`,
       border: 'none',
     });
   });
@@ -131,6 +128,7 @@ describe('PlaylistTitles', () => {
     });
 
     fireEvent.click(getByText('Previous'));
+
     expect(getByTestId('cards')).toHaveStyle({
       transform: 'translateX(-0px)',
     });
