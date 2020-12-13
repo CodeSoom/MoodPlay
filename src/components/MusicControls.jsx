@@ -31,6 +31,9 @@ import {
   Title,
   Buttons,
   IconButton,
+  MobileWrap,
+  MobileTitle,
+  MobileCloseButton,
 } from '../styles/musicControls';
 
 import {
@@ -39,11 +42,28 @@ import {
 } from '../utils/utils';
 
 const MusicControls = React.memo(({
-  nowPlayingMusicItems, selectedMusic, onClick, onStoreMusic,
+  nowPlayingMusicItems,
+  selectedMusic,
+  musicPlayerState,
+  onClickMusic,
+  onClickPlayer,
+  onStoreMusic,
 }) => {
+  const handleClickPlayer = (event) => {
+    if (event.currentTarget === event.target) {
+      onClickPlayer();
+    }
+  };
+
   if (_.isNull(selectedMusic)) {
     return (
       <MusicControlsWrap>
+        <MobileCloseButton
+          type="button"
+          onClick={onClickPlayer}
+        >
+          Close
+        </MobileCloseButton>
         <PlayingNow>Playing now</PlayingNow>
         <MusicImage url={EmptyMusicImage} />
 
@@ -115,6 +135,32 @@ const MusicControls = React.memo(({
             저장
           </IconButton>
         </Buttons>
+        <MobileWrap
+          musicPlayerState={musicPlayerState}
+          onClick={handleClickPlayer}
+        >
+          <p>재생중인 음악이 없습니다.</p>
+          <div>
+            <IconButton
+              type="button"
+              url={PreviousMusicIcon}
+            >
+              Previous music
+            </IconButton>
+            <IconButton
+              type="button"
+              url={PlayIcon}
+            >
+              Play
+            </IconButton>
+            <IconButton
+              type="button"
+              url={NextMusicIcon}
+            >
+              Next music
+            </IconButton>
+          </div>
+        </MobileWrap>
       </MusicControlsWrap>
     );
   }
@@ -212,22 +258,22 @@ const MusicControls = React.memo(({
     const selectedMusicIndex = _.findIndex(nowPlayingMusicItems, ['id', selectedMusic.id]);
 
     if (selectedMusicIndex === 0) {
-      onClick(nowPlayingMusicItems[nowPlayingMusicItems.length - 1]);
+      onClickMusic(nowPlayingMusicItems[nowPlayingMusicItems.length - 1]);
       return;
     }
 
-    onClick(nowPlayingMusicItems[selectedMusicIndex - 1]);
+    onClickMusic(nowPlayingMusicItems[selectedMusicIndex - 1]);
   };
 
   const handleSelectNextMusic = () => {
     const selectedMusicIndex = _.findIndex(nowPlayingMusicItems, ['id', selectedMusic.id]);
 
     if (selectedMusicIndex === nowPlayingMusicItems.length - 1) {
-      onClick(nowPlayingMusicItems[0]);
+      onClickMusic(nowPlayingMusicItems[0]);
       return;
     }
 
-    onClick(nowPlayingMusicItems[selectedMusicIndex + 1]);
+    onClickMusic(nowPlayingMusicItems[selectedMusicIndex + 1]);
   };
 
   const handleStateChange = (event) => {
@@ -259,6 +305,12 @@ const MusicControls = React.memo(({
           onReady={handleReady}
         />
       </HideVideo>
+      <MobileCloseButton
+        type="button"
+        onClick={onClickPlayer}
+      >
+        Close
+      </MobileCloseButton>
       <PlayingNow>Playing now</PlayingNow>
       <MusicImage url={url} alt={description} />
 
@@ -360,6 +412,49 @@ const MusicControls = React.memo(({
           저장
         </IconButton>
       </Buttons>
+
+      <MobileWrap
+        musicPlayerState={musicPlayerState}
+        onClick={handleClickPlayer}
+      >
+        <MobileTitle>
+          <Title
+            onClick={handleClickPlayer}
+          >
+            {title}
+          </Title>
+        </MobileTitle>
+        <div>
+          {
+            paused
+              ? (
+                <IconButton
+                  type="button"
+                  url={PlayIcon}
+                  onClick={handlePlay}
+                >
+                  Play
+                </IconButton>
+              )
+              : (
+                <IconButton
+                  type="button"
+                  url={PauseIcon}
+                  onClick={handlePause}
+                >
+                  Paused
+                </IconButton>
+              )
+          }
+          <IconButton
+            type="button"
+            url={NextMusicIcon}
+            onClick={handleSelectNextMusic}
+          >
+            Next music
+          </IconButton>
+        </div>
+      </MobileWrap>
     </MusicControlsWrap>
   );
 });
