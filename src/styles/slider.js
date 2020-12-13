@@ -1,15 +1,22 @@
 import styled from '@emotion/styled';
 
-const Slider = styled.div({
+import facepaint from 'facepaint';
+
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const Slider = styled.div(() => mq({
   position: 'relative',
   marginTop: '30px',
-  width: '98%',
-  height: '20vh',
-});
+  width: ['100%', '98%'],
+  height: ['11vh', '20vh'],
+  border: '1px solid red',
+}));
 
 const Wrap = styled.div({
   position: 'relative',
-  height: '20vh',
+  height: '100%',
   overflowX: 'hidden',
 });
 
@@ -20,7 +27,7 @@ const Cards = styled.ul(({ width, position }) => ({
   display: 'flex',
   flexDirection: 'rows',
   width: `${width}px`,
-  height: '20vh',
+  height: '100%',
   transform: `translateX(-${position}px)`,
   transition: 'transform 0.5s ease',
 }));
@@ -32,14 +39,14 @@ const Card = styled.li(({ selectState, width }) => ({
   margin: '0 4px',
   padding: '5vh 17px',
   width: `${selectState ? `${width + 70}px` : `${width}px`}`,
-  height: '20vh',
+  height: '100%',
   border: `${selectState ? '3px solid #F89428' : 'none'}`,
   background: '#181818',
   borderRadius: '32px',
   cursor: 'pointer',
 
   '& h3': {
-    fontSize: '20px',
+    fontSize: '2vh',
     fontWeight: 400,
   },
 

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import {
   setSelectedMusic,
   setNowPlayingMusicItems,
@@ -17,20 +19,26 @@ import { get, getPlaylistMusic } from '../utils/utils';
 
 import { BACKGROUND_COLOR_BLACK } from '../styles/constants';
 
-const Wrap = styled.div({
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const Wrap = styled.div(() => mq({
   position: 'fixed',
-  left: '234px',
-  width: 'calc(100vw - 672px)',
-  height: '100vh',
-  padding: '68px 95px',
+  top: 0,
+  left: [0, '12vw'],
+  itemsAligns: 'center',
+  width: ['100vw', 'calc(88vw - 438px)'],
+  height: ['90vh', '100vh'],
+  padding: ['13vh 10vw', '68px 95px'],
   background: BACKGROUND_COLOR_BLACK,
   color: '#fff',
-});
+}));
 
-const MyPlaylistTitle = styled.h1({
-  fontSize: '28px',
+const MyPlaylistTitle = styled.h1(() => mq({
+  fontSize: ['2.3vh', '3vh'],
   fontWeight: '900',
-});
+}));
 
 export default function MyPlaylistsContainer() {
   const dispatch = useDispatch();
