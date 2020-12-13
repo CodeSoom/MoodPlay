@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   Slider,
@@ -19,6 +19,8 @@ export default function PlaylistTitles({
   myPlaylists, selectedPlaylist, onClick,
 }) {
   const [position, setPosition] = useState(0);
+  const cardsRef = useRef();
+  const sliderRef = useRef();
 
   const CARDS_WIDTH = PLAYLIST_CARD_WIDTH * (myPlaylists.length + 1);
 
@@ -28,27 +30,30 @@ export default function PlaylistTitles({
   };
 
   const handleClickNext = () => {
-    if (position > CARDS_WIDTH - (PLAYLIST_CARD_WIDTH * 6)) {
+    if (position > cardsRef.current.offsetWidth - sliderRef.current.offsetWidth) {
       setPosition(position);
       return;
     }
 
-    setPosition(position + (PLAYLIST_CARD_WIDTH * 2));
+    setPosition(position + PLAYLIST_CARD_WIDTH);
   };
 
   const handleClickPrevious = () => {
-    if (position < 2) {
+    if (position <= PLAYLIST_CARD_WIDTH) {
       setPosition(0);
       return;
     }
 
-    setPosition(position - (PLAYLIST_CARD_WIDTH * 2));
+    setPosition(position - PLAYLIST_CARD_WIDTH);
   };
 
   return (
-    <Slider>
+    <Slider
+      ref={sliderRef}
+    >
       <Wrap>
         <Cards
+          ref={cardsRef}
           width={CARDS_WIDTH}
           position={position}
           data-testid="cards"
