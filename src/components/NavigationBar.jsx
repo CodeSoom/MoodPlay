@@ -20,7 +20,7 @@ import {
   MyPlayIconActive,
 } from '../assets/images';
 
-import { BACKGROUND_COLOR_GRAY } from '../styles/constants';
+import { BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY } from '../styles/constants';
 
 const mq = facepaint([
   '@media(min-width: 672px)',
@@ -32,11 +32,11 @@ const IconItems = styled.ul(() => mq({
   flexDirection: ['row', 'column', 'column'],
   justifyContent: 'center',
   alignItems: 'center',
-  padding: ['0 9px', '25px 25px', '25px 25px'],
+  padding: ['0', '25px 25px', '25px 25px'],
   width: ['initial', '80%', '7vw'],
   height: ['100%', 'initial', 'initial'],
   borderRadius: '48px',
-  background: BACKGROUND_COLOR_GRAY,
+  background: [BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY],
 }));
 
 const IconItem = styled.li(() => mq({
@@ -56,21 +56,21 @@ const Icon = styled.div(({
   justifyContent: 'center',
   alignItems: 'center',
   marginBottom: [0, '6px', '6px'],
-  marginRight: ['5px', 0, 0],
-  width: ['6.5vh', '48px', '48px'],
-  height: ['6.5vh', '48px', '48px'],
+  marginLeft: ['5px', 0, 0],
+  width: ['5.5vh', '48px', '48px'],
+  height: ['5.5vh', '48px', '48px'],
   borderRadius: '10px',
   background: `url(${activeState ? active : url}) no-repeat`,
-  backgroundSize: ['6.5vh', '48px', '48px'],
+  backgroundSize: ['5.5vh', '48px', '48px'],
 
   '&: hover': {
     background: `url(${`${hover}`}) no-repeat`,
-    backgroundSize: ['6.5vh', '48px', '48px'],
+    backgroundSize: ['5.5vh', '48px', '48px'],
   },
 
   '&: active': {
     background: `url(${`${active}`}) no-repeat`,
-    backgroundSize: ['6.5vh', '48px', '48px'],
+    backgroundSize: ['5.5vh', '48px', '48px'],
   },
 }));
 
