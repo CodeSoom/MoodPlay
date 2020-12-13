@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import facepaint from 'facepaint';
+
 import {
   setMoodselectFields,
   loadMoodCategories,
@@ -18,12 +20,16 @@ import { get } from '../utils/utils';
 
 import { MoodBackgroundSelected } from '../assets/images';
 
-const MoodSubmitButton = styled.button({
-  fontSize: '16px',
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const MoodSubmitButton = styled.button(() => mq({
+  fontSize: ['1.5vw', '1vw'],
   fontWeight: 'bold',
   marginTop: '20px',
-  width: '16vh',
-  height: '7.5vh',
+  width: ['15vw', '9vw'],
+  height: ['6.5vw', '3.8vw'],
   border: '0',
   outline: '0',
   background: `url(${MoodBackgroundSelected}) no-repeat`,
@@ -33,7 +39,7 @@ const MoodSubmitButton = styled.button({
   '&:active': {
     transform: 'scale(0.98)',
   },
-});
+}));
 
 export default function MoodControllerContainer() {
   const dispatch = useDispatch();
