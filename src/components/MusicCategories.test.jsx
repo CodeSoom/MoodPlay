@@ -149,18 +149,6 @@ describe('MusicCategories', () => {
         transform: `translateX(-${CARD_WIDTH * 2}px)`,
       });
 
-      fireEvent.click(getByText('Next'));
-
-      expect(getByTestId('cards')).toHaveStyle({
-        transform: `translateX(-${CARD_WIDTH * 4}px)`,
-      });
-
-      fireEvent.click(getByText('Previous'));
-
-      expect(getByTestId('cards')).toHaveStyle({
-        transform: `translateX(-${CARD_WIDTH * 2}px)`,
-      });
-
       fireEvent.click(getByText('Previous'));
 
       expect(getByTestId('cards')).toHaveStyle({
@@ -173,17 +161,15 @@ describe('MusicCategories', () => {
         const { getByText, getByTestId } = renderMusicCategories(moodCategories);
 
         fireEvent.click(getByText('Next'));
-        fireEvent.click(getByText('Next'));
-        fireEvent.click(getByText('Next'));
 
         expect(getByTestId('cards')).toHaveStyle({
-          transform: `translateX(-${CARD_WIDTH * 6}px)`,
+          transform: `translateX(-${CARD_WIDTH * 2}px)`,
         });
 
         fireEvent.click(getByText('Next'));
 
         expect(getByTestId('cards')).toHaveStyle({
-          transform: `translateX(-${CARD_WIDTH * 6}px)`,
+          transform: `translateX(-${CARD_WIDTH * 2}px)`,
         });
       });
     });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   Slider,
@@ -19,6 +19,8 @@ const MusicCategories = React.memo(({
   moodCategories, selectedCategory, onClick,
 }) => {
   const CARDS_WIDTH = CARD_WIDTH * (moodCategories.length + 1);
+  const sliderRef = useRef();
+  const cardsRef = useRef();
 
   const [position, setPosition] = useState(0);
 
@@ -30,7 +32,7 @@ const MusicCategories = React.memo(({
   };
 
   const handleClickNextCategories = () => {
-    if (position > CARDS_WIDTH - (CARD_WIDTH * 5)) {
+    if (position > cardsRef.current.offsetWidth - sliderRef.current.offsetWidth) {
       setPosition(position);
       return;
     }
@@ -53,9 +55,12 @@ const MusicCategories = React.memo(({
   };
 
   return (
-    <Slider>
+    <Slider
+      ref={sliderRef}
+    >
       <Wrap>
         <Cards
+          ref={cardsRef}
           width={CARDS_WIDTH}
           position={position}
           data-testid="cards"
