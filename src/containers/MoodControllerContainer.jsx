@@ -24,7 +24,7 @@ const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
 
-const MoodSubmitButton = styled.button(() => mq({
+const MoodSubmit = styled.div(() => mq({
   fontSize: ['1.5vw', '1vw'],
   fontWeight: 'bold',
   marginTop: '20px',
@@ -35,9 +35,18 @@ const MoodSubmitButton = styled.button(() => mq({
   background: `url(${MoodBackgroundSelected}) no-repeat`,
   backgroundSize: 'contain',
   color: '#fff',
-
   '&:active': {
     transform: 'scale(0.98)',
+  },
+
+  '& a': {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    height: ['6.5vw', '3.8vw'],
+    lineHeight: ['6.5vw', '3.8vw'],
+    textDecoration: 'none',
+    color: '#fff',
   },
 }));
 
@@ -65,14 +74,14 @@ export default function MoodControllerContainer() {
         onChange={handleChangeMood}
         field={brightness}
       />
-      <Link to="/moodplay">
-        <MoodSubmitButton
-          type="button"
-          onClick={handleSubmitMood}
-        >
+      <MoodSubmit
+        type="button"
+        onClick={handleSubmitMood}
+      >
+        <Link to="/moodplay">
           Play your mood!
-        </MoodSubmitButton>
-      </Link>
+        </Link>
+      </MoodSubmit>
     </>
   );
 }
