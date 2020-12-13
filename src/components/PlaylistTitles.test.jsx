@@ -94,48 +94,45 @@ describe('PlaylistTitles', () => {
     expect(container).toHaveTextContent('Previous');
   });
 
-  context('with cards are more than five', () => {
-    it('playlist titles move twice as category', () => {
-      const { getByText, getByTestId } = render(
-        <PlaylistTitles
-          myPlaylists={
-            [{
-              playlistTitle: '플레이리스트 1',
-              playlists: [],
-            },
-            {
-              playlistTitle: '플레이리스트 2',
-              playlists: [],
-            },
-            {
-              playlistTitle: '플레이리스트 3',
-              playlists: [],
-            },
-            {
-              playlistTitle: '플레이리스트 4',
-              playlists: [],
-            },
-            {
-              playlistTitle: '플레이리스트 5',
-              playlists: [],
-            },
-            ]
-          }
-          onClick={handleClick}
-        />,
-      );
+  it('playlist titles move as much as card width', () => {
+    const { getByText, getByTestId } = render(
+      <PlaylistTitles
+        myPlaylists={
+          [{
+            playlistTitle: '플레이리스트 1',
+            playlists: [],
+          },
+          {
+            playlistTitle: '플레이리스트 2',
+            playlists: [],
+          },
+          {
+            playlistTitle: '플레이리스트 3',
+            playlists: [],
+          },
+          {
+            playlistTitle: '플레이리스트 4',
+            playlists: [],
+          },
+          {
+            playlistTitle: '플레이리스트 5',
+            playlists: [],
+          },
+          ]
+        }
+        onClick={handleClick}
+      />,
+    );
 
-      fireEvent.click(getByText('Next'));
+    fireEvent.click(getByText('Next'));
 
-      expect(getByTestId('cards')).toHaveStyle({
-        transform: `translateX(-${PLAYLIST_CARD_WIDTH * 2}px)`,
-      });
+    expect(getByTestId('cards')).toHaveStyle({
+      transform: `translateX(-${PLAYLIST_CARD_WIDTH}px)`,
+    });
 
-      fireEvent.click(getByText('Previous'));
-
-      expect(getByTestId('cards')).toHaveStyle({
-        transform: 'translateX(-0px)',
-      });
+    fireEvent.click(getByText('Previous'));
+    expect(getByTestId('cards')).toHaveStyle({
+      transform: 'translateX(-0px)',
     });
   });
 
@@ -146,7 +143,13 @@ describe('PlaylistTitles', () => {
       fireEvent.click(getByText('Next'));
 
       expect(getByTestId('cards')).toHaveStyle({
-        transform: 'translateX(-0px)',
+        transform: `translateX(-${PLAYLIST_CARD_WIDTH}px)`,
+      });
+
+      fireEvent.click(getByText('Next'));
+
+      expect(getByTestId('cards')).toHaveStyle({
+        transform: `translateX(-${PLAYLIST_CARD_WIDTH}px)`,
       });
     });
   });
@@ -154,6 +157,10 @@ describe('PlaylistTitles', () => {
   context('when playlist titles are at the first', () => {
     it("playlist titles don't move when click the previous button", () => {
       const { getByText, getByTestId } = renderPlaylistTitles();
+
+      expect(getByTestId('cards')).toHaveStyle({
+        transform: 'translateX(-0px)',
+      });
 
       fireEvent.click(getByText('Previous'));
 
