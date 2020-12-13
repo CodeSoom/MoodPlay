@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -11,18 +11,21 @@ const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
 
-const PlayerWrap = styled.div(() => mq({
-  position: 'fixed',
+const PlayerWrap = styled.div(({ musicPlayerState }) => mq({
+  position: 'absolute',
+  bottom: 0,
   right: '0',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  paddingTop: ['3vh', '8.5vh'],
   width: ['100vw', '438px'],
-  height: '100vh',
-  paddingTop: '8.5vh',
-
+  height: [`${musicPlayerState ? '90vh' : '10vh'}`, '100vh'],
+  borderRadius: ['27px 27px 0 0', '0'],
   background: '#1B1A20',
   color: '#fff',
+  transition: 'height 1s',
+  overflow: 'hidden',
 }));
 
 const MusicPlayer = React.memo(({
@@ -30,20 +33,32 @@ const MusicPlayer = React.memo(({
   nowPlayingMusicItems,
   handleSelectMusic,
   handleStoreOpenState,
-}) => ((
-  <PlayerWrap>
-    <MusicControls
-      nowPlayingMusicItems={nowPlayingMusicItems}
-      selectedMusic={selectedMusic}
-      onClick={handleSelectMusic}
-      onStoreMusic={handleStoreOpenState}
-    />
-    <UpNextMusic
-      nowPlayingMusicItems={nowPlayingMusicItems}
-      selectedMusic={selectedMusic}
-      onClick={handleSelectMusic}
-    />
-  </PlayerWrap>
-)));
+}) => {
+  const [musicPlayerState, setMusicPlayerState] = useState(false);
+
+  const handleChangeMusicPlayerState = () => {
+    setMusicPlayerState(!musicPlayerState);
+  };
+
+  return ((
+    <PlayerWrap
+      musicPlayerState={musicPlayerState}
+    >
+      <MusicControls
+        nowPlayingMusicItems={nowPlayingMusicItems}
+        selectedMusic={selectedMusic}
+        musicPlayerState={musicPlayerState}
+        onClickMusic={handleSelectMusic}
+        onClickPlayer={handleChangeMusicPlayerState}
+        onStoreMusic={handleStoreOpenState}
+      />
+      <UpNextMusic
+        nowPlayingMusicItems={nowPlayingMusicItems}
+        selectedMusic={selectedMusic}
+        onClick={handleSelectMusic}
+      />
+    </PlayerWrap>
+  ));
+});
 
 export default MusicPlayer;

@@ -5,16 +5,18 @@ import facepaint from 'facepaint';
 import {
   VolumeIcon,
   MuteIcon,
+  PlayerCloseIcon,
 } from '../assets/images';
 
 const mq = facepaint([
   '@media(min-width: 350px)',
   '@media(min-width: 400px)',
   '@media(min-width: 438px)',
+  '@media(min-width: 672px)',
 ]);
 
 const MusicControlsWrap = styled.div(() => mq({
-  width: ['70%', '70%', '70%', '342px'],
+  width: ['70%', '70%', '70%', '342px', '342px'],
 }));
 
 const HideVideo = styled.div({
@@ -24,7 +26,7 @@ const HideVideo = styled.div({
 });
 
 const PlayingNow = styled.p(() => mq({
-  fontSize: ['1.2em', '1.6em', '2em', '2em'],
+  fontSize: ['1.2em', '1.6em', '2em', '2em', '2em'],
   fontWeight: '900',
   marginBottom: '1em',
 }));
@@ -32,7 +34,7 @@ const PlayingNow = styled.p(() => mq({
 const MusicImage = styled.div(({ url }) => (() => mq({
   marginBottom: '16px',
   width: '100%',
-  height: ['150px', '190px', '200px', '238px'],
+  height: ['150px', '190px', '200px', '238px', '238px'],
   borderRadius: '12px',
   background: `url(${url}) no-repeat`,
   backgroundSize: 'cover',
@@ -182,20 +184,67 @@ const Buttons = styled.div({
   flexDirection: 'rows',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginTop: '33px',
+  marginTop: [0, 0, 0, 0, '33px', '33px'],
 });
 
 const IconButton = styled.button(({ url }) => mq({
   fontSize: '0',
   marginRight: '4px',
-  width: ['28px', '35px', '40px', '48px'],
-  height: ['28px', '35px', '40px', '48px'],
+  width: ['28px', '35px', '40px', '48px', '48px'],
+  height: ['28px', '35px', '40px', '48px', '48px'],
   border: '0',
   background: `url(${url}) no-repeat`,
-  backgroundSize: ['28px', '35px', '40px', '48px'],
+  backgroundSize: ['28px', '35px', '40px', '48px', '48px'],
   '&: focus': {
     outline: 0,
   },
+}));
+
+const MobileWrap = styled.div(({ musicPlayerState }) => mq({
+  position: 'absolute',
+  top: [
+    `${musicPlayerState ? '-100vh' : '0'}`,
+    `${musicPlayerState ? '-100vh' : '0'}`,
+    `${musicPlayerState ? '-100vh' : '0'}`,
+    `${musicPlayerState ? '-100vh' : '0'}`,
+    '-100vh',
+  ],
+  left: 0,
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0 3vh',
+  width: '100%',
+  height: '10vh',
+  borderRadius: [
+    '27px 27px 0 0',
+    '27px 27px 0 0',
+    '27px 27px 0 0',
+    '27px 27px 0 0',
+    '0'],
+  background: '#1B1A20',
+
+  '& p': {
+    fontSize: '1.6vw',
+  },
+}));
+
+const MobileTitle = styled.div({
+  width: '68%',
+  height: '2em',
+  overflow: 'hidden',
+});
+
+const MobileCloseButton = styled.button(() => mq({
+  fontSize: 0,
+  float: 'right',
+  display: ['block', 'block', 'block', 'block', 'none'],
+  width: '7.5vw',
+  height: '7.5vw',
+  border: 0,
+  outline: 0,
+  background: `url(${PlayerCloseIcon}) no-repeat`,
+  backgroundSize: 'contain',
 }));
 
 export {
@@ -214,4 +263,7 @@ export {
   Title,
   Buttons,
   IconButton,
+  MobileWrap,
+  MobileTitle,
+  MobileCloseButton,
 };
