@@ -10,8 +10,7 @@ const Slider = styled.div(() => mq({
   position: 'relative',
   marginTop: '30px',
   width: ['100%', '98%'],
-  height: ['11vh', '20vh'],
-  border: '1px solid red',
+  height: ['12vh', '20vh'],
 }));
 
 const Wrap = styled.div({
@@ -20,26 +19,26 @@ const Wrap = styled.div({
   overflowX: 'hidden',
 });
 
-const Cards = styled.ul(({ width, position }) => ({
+const Cards = styled.ul(({ width, position }) => mq({
   position: 'absolute',
   top: '0',
   left: '0',
   display: 'flex',
   flexDirection: 'rows',
   width: `${width}px`,
-  height: '100%',
+  height: ['11vh', '20vh'],
   transform: `translateX(-${position}px)`,
   transition: 'transform 0.5s ease',
 }));
 
-const Card = styled.li(({ selectState, width }) => ({
+const Card = styled.li(({ selectState, width }) => mq({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   margin: '0 4px',
-  padding: '5vh 17px',
-  width: `${selectState ? `${width + 70}px` : `${width}px`}`,
-  height: '100%',
+  padding: ['2vh 4vh ', '5vh 17px'],
+  width: [`${width}`, `${selectState ? `${width + 70}px` : `${width}px`}`],
+  height: ['11vh', '20vh'],
   border: `${selectState ? '3px solid #F89428' : 'none'}`,
   background: '#181818',
   borderRadius: '32px',
@@ -52,24 +51,24 @@ const Card = styled.li(({ selectState, width }) => ({
 
   '& p': {
     color: '#bdbdbd',
-    fontsize: '18px',
+    fontSize: '1.6vh',
   },
 
   '&: hover': {
-    width: `${width + 70}px`,
+    width: [`${width}`, `${width + 70}px`],
   },
 }));
 
-const SliderControlButton = styled.button(({ url, position }) => ({
+const SliderControlButton = styled.button(({ url, position }) => mq({
   fontSize: '0',
   position: 'absolute',
   top: '50%',
-  [position]: '-38px',
-  width: '76px',
-  height: '76px',
+  [position]: ['-4.5vh', '-38px'],
+  width: ['9vh', '76px'],
+  height: ['9vh', '76px'],
   border: '0',
   background: `url(${url}) no-repeat`,
-  backgroundSize: '76px',
+  backgroundSize: ['9vh', '76px'],
   transform: 'translateY(-50%)',
 
   '&: focus': {

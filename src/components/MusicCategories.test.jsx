@@ -52,7 +52,7 @@ describe('MusicCategories', () => {
   });
 
   context('with selected category', () => {
-    it('renders selected category with border and larger width', () => {
+    it('renders selected category with border', () => {
       const moodCategories = [
         ['뉴에이지', 'calm'],
         ['어쿠스틱', 'calm'],
@@ -63,30 +63,29 @@ describe('MusicCategories', () => {
       const { getByTestId } = renderMusicCategories(moodCategories, selectedCategory);
 
       expect(getByTestId(selectedCategory)).toHaveStyle({
-        width: '215px',
         border: '3px solid #F89428',
       });
     });
   });
 
   context('without selected category', () => {
-    const moodCategories = [
-      ['뉴에이지', 'calm'],
-      ['어쿠스틱', 'calm'],
-    ];
+    it('renders selected category without border', () => {
+      const moodCategories = [
+        ['뉴에이지', 'calm'],
+        ['어쿠스틱', 'calm'],
+      ];
 
-    const selectedCategory = '';
+      const selectedCategory = '';
 
-    const { getByTestId } = renderMusicCategories(moodCategories, selectedCategory);
+      const { getByTestId } = renderMusicCategories(moodCategories, selectedCategory);
 
-    expect(getByTestId('뉴에이지')).not.toHaveStyle({
-      width: '215px',
-      border: '3px solid #F89428',
-    });
+      expect(getByTestId('뉴에이지')).not.toHaveStyle({
+        border: '3px solid #F89428',
+      });
 
-    expect(getByTestId('어쿠스틱')).not.toHaveStyle({
-      width: '215px',
-      border: '3px solid #F89428',
+      expect(getByTestId('어쿠스틱')).not.toHaveStyle({
+        border: '3px solid #F89428',
+      });
     });
   });
 
