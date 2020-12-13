@@ -7,8 +7,6 @@ import StoreMusicContainer from '../containers/StoreMusicContainer';
 
 const Wrap = styled.div({
   height: '100vh',
-  display: 'flex',
-  flexDirection: 'row',
 });
 
 export default function MyPlayPage() {

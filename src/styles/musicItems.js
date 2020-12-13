@@ -1,32 +1,41 @@
 import styled from '@emotion/styled';
 
-const Wrap = styled.div({
-  marginTop: '8vh',
-  height: '58vh',
-});
+import facepaint from 'facepaint';
 
-const MusicItemsTitle = styled.h3({
-  fontSize: '28px',
+const mq = facepaint([
+  '@media(min-width: 672px)',
+]);
+
+const Wrap = styled.div(() => mq({
+  marginTop: ['5vh', '8vh'],
+  height: ['53vh', '58vh'],
+  width: '100%',
+  overflow: 'hidden',
+}));
+
+const MusicItemsTitle = styled.h3(() => mq({
+  fontSize: ['2.3vh', '3vh'],
   fontWeight: '900',
-});
+}));
 
-const MusicItemsWrap = styled.ul({
+const MusicItemsWrap = styled.ul(() => mq({
   display: 'flex',
   flexDirection: 'column',
-  flexWrap: 'wrap',
+  alignItems: 'center',
+  flexWrap: ['no-wrap', 'wrap'],
   width: '100%',
-  height: '50vh',
+  height: ['initial', '58vh'],
   overflow: 'hidden',
-});
+}));
 
-const MusicItem = styled.li({
+const MusicItem = styled.li(() => mq({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
-  margin: '10px 35px',
-  padding: '5px 10px',
-  width: '447px',
+  margin: ['1vh 0', '10px 35px'],
+  padding: [0, '5px 10px'],
+  width: ['90%', '43%'],
   height: '10vh',
   borderRadius: '12px',
   background: '#181818',
@@ -41,11 +50,11 @@ const MusicItem = styled.li({
     transform: 'translateY(2px)',
     boxShadow: ' 8px 8px 24px rgba(255, 255, 255, 0.2)',
   },
-});
+}));
 
-const Thumbnail = styled.div(({ url }) => ({
+const Thumbnail = styled.div(({ url }) => mq({
   fontSize: '0',
-  width: '9.4vh',
+  width: ['20%', '5.7vw'],
   height: '7vh',
   borderRadius: '12px',
   background: `url(${url}) no-repeat`,
@@ -53,24 +62,24 @@ const Thumbnail = styled.div(({ url }) => ({
   backgroundPosition: 'center',
 }));
 
-const InfoBox = styled.div({
-  width: '70%',
-});
+const InfoBox = styled.div(() => mq({
+  width: ['70%', '13.5vw'],
+}));
 
 const TitleWrap = styled.div({
   width: '100%',
-  height: '3em',
+  height: '5vh',
   overflow: 'hidden',
 });
 
 const Title = styled.p`
-  font-size: 16px;
+  font-size: 1.6vh;
   font-weight: 700;
   display: -webkit-box;
   -webkit-line-clamp: 2; 
   -webkit-box-orient: vertical;
-  height:  '3em';
-  lineHeight: '1.2em';
+  height: '4vh';
+  lineHeight: '1.6vh';
   wordBreak: 'break-all';
   whiteSpace: 'nowrap';
   overflow: 'hidden';
@@ -78,6 +87,7 @@ const Title = styled.p`
   `;
 
 const ChannelTitle = styled.small({
+  fontSize: '1.2vh',
   color: '#999',
 });
 
