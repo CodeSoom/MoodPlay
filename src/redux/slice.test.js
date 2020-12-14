@@ -437,8 +437,8 @@ describe('actions', () => {
         {
           type: 'application/setMoodCategories',
           payload: [
-            ['장르1', 'mood1', 'mood2'],
-            ['장르2', 'mood1'],
+            ['장르1', 'mood', 'mood'],
+            ['장르2', 'mood', 'mood'],
           ],
         },
       ]);

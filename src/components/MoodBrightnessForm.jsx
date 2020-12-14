@@ -10,7 +10,7 @@ const MoodBrightnessForm = React.memo(({ onChange, field }) => {
   const formValues = [
     { id: 'happy', text: '밝은', value: 'happy' },
     { id: 'dark', text: '어두운', value: 'dark' },
-    { id: 'no-brightness', text: '모르겠어요', value: 'none' },
+    { id: 'no-brightness', text: '모르겠어요', value: '' },
   ];
 
   return (

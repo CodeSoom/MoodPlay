@@ -1,7 +1,7 @@
-export function getMoodCategories() {
+export function getCategories() {
   return ([
-    ['장르1', 'mood1', 'mood2'],
-    ['장르2', 'mood1'],
+    ['장르1', 'mood'],
+    ['장르2', 'mood'],
   ]);
 }
 
