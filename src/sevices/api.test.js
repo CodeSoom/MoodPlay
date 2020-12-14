@@ -1,5 +1,5 @@
 import {
-  getMoodCategories,
+  getCategories,
   getCategoryKeyword,
   fetchMusic,
 } from './api';
@@ -7,49 +7,28 @@ import {
 jest.mock('./youtube.js');
 
 describe('api', () => {
-  describe('getMoodCategories', () => {
-    context('with two moods', () => {
-      it('returns categories about two moods', () => {
-        const categoreies = getMoodCategories('calm', 'happy');
+  describe('getCategories', () => {
+    context('with mood', () => {
+      const mood = 'happy';
 
-        expect(categoreies).toEqual([
-          ['뉴에이지', 'calm', 'happy'],
-          ['어쿠스틱', 'calm', 'happy'],
-          ['지브리', 'calm'],
-          ['재즈', 'calm'],
-          ['로파이', 'calm'],
-          ['사극감성', 'calm'],
-          ['발라드', 'calm'],
-          ['팝', 'happy'],
-        ]);
-      });
-    });
+      it('returns categories', () => {
+        const categories = getCategories(mood);
 
-    context('with only mood energy', () => {
-      it('returns categories about only mood energy', () => {
-        const categoreies = getMoodCategories('calm', 'none');
-
-        expect(categoreies).toEqual([
-          ['뉴에이지', 'calm'],
-          ['지브리', 'calm'],
-          ['재즈', 'calm'],
-          ['로파이', 'calm'],
-          ['어쿠스틱', 'calm'],
-          ['사극감성', 'calm'],
-          ['발라드', 'calm'],
-        ]);
-      });
-    });
-
-    context('with only mood brightness ', () => {
-      it('returns categories about only mood brightness', () => {
-        const categoreies = getMoodCategories('none', 'happy');
-
-        expect(categoreies).toEqual([
+        expect(categories).toEqual([
           ['뉴에이지', 'happy'],
           ['어쿠스틱', 'happy'],
           ['팝', 'happy'],
         ]);
+      });
+    });
+
+    context('without mood', () => {
+      const mood = '';
+
+      it('returns empty array', () => {
+        const categories = getCategories(mood);
+
+        expect(categories).toEqual([]);
       });
     });
   });

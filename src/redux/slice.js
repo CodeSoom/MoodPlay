@@ -3,17 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { saveItem } from '../sevices/storage';
 
 import {
-  getMoodCategories,
   getCategoryKeyword,
   fetchMusic,
 } from '../sevices/api';
+
+import {
+  getMoodCategories,
+} from '../utils/getMoodCategories/getMoodCategores';
 
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     moodselectFields: {
-      energy: '',
-      brightness: '',
+      energy: 0,
+      brightness: 0,
     },
     moodCategories: [],
     selectedCategory: '',

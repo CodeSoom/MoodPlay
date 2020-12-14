@@ -10,7 +10,7 @@ const MoodEnergyForm = React.memo(({ onChange, field }) => {
   const formValues = [
     { id: 'calm', text: '차분한', value: 'calm' },
     { id: 'uplifting', text: '신나는', value: 'uplifting' },
-    { id: 'no-energy', text: '모르겠어요', value: 'none' },
+    { id: 'no-energy', text: '모르겠어요', value: '' },
   ];
 
   return (

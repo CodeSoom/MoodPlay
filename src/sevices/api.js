@@ -1,42 +1,18 @@
+import _ from 'lodash';
+
 import youtube from './youtube';
 
 import categories from '../../data/categories';
 import categoryDetails from '../../data/categoryDetails';
 
-export function getMoodCategories(energy, brightness) {
-  if (energy === 'none' && brightness === 'none') {
-    const randomMood = ['calm', 'uplifting', 'happy', 'sad'][Math.floor(Math.random() * 4)];
-
-    const randomMoodCategories = categories[randomMood].map((title) => [title, randomMood]);
-
-    return randomMoodCategories;
+export function getCategories(mood) {
+  if (_.isEmpty(mood)) {
+    return [];
   }
 
-  const energyTitle = energy !== 'none'
-    ? categories[energy].map((title) => [title, energy])
-    : [];
-  const brightnessTitle = brightness !== 'none'
-    ? categories[brightness].map((title) => [title, brightness])
-    : [];
+  const category = categories[mood].map((title) => [title, mood]);
 
-  const moodCategories = [];
-
-  energyTitle
-    .concat(brightnessTitle)
-    .forEach((categorie) => {
-      const duplicateCategorie = moodCategories.find((item) => item[0] === categorie[0]);
-
-      if (duplicateCategorie) {
-        moodCategories[moodCategories.indexOf(duplicateCategorie)].push(categorie[1]);
-        return;
-      }
-
-      moodCategories.push(categorie);
-    });
-
-  moodCategories.sort((a, b) => b.length - a.length);
-
-  return moodCategories;
+  return category;
 }
 
 export function getCategoryKeyword({ title, tag }) {
