@@ -39,7 +39,7 @@ import {
 import {
   getTime,
   getProgressTime,
-} from '../utils/utils';
+} from '../utils/mysicPlayer/musicPlayer';
 
 const MusicControls = React.memo(({
   nowPlayingMusicItems,
