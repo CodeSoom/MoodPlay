@@ -15,7 +15,9 @@ import {
 import PlaylistTitles from '../components/PlaylistTitles';
 import MusicItems from '../components/MusicItems';
 
-import { get, getPlaylistMusic } from '../utils/utils';
+import { get } from '../utils/utils';
+
+import { getPlaylistMusic } from '../utils/mysicPlayer/musicPlayer';
 
 import { BACKGROUND_COLOR_BLACK } from '../styles/constants';
 
