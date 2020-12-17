@@ -39,7 +39,7 @@ export default function PlaylistTitles({
   };
 
   const handleClickPrevious = () => {
-    if (position <= PLAYLIST_CARD_WIDTH) {
+    if (position < PLAYLIST_CARD_WIDTH) {
       setPosition(0);
       return;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import MusicPlayer from './MusicPlayer';
 
@@ -40,7 +40,7 @@ describe('MusicPlayer', () => {
     const nowPlayingMusicItems = MUSICITEMS;
 
     it('renders empty music player', () => {
-      const { container } = render(<MusicPlayer
+      const { container, getByTestId } = render(<MusicPlayer
         selectedMusic={selectedMusic}
         nowPlayingMusicItems={nowPlayingMusicItems}
       />);
@@ -51,6 +51,12 @@ describe('MusicPlayer', () => {
       expect(container).not.toHaveTextContent(SELECTEDMUSIC.snippet.channelTitle);
 
       expect(container).toHaveTextContent('재생중인 음악이 없습니다.');
+
+      fireEvent.click(getByTestId('mobile-player'));
+
+      expect(getByTestId('mobile-player')).toHaveStyle({
+        height: '10vh',
+      });
     });
   });
 });
