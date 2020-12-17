@@ -137,6 +137,7 @@ const MusicControls = React.memo(({
         </Buttons>
         <MobileWrap
           musicPlayerState={musicPlayerState}
+          data-testid="mobile-player"
           onClick={handleClickPlayer}
         >
           <p>재생중인 음악이 없습니다.</p>
