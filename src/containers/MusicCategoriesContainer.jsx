@@ -18,6 +18,8 @@ import MusicItems from '../components/MusicItems';
 
 import { get } from '../utils/utils';
 
+import { MAIN_FONT_COLOR } from '../styles/constants';
+
 const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
@@ -32,7 +34,7 @@ const Wrap = styled.div(() => mq({
   width: ['100vw', 'calc(88vw - 438px)'],
   height: '100vh',
   background: '#0f0f0f',
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
 }));
 
 const MusicCategoriesTitle = styled.h2(() => mq({

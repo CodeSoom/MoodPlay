@@ -8,6 +8,8 @@ import {
   PlayerCloseIcon,
 } from '../assets/images';
 
+import { POINT_COLOR } from './constants';
+
 const mq = facepaint([
   '@media(min-width: 350px)',
   '@media(min-width: 400px)',
@@ -56,7 +58,7 @@ const ProgressBar = styled.input(({ value }) => `
   background-image: -webkit-gradient(linear,
     left top, 
     right top, 
-    color-stop(${value}%, #f89428),
+    color-stop(${value}%, ${POINT_COLOR}),
     color-stop(${value}%, #29292f));
 
   &::-webkit-slider-thumb {

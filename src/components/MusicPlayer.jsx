@@ -7,6 +7,8 @@ import facepaint from 'facepaint';
 import MusicControls from './MusicControls';
 import UpNextMusic from './UpNextMusic';
 
+import { MAIN_FONT_COLOR } from '../styles/constants';
+
 const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
@@ -23,7 +25,7 @@ const PlayerWrap = styled.div(({ musicPlayerState }) => mq({
   height: [`${musicPlayerState ? '90vh' : '10vh'}`, '100vh'],
   borderRadius: ['27px 27px 0 0', '0'],
   background: '#1B1A20',
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
   transition: 'height 1s',
   overflow: 'hidden',
 }));

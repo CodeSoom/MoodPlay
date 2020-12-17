@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import MusicCategories from './MusicCategories';
 
-import { CARD_WIDTH } from '../styles/constants';
+import { CATEGORIES_CARD_WIDTH } from '../styles/constants';
 
 describe('MusicCategories', () => {
   const handleClick = jest.fn();
@@ -122,7 +122,7 @@ describe('MusicCategories', () => {
 
       fireEvent.click(getByText(moodCategories[selectedCategoryIndex][0]));
       expect(getByTestId('cards')).toHaveStyle({
-        transform: `translateX(-${CARD_WIDTH * selectedCategoryIndex}px)`,
+        transform: `translateX(-${CATEGORIES_CARD_WIDTH * selectedCategoryIndex}px)`,
       });
     });
   });
@@ -145,7 +145,7 @@ describe('MusicCategories', () => {
       fireEvent.click(getByText('Next'));
 
       expect(getByTestId('cards')).toHaveStyle({
-        transform: `translateX(-${CARD_WIDTH * 2}px)`,
+        transform: `translateX(-${CATEGORIES_CARD_WIDTH * 2}px)`,
       });
 
       fireEvent.click(getByText('Previous'));
@@ -162,13 +162,13 @@ describe('MusicCategories', () => {
         fireEvent.click(getByText('Next'));
 
         expect(getByTestId('cards')).toHaveStyle({
-          transform: `translateX(-${CARD_WIDTH * 2}px)`,
+          transform: `translateX(-${CATEGORIES_CARD_WIDTH * 2}px)`,
         });
 
         fireEvent.click(getByText('Next'));
 
         expect(getByTestId('cards')).toHaveStyle({
-          transform: `translateX(-${CARD_WIDTH * 2}px)`,
+          transform: `translateX(-${CATEGORIES_CARD_WIDTH * 2}px)`,
         });
       });
     });

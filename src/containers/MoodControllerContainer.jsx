@@ -20,6 +20,8 @@ import { get } from '../utils/utils';
 
 import { MoodBackgroundSelected } from '../assets/images';
 
+import { MAIN_FONT_COLOR } from '../styles/constants';
+
 const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
@@ -34,7 +36,7 @@ const MoodSubmit = styled.div(() => mq({
   outline: '0',
   background: `url(${MoodBackgroundSelected}) no-repeat`,
   backgroundSize: 'contain',
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
   '&:active': {
     transform: 'scale(0.98)',
   },
@@ -46,7 +48,7 @@ const MoodSubmit = styled.div(() => mq({
     height: ['6.5vw', '3.8vw'],
     lineHeight: ['6.5vw', '3.8vw'],
     textDecoration: 'none',
-    color: '#fff',
+    color: MAIN_FONT_COLOR,
   },
 }));
 

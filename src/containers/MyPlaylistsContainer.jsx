@@ -19,7 +19,7 @@ import { get } from '../utils/utils';
 
 import { getPlaylistMusic } from '../utils/mysicPlayer/musicPlayer';
 
-import { BACKGROUND_COLOR_BLACK } from '../styles/constants';
+import { BACKGROUND_COLOR_BLACK, MAIN_FONT_COLOR } from '../styles/constants';
 
 const mq = facepaint([
   '@media(min-width: 672px)',
@@ -34,7 +34,7 @@ const Wrap = styled.div(() => mq({
   height: '100vh',
   padding: ['13vh 10vw', '68px 95px'],
   background: BACKGROUND_COLOR_BLACK,
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
 }));
 
 const MyPlaylistTitle = styled.h1(() => mq({

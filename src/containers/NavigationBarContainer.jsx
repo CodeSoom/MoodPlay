@@ -14,7 +14,11 @@ import { get } from '../utils/utils';
 
 import { LogoIcon } from '../assets/images';
 
-import { BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_DARKGRAY } from '../styles/constants';
+import {
+  BACKGROUND_COLOR_BLACK,
+  BACKGROUND_COLOR_DARKGRAY,
+  MAIN_FONT_COLOR,
+} from '../styles/constants';
 
 const mq = facepaint([
   '@media(min-width: 672px)',
@@ -32,7 +36,7 @@ const Wrap = styled.div(() => mq({
   width: ['100vw', '120px', '12vw'],
   height: ['9vh', '100vh', '100vh'],
   background: [BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_DARKGRAY],
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
   zIndex: 3,
 }));
 
