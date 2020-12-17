@@ -15,9 +15,9 @@ import {
   CategoriesPreviousIcon,
 } from '../assets/images';
 
-export default function PlaylistTitles({
+const PlaylistTitles = React.memo(({
   myPlaylists, selectedPlaylist, onClick,
-}) {
+}) => {
   const [position, setPosition] = useState(0);
   const cardsRef = useRef();
   const sliderRef = useRef();
@@ -90,4 +90,6 @@ export default function PlaylistTitles({
       </SliderControlButton>
     </Slider>
   );
-}
+});
+
+export default PlaylistTitles;

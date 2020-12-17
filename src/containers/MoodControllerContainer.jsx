@@ -50,7 +50,7 @@ const MoodSubmit = styled.div(() => mq({
   },
 }));
 
-export default function MoodControllerContainer() {
+const MoodControllerContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const { energy, brightness } = useSelector(get('moodselectFields'));
@@ -84,4 +84,6 @@ export default function MoodControllerContainer() {
       </MoodSubmit>
     </>
   );
-}
+});
+
+export default MoodControllerContainer;

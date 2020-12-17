@@ -45,7 +45,7 @@ const Logo = styled.div(() => mq({
   backgroundSize: ['6vh', '70px', '7vw'],
 }));
 
-function NavigationBarContainer() {
+const NavigationBarContainer = React.memo(() => {
   const moodCategories = useSelector(get('moodCategories'));
 
   const path = useLocation().pathname;
@@ -59,6 +59,6 @@ function NavigationBarContainer() {
       />
     </Wrap>
   );
-}
+});
 
 export default NavigationBarContainer;
