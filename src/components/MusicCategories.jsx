@@ -8,7 +8,7 @@ import {
   SliderControlButton,
 } from '../styles/slider';
 
-import { CARD_WIDTH } from '../styles/constants';
+import { CATEGORIES_CARD_WIDTH } from '../styles/constants';
 
 import {
   CategoriesNextIcon,
@@ -18,7 +18,7 @@ import {
 const MusicCategories = React.memo(({
   moodCategories, selectedCategory, onClick,
 }) => {
-  const CARDS_WIDTH = CARD_WIDTH * (moodCategories.length + 1);
+  const CARDS_WIDTH = CATEGORIES_CARD_WIDTH * (moodCategories.length + 1);
   const sliderRef = useRef();
   const cardsRef = useRef();
 
@@ -37,7 +37,7 @@ const MusicCategories = React.memo(({
       return;
     }
 
-    setPosition(position + (CARD_WIDTH * 2));
+    setPosition(position + (CATEGORIES_CARD_WIDTH * 2));
   };
 
   const handleClickPreviousCategories = () => {
@@ -46,12 +46,12 @@ const MusicCategories = React.memo(({
       return;
     }
 
-    setPosition(position - (CARD_WIDTH * 2));
+    setPosition(position - (CATEGORIES_CARD_WIDTH * 2));
   };
 
   const handleClickCategory = ({ title, tag1, tag2 }, index) => {
     onClick({ title, tag1, tag2 });
-    setPosition(CARD_WIDTH * index);
+    setPosition(CATEGORIES_CARD_WIDTH * index);
   };
 
   return (
@@ -70,7 +70,7 @@ const MusicCategories = React.memo(({
               <Card
                 key={title}
                 index={index}
-                width={CARD_WIDTH}
+                width={CATEGORIES_CARD_WIDTH}
                 data-testid={title}
                 selectState={selectedCategory === title}
                 onClick={() => handleClickCategory({ title, tag1, tag2 }, index)}

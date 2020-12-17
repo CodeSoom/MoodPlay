@@ -6,7 +6,7 @@ import facepaint from 'facepaint';
 
 import MoodControllerContainer from '../containers/MoodControllerContainer';
 
-import { BACKGROUND_COLOR_BLACK } from '../styles/constants';
+import { BACKGROUND_COLOR_BLACK, MAIN_FONT_COLOR } from '../styles/constants';
 
 const mq = facepaint([
   '@media(min-width: 672px)',
@@ -23,7 +23,7 @@ const Wrap = styled.div(() => mq({
   width: ['100%', 'calc(100% - 120px)', 'calc(100% - 12vw)'],
   height: '100vh',
   background: BACKGROUND_COLOR_BLACK,
-  color: '#fff',
+  color: MAIN_FONT_COLOR,
 
   '& h1': {
     fontSize: ['4.5vw', '2.2vw', '2.2vw'],

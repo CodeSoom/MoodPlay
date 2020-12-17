@@ -2,8 +2,10 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
+import { MAIN_FONT_COLOR } from '../styles/constants';
+
 const AddPlaylist = styled.form({
-  background: '#fff',
+  background: MAIN_FONT_COLOR,
   padding: '10px 20px',
   display: 'flex',
   flexDirection: 'column',
