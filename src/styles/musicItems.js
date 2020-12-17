@@ -8,9 +8,8 @@ const mq = facepaint([
 
 const Wrap = styled.div(() => mq({
   marginTop: ['5vh', '8vh'],
-  height: ['53vh', '58vh'],
+  height: ['48vh', '48vh'],
   width: '100%',
-  overflow: 'hidden',
 }));
 
 const MusicItemsTitle = styled.h3(() => mq({
@@ -19,13 +18,25 @@ const MusicItemsTitle = styled.h3(() => mq({
 }));
 
 const MusicItemsWrap = styled.ul(() => mq({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  flexWrap: ['no-wrap', 'wrap'],
+  display: 'grid',
+  gridTemplateColumns: ['100%', '50% 50%'],
+  gridTemplateRows: ['repeat(4, 1fr)', 'repeat(4, 1fr)'],
+  marginTop: '1vh',
   width: '100%',
-  height: ['initial', '58vh'],
-  overflow: 'hidden',
+  height: ['inherit', '48vh'],
+  overflowY: 'scroll',
+
+  '&::-webkit-scrollbar': {
+    width: ['5px', '10px'],
+    background: '#000',
+    borderRadius: ['5px', '10px'],
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    width: ['5px', '10px'],
+    background: '#F89428',
+    borderRadius: ['5px', '10px'],
+  },
 }));
 
 const MusicItem = styled.li(() => mq({
@@ -33,9 +44,9 @@ const MusicItem = styled.li(() => mq({
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
-  margin: ['1vh 0', '10px 35px'],
+  margin: ['1vh 0', '1vh 35px'],
   padding: [0, '5px 10px'],
-  width: ['90%', '43%'],
+  width: ['90%', '90%'],
   height: '10vh',
   borderRadius: '12px',
   background: '#181818',
