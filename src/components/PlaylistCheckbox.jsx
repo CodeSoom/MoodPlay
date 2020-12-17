@@ -28,7 +28,9 @@ const InputCheckbox = styled.input({
   },
 });
 
-export default function PlaylistCheckbox({ id, onChange, checkState }) {
+const PlaylistCheckbox = React.memo(({
+  id, onChange, checkState,
+}) => {
   const handleChange = (event) => {
     const { checked } = event.target;
     const playlistTitle = id;
@@ -51,4 +53,6 @@ export default function PlaylistCheckbox({ id, onChange, checkState }) {
       </InputLabel>
     </PlaylistItem>
   );
-}
+});
+
+export default PlaylistCheckbox;

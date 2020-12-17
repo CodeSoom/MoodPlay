@@ -42,7 +42,7 @@ const MyPlaylistTitle = styled.h1(() => mq({
   fontWeight: '900',
 }));
 
-export default function MyPlaylistsContainer() {
+const MyPlaylistsContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const myPlaylists = useSelector(get('myPlaylists'));
@@ -75,4 +75,6 @@ export default function MyPlaylistsContainer() {
       />
     </Wrap>
   );
-}
+});
+
+export default MyPlaylistsContainer;

@@ -74,7 +74,7 @@ const Icon = styled.div(({
   },
 }));
 
-function NavigationBar({ moodCategories, path }) {
+const NavigationBar = React.memo(({ moodCategories, path }) => {
   const menu = _.isEmpty(moodCategories)
     ? [{
       title: '무드선택',
@@ -135,6 +135,6 @@ function NavigationBar({ moodCategories, path }) {
       }
     </IconItems>
   );
-}
+});
 
 export default NavigationBar;

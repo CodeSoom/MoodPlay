@@ -8,7 +8,7 @@ import MusicPlayer from '../components/MusicPlayer';
 
 import { get } from '../utils/utils';
 
-export default function MusicPlayerContainer() {
+const MusicPlayerContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const selectedMusic = useSelector(get('selectedMusic'));
@@ -32,4 +32,6 @@ export default function MusicPlayerContainer() {
       />
     </>
   );
-}
+});
+
+export default MusicPlayerContainer;
