@@ -23,6 +23,7 @@ import MyPlayIconActive from './images/icons/myplaylist-a.png';
 
 import CategoriesNextIcon from './images/icons/categories_next.png';
 import CategoriesPreviousIcon from './images/icons/categories_prev.png';
+import MusicSelectIcon from './images/icons/music-hover-icon.png';
 
 import MoodBackground from './images/icons/moodbutton_i.png';
 import MoodBackgroundHover from './images/icons/moodbutton_h.png';
@@ -53,6 +54,7 @@ export {
   MyPlayIconActive,
   CategoriesNextIcon,
   CategoriesPreviousIcon,
+  MusicSelectIcon,
   MoodBackground,
   MoodBackgroundHover,
   MoodBackgroundActive,

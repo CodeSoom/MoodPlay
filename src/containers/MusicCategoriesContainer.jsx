@@ -30,7 +30,7 @@ const Wrap = styled.div(() => mq({
   left: [0, '12vw'],
   display: 'flex',
   flexDirection: 'column',
-  padding: ['13vh 10vw', '68px 95px'],
+  padding: ['13vh 10vw', '68px  82px  0 82px'],
   width: ['100vw', 'calc(88vw - 438px)'],
   height: '100vh',
   background: '#0f0f0f',

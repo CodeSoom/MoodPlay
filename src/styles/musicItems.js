@@ -2,13 +2,15 @@ import styled from '@emotion/styled';
 
 import facepaint from 'facepaint';
 
+import { MusicSelectIcon } from '../assets/images';
+
 const mq = facepaint([
   '@media(min-width: 672px)',
 ]);
 
 const Wrap = styled.div(() => mq({
   marginTop: ['5vh', '8vh'],
-  height: ['48vh', '48vh'],
+  height: ['48vh', '52vh'],
   width: '100%',
 }));
 
@@ -20,61 +22,85 @@ const MusicItemsTitle = styled.h3(() => mq({
 const MusicItemsWrap = styled.ul(() => mq({
   display: 'grid',
   gridTemplateColumns: ['100%', '50% 50%'],
-  gridTemplateRows: ['repeat(4, 1fr)', 'repeat(4, 1fr)'],
+  gridTemplateRows: ['repeat(5, 1fr)', 'repeat(5, 1fr)'],
   marginTop: '1vh',
+  paddigBottom: '3vh',
   width: '100%',
-  height: ['inherit', '48vh'],
+  height: ['inherit', '52vh'],
   overflowY: 'scroll',
 
   '&::-webkit-scrollbar': {
-    width: ['5px', '10px'],
-    background: '#000',
-    borderRadius: ['5px', '10px'],
-  },
-
-  '&::-webkit-scrollbar-thumb': {
-    width: ['5px', '10px'],
-    background: '#F89428',
-    borderRadius: ['5px', '10px'],
+    display: 'none',
   },
 }));
 
 const MusicItem = styled.li(() => mq({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  margin: ['1vh 0', '1vh 35px'],
-  padding: [0, '5px 10px'],
-  width: ['90%', '90%'],
+  position: 'relative',
+  margin: ['0.5vh 0', '1vh 0'],
+  width: ['98%', '98%'],
   height: '10vh',
-  borderRadius: '12px',
+  borderRadius: '24px',
   background: '#181818',
   cursor: 'pointer',
 
-  '&: hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: ' 0px 8px 24px rgba(255, 255, 255, 0.2)',
-  },
-
   '&: active': {
     transform: 'translateY(2px)',
-    boxShadow: ' 8px 8px 24px rgba(255, 255, 255, 0.2)',
   },
 }));
 
+const MusicItemHover = styled.div({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+
+  '&: hover': {
+    border: '3px solid #F89428',
+    borderRadius: '24px',
+
+    '& >div': {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '42px',
+      height: '42px',
+      backgroundColor: '#F89428',
+      backgroundImage: `url(${MusicSelectIcon})`,
+      backgroundPosition: '9px 9px',
+      backgroundSize: '24px ',
+      backgroundRepeat: 'no-repeat',
+      borderRadius: '0 24px 0 20px',
+    },
+  },
+});
+
+const MusicItemContents = styled.div({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0 1vh',
+  width: '100%',
+  height: '100%',
+});
+
 const Thumbnail = styled.div(({ url }) => mq({
   fontSize: '0',
-  width: ['20%', '5.7vw'],
-  height: '7vh',
-  borderRadius: '12px',
+  width: ['30%', '25%'],
+  height: '8vh',
+  borderRadius: '20px',
   background: `url(${url}) no-repeat`,
-  backgroundSize: '100% 100%',
+  backgroundSize: '160% 160%',
   backgroundPosition: 'center',
 }));
 
 const InfoBox = styled.div(() => mq({
-  width: ['70%', '13.5vw'],
+  width: ['67%', '72%'],
+  height: '83%',
 }));
 
 const TitleWrap = styled.div({
@@ -107,6 +133,8 @@ export {
   MusicItemsTitle,
   MusicItemsWrap,
   MusicItem,
+  MusicItemHover,
+  MusicItemContents,
   Thumbnail,
   InfoBox,
   TitleWrap,
