@@ -5,6 +5,8 @@ import {
   MusicItemsTitle,
   MusicItemsWrap,
   MusicItem,
+  MusicItemHover,
+  MusicItemContents,
   Thumbnail,
   InfoBox,
   TitleWrap,
@@ -36,17 +38,22 @@ const MusicItems = React.memo(({
               key={title}
               onClick={() => onClick(musicItem, music)}
             >
-              <Thumbnail
-                url={thumbnails.default.url}
-              >
-                {description}
-              </Thumbnail>
-              <InfoBox>
-                <TitleWrap>
-                  <Title>{title}</Title>
-                </TitleWrap>
-                <ChannelTitle>{channelTitle}</ChannelTitle>
-              </InfoBox>
+              <MusicItemContents>
+                <Thumbnail
+                  url={thumbnails.default.url}
+                >
+                  {description}
+                </Thumbnail>
+                <InfoBox>
+                  <TitleWrap>
+                    <Title>{title}</Title>
+                  </TitleWrap>
+                  <ChannelTitle>{channelTitle}</ChannelTitle>
+                </InfoBox>
+              </MusicItemContents>
+              <MusicItemHover>
+                <div />
+              </MusicItemHover>
             </MusicItem>
           ));
         })

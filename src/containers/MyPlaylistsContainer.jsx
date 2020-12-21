@@ -32,7 +32,7 @@ const Wrap = styled.div(() => mq({
   itemsAligns: 'center',
   width: ['100vw', 'calc(88vw - 438px)'],
   height: '100vh',
-  padding: ['13vh 10vw', '68px 95px'],
+  padding: ['13vh 10vw', '68px  82px  0 82px'],
   background: BACKGROUND_COLOR_BLACK,
   color: MAIN_FONT_COLOR,
 }));
