@@ -22,7 +22,6 @@ import {
 
 const mq = facepaint([
   '@media(min-width: 672px)',
-  '@media(min-width: 1000px)',
 ]);
 
 const Wrap = styled.div(() => mq({
@@ -31,10 +30,10 @@ const Wrap = styled.div(() => mq({
   display: 'flex',
   flexDirection: ['row', 'column', 'column'],
   alignItems: 'center',
-  justifyContent: ['space-between', 'flex-start', 'flex-start'],
-  padding: ['1vh 10%', '53px 15px', '53px 15px'],
-  width: ['100vw', '120px', '12vw'],
-  height: ['9vh', '100vh', '100vh'],
+  justifyContent: ['space-between', 'flex-start'],
+  padding: ['1vh 10%', '40px 40px'],
+  width: ['100vw', '176px'],
+  height: ['9vh', '100vh'],
   background: [BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_DARKGRAY],
   color: MAIN_FONT_COLOR,
   zIndex: 3,
@@ -42,11 +41,11 @@ const Wrap = styled.div(() => mq({
 
 const Logo = styled.div(() => mq({
   fontSize: '0',
-  marginBottom: [0, '12vh', '12vh'],
-  width: ['6vh', '70px', '7vw'],
-  height: ['6vh', '70px', '7vw'],
+  marginBottom: [0, '12vh'],
+  width: ['6vh', '96px'],
+  height: ['6vh', '96px'],
   background: `url(${LogoIcon}) no-repeat`,
-  backgroundSize: ['6vh', '70px', '7vw'],
+  backgroundSize: ['6vh', '96px 96px'],
 }));
 
 const NavigationBarContainer = React.memo(() => {

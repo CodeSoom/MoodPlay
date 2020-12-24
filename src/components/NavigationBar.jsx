@@ -24,29 +24,32 @@ import { BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY } from '../styles/constan
 
 const mq = facepaint([
   '@media(min-width: 672px)',
-  '@media(min-width: 1000px)',
 ]);
 
 const IconItems = styled.ul(() => mq({
   display: 'flex',
-  flexDirection: ['row', 'column', 'column'],
+  flexDirection: ['row', 'column'],
   justifyContent: 'center',
   alignItems: 'center',
-  padding: ['0', '25px 25px', '25px 25px'],
-  width: ['initial', '80%', '7vw'],
-  height: ['100%', 'initial', 'initial'],
-  borderRadius: '48px',
+  padding: ['0', '24px 11px'],
+  width: ['initial', '100%'],
+  height: ['100%', 'initial'],
+  borderRadius: '24px',
   background: [BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY],
 }));
 
 const IconItem = styled.li(() => mq({
-  fontSize: ['0', '0.5vw', '0.9vw'],
+  fontSize: ['0', '1em'],
   fontWeight: 'bold',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: ['0', '20px 0', '20px 0'],
+  marginTop: ['0', '36px'],
+
+  '&:nth-child(1)': {
+    marginTop: '0',
+  },
 }));
 
 const Icon = styled.div(({
@@ -55,22 +58,22 @@ const Icon = styled.div(({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginBottom: [0, '6px', '6px'],
-  marginLeft: ['5px', 0, 0],
-  width: ['5.5vh', '48px', '48px'],
-  height: ['5.5vh', '48px', '48px'],
+  marginBottom: [0, '6px'],
+  marginLeft: ['5px', 0],
+  width: ['5.5vh', '48px'],
+  height: ['5.5vh', '48px'],
   borderRadius: '10px',
   background: `url(${activeState ? active : url}) no-repeat`,
-  backgroundSize: ['5.5vh', '48px', '48px'],
+  backgroundSize: ['5.5vh', '48px'],
 
   '&: hover': {
     background: `url(${`${hover}`}) no-repeat`,
-    backgroundSize: ['5.5vh', '48px', '48px'],
+    backgroundSize: ['5.5vh', '48px'],
   },
 
   '&: active': {
     background: `url(${`${active}`}) no-repeat`,
-    backgroundSize: ['5.5vh', '48px', '48px'],
+    backgroundSize: ['5.5vh', '48px'],
   },
 }));
 
