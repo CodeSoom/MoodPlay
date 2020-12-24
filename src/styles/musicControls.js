@@ -16,7 +16,7 @@ const mq = facepaint([
 ]);
 
 const MusicControlsWrap = styled.div(() => mq({
-  width: ['70%', '70%', '70%', '342px', '342px'],
+  width: ['100%', '100%', '100%', '100%', '100%'],
 }));
 
 const HideVideo = styled.div({
@@ -26,32 +26,26 @@ const HideVideo = styled.div({
 });
 
 const PlayingNow = styled.p(() => mq({
-  fontSize: ['1.2em', '1.6em', '2em', '2em', '2em'],
-  fontWeight: '900',
-  marginBottom: '1em',
+  fontSize: ['1.2em', '1.6em', '1.7em', '1.7em', '1.7em'],
+  fontWeight: '800',
+  marginBottom: '24px',
 }));
 
 const MusicImage = styled.div(({ url }) => (() => mq({
-  marginBottom: '16px',
   width: '100%',
-  height: ['150px', '190px', '200px', '238px', '238px'],
+  height: ['150px', '190px', '200px', '261px', '261px'],
   borderRadius: '12px',
   background: `url(${url}) no-repeat`,
-  backgroundSize: 'cover',
+  backgroundSize: '135%',
   backgroundPosition: 'center',
 })));
-
-const TimelineWrap = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-});
 
 const ProgressBar = styled.input(({ value }) => `
   display: block;
   width: 100%;
   height: 7px;
   border-radius: 7px;
+  cursor: pointer;
 
   background-image: -webkit-gradient(linear,
     left top, 
@@ -89,13 +83,21 @@ const ProgressBar = styled.input(({ value }) => `
 
 const Timeline = styled.p({
   fontSize: '13px',
-  marginTop: '5px',
 });
+
+const SoundControlAndTimelineWrap = styled.div(() => mq({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginBottom: '17px',
+  width: '100%',
+}));
 
 const SoundControlWrap = styled.div({
   display: 'flex',
-  justifyContent: 'flex-end',
-  width: '100%',
+  flexDirection: 'row',
+  alignItems: 'center',
 });
 
 const SoundControl = styled.input(({ value }) => `
@@ -103,6 +105,7 @@ const SoundControl = styled.input(({ value }) => `
   width: '149px';
   height: 7px;
   border-radius: 7px;
+  cursor: pointer;
 
   background-image: -webkit-gradient(linear,
     left top, 
@@ -140,12 +143,15 @@ const SoundControl = styled.input(({ value }) => `
 
 const SoundButton = styled.button(({ muted }) => ({
   fontSize: '0',
-  marginRight: '5px',
-  width: '14px',
-  height: '10px',
+  marginRight: '6px',
+  width: '40px',
+  height: '40px',
   border: '0',
   background: `url(${muted ? MuteIcon : VolumeIcon}) no-repeat`,
-  backgroundSize: '14px',
+  backgroundSize: '17px',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  cursor: 'pointer',
 
   '&: focus': {
     outline: 0,
@@ -153,8 +159,10 @@ const SoundButton = styled.button(({ muted }) => ({
 }));
 
 const InfoBox = styled.div({
-  marginTop: '35px',
+  margin: '8px 0',
   width: '100%',
+  height: '4.5em',
+  overflow: 'hidden',
 
   '& small': {
     color: '#999',
@@ -168,6 +176,8 @@ const TitleBox = styled.div({
 });
 
 const Title = styled.p`
+  font-size: 17px;
+  font-weight: bold;
   display: -webkit-box;
   -webkit-line-clamp: 2; 
   -webkit-box-orient: vertical;
@@ -195,6 +205,8 @@ const IconButton = styled.button(({ url }) => mq({
   border: '0',
   background: `url(${url}) no-repeat`,
   backgroundSize: ['28px', '35px', '40px', '48px', '48px'],
+  cursor: 'pointer',
+
   '&: focus': {
     outline: 0,
   },
@@ -252,9 +264,9 @@ export {
   HideVideo,
   PlayingNow,
   MusicImage,
-  TimelineWrap,
   ProgressBar,
   Timeline,
+  SoundControlAndTimelineWrap,
   SoundControlWrap,
   SoundControl,
   SoundButton,

@@ -20,10 +20,10 @@ import {
   HideVideo,
   PlayingNow,
   MusicImage,
-  TimelineWrap,
   ProgressBar,
-  Timeline,
+  SoundControlAndTimelineWrap,
   SoundControlWrap,
+  Timeline,
   SoundControl,
   SoundButton,
   InfoBox,
@@ -67,33 +67,34 @@ const MusicControls = React.memo(({
         <PlayingNow>Playing now</PlayingNow>
         <MusicImage url={EmptyMusicImage} />
 
-        <TimelineWrap>
-          <ProgressBar
-            type="range"
-            value={0}
-            onChange={() => { }}
-          />
-          <Timeline>0:00:00</Timeline>
-        </TimelineWrap>
-
-        <SoundControlWrap>
-          <SoundButton
-            type="button"
-          >
-            Muted
-          </SoundButton>
-
-          <SoundControl
-            type="range"
-            value="0"
-            onChange={() => { }}
-          />
-        </SoundControlWrap>
         <InfoBox>
           <TitleBox>
             <Title>재생중인 음악이 없습니다.</Title>
           </TitleBox>
         </InfoBox>
+
+        <ProgressBar
+          type="range"
+          value={0}
+          onChange={() => { }}
+        />
+
+        <SoundControlAndTimelineWrap>
+          <Timeline>0:00:00</Timeline>
+          <SoundControlWrap>
+            <SoundButton
+              type="button"
+            >
+              Muted
+            </SoundButton>
+
+            <SoundControl
+              type="range"
+              value="0"
+              onChange={() => { }}
+            />
+          </SoundControlWrap>
+        </SoundControlAndTimelineWrap>
 
         <Buttons>
           <div>
@@ -315,43 +316,44 @@ const MusicControls = React.memo(({
       <PlayingNow>Playing now</PlayingNow>
       <MusicImage url={url} alt={description} />
 
-      <TimelineWrap>
-        <ProgressBar
-          type="range"
-          value={progress}
-          min={0}
-          max={100}
-          step={0.1}
-          onChange={handleProgess}
-          onClick={handleProgess}
-        />
-        <Timeline>{`${getTime(currentTime)} / ${getTime(duration)}`}</Timeline>
-      </TimelineWrap>
-
-      <SoundControlWrap>
-        <SoundButton
-          type="button"
-          muted={muted}
-          onClick={handleMuted}
-        >
-          Muted
-        </SoundButton>
-
-        <SoundControl
-          type="range"
-          value={volume}
-          min={0}
-          max={1}
-          step={0.01}
-          onChange={handleVolume}
-        />
-      </SoundControlWrap>
       <InfoBox>
         <TitleBox>
           <Title>{title}</Title>
         </TitleBox>
         <small>{`channel - ${channelTitle}`}</small>
       </InfoBox>
+
+      <ProgressBar
+        type="range"
+        value={progress}
+        min={0}
+        max={100}
+        step={0.1}
+        onChange={handleProgess}
+        onClick={handleProgess}
+      />
+
+      <SoundControlAndTimelineWrap>
+        <Timeline>{`${getTime(currentTime)} / ${getTime(duration)}`}</Timeline>
+        <SoundControlWrap>
+          <SoundButton
+            type="button"
+            muted={muted}
+            onClick={handleMuted}
+          >
+            Muted
+          </SoundButton>
+
+          <SoundControl
+            type="range"
+            value={volume}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={handleVolume}
+          />
+        </SoundControlWrap>
+      </SoundControlAndTimelineWrap>
 
       <Buttons>
         <div>

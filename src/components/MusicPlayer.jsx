@@ -16,17 +16,18 @@ const mq = facepaint([
 const PlayerWrap = styled.div(({ musicPlayerState }) => mq({
   position: 'absolute',
   bottom: 0,
-  right: '0',
+  right: 0,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  paddingTop: ['3vh', '8.5vh'],
-  width: ['100vw', '438px'],
-  height: [`${musicPlayerState ? '90vh' : '10vh'}`, '100vh'],
+  justifyContent: 'space-between',
+  padding: ['7vh 7vh 0 7vh', '40px'],
+  width: ['100vw', '426px'],
+  height: [`${musicPlayerState ? '77vh' : '10vh'}`, '100vh'],
   borderRadius: ['27px 27px 0 0', '0'],
   background: '#1B1A20',
   color: MAIN_FONT_COLOR,
-  transition: 'height 1s',
+  transition: ['height 1s', 'none'],
   overflow: 'hidden',
 }));
 
