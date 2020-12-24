@@ -15,34 +15,28 @@ const mq = facepaint([
 ]);
 
 const Wrap = styled.ul(() => mq({
-  width: ['80%', '80%', '80%', '342px'],
+  width: ['80%', '80%', '80%', '100%'],
+  height: '265px',
   display: ['none', 'none', 'none', 'flex'],
   flexDirection: 'column',
-  marginTop: '3.7vh',
-  paddingTop: '5vh',
-  borderTop: '1px solid #474747',
 }));
 
 const NextSongs = styled.p(() => mq({
-  fontSize: ['1.2em', '1.6em', '2em', '2em'],
-  fontWeight: '900',
-  marginBottom: '1em',
+  fontSize: ['1.2em', '1.6em', '1.7em', '1.7em', '1.7em'],
+  fontWeight: '800',
+  marginBottom: '24px',
 }));
 
 const UpNextWrap = styled.ul({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
-  '& p': {
-    fontSize: '0.6em',
-    textAlign: 'center',
-  },
 });
 
 const ListItem = styled.li({
-  width: '110px',
+  width: '108px',
   cursor: 'pointer',
-  marginRight: '9.5px',
+  marginRight: '8px',
 });
 
 const Thumbnail = styled.div(({ url }) => ({
@@ -54,11 +48,27 @@ const Thumbnail = styled.div(({ url }) => ({
   height: '110px',
 }));
 
-const Title = styled.p({
-  whiteSpace: 'nowrap',
+const TitleBox = styled.div({
+  marginTop: '7px',
+  width: '100%',
+  height: '4em',
   overflow: 'hidden',
-  textOverflow: 'ellipsis',
 });
+
+const Title = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  color: #bdbdbd;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height:  '4.2em';
+  lineHeight: '1.2em';
+  wordBreak: 'break-all';
+  whiteSpace: 'nowrap';
+  overflow: 'hidden';
+  text-overflow: 'ellipsis';
+`;
 
 const UpNextMusic = React.memo(({
   nowPlayingMusicItems,
@@ -83,7 +93,9 @@ const UpNextMusic = React.memo(({
                 onClick={() => onClick(music)}
               >
                 <Thumbnail url={thumbnails.default.url} alt={description} />
-                <Title>{title}</Title>
+                <TitleBox>
+                  <Title>{title}</Title>
+                </TitleBox>
               </ListItem>
             );
           })

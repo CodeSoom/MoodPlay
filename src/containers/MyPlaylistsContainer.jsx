@@ -30,7 +30,7 @@ const Wrap = styled.div(() => mq({
   top: 0,
   left: [0, '12vw'],
   itemsAligns: 'center',
-  width: ['100vw', 'calc(88vw - 438px)'],
+  width: ['100vw', 'calc(88vw - 426px)'],
   height: '100vh',
   padding: ['13vh 10vw', '68px  82px  0 82px'],
   background: BACKGROUND_COLOR_BLACK,
