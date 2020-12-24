@@ -28,9 +28,9 @@ const mq = facepaint([
 const Wrap = styled.div(() => mq({
   position: 'fixed',
   top: 0,
-  left: [0, '12vw'],
+  left: [0, '176px'],
   itemsAligns: 'center',
-  width: ['100vw', 'calc(88vw - 426px)'],
+  width: ['100vw', 'calc(100vw - 602px)'],
   height: '100vh',
   padding: ['13vh 10vw', '68px  82px  0 82px'],
   background: BACKGROUND_COLOR_BLACK,

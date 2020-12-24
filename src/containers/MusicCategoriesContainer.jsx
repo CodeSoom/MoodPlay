@@ -27,11 +27,11 @@ const mq = facepaint([
 const Wrap = styled.div(() => mq({
   position: 'fixed',
   top: 0,
-  left: [0, '12vw'],
+  left: [0, '176px'],
   display: 'flex',
   flexDirection: 'column',
   padding: ['13vh 10vw', '68px  82px  0 82px'],
-  width: ['100vw', 'calc(88vw - 426px)'],
+  width: ['100vw', 'calc(100vw - 602px)'],
   height: '100vh',
   background: '#0f0f0f',
   color: MAIN_FONT_COLOR,
