@@ -37,6 +37,7 @@ describe('App', () => {
         }],
         nowPlayingMusicItems: [],
         selectedMusic: null,
+        searchMusic: [],
       },
     ));
   });
@@ -88,6 +89,21 @@ describe('App', () => {
 
     it('renders Music player', () => {
       const { container } = renderApp({ path: '/moodplay' });
+
+      expect(container).toHaveTextContent('Playing now');
+      expect(container).toHaveTextContent('Next songs');
+    });
+  });
+
+  context('with path /search', () => {
+    it('renders the search music page', () => {
+      const { container } = renderApp({ path: '/search' });
+
+      expect(container).toHaveTextContent('원하는 플레이리스트가 없다면 더 찾아볼까요?');
+    });
+
+    it('renders Music player', () => {
+      const { container } = renderApp({ path: '/search' });
 
       expect(container).toHaveTextContent('Playing now');
       expect(container).toHaveTextContent('Next songs');

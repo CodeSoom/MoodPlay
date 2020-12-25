@@ -16,6 +16,7 @@ import MoodControllerPage from './pages/MoodControllerPage';
 import MoodPlayPage from './pages/MoodPlayPage';
 import MyPlayPage from './pages/MyPlayPage';
 import MusicPlayerPage from './pages/MusicPlayerPage';
+import SearchMusicPage from './pages/SearchMusicPage';
 import NavigationBarContainer from './containers/NavigationBarContainer';
 
 const Wrap = styled.div({
@@ -40,10 +41,11 @@ export default function App() {
         <Route exact path="/" component={MoodControllerPage} />
         <Route exact path="/moodplay" component={MoodPlayPage} />
         <Route exact path="/myplay" component={MyPlayPage} />
+        <Route exact path="/search" component={SearchMusicPage} />
       </Switch>
 
       <Switch>
-        <Route exact path={['/moodplay', '/myplay']} component={MusicPlayerPage} />
+        <Route exact path={['/moodplay', '/myplay', '/search']} component={MusicPlayerPage} />
       </Switch>
     </Wrap>
   );
