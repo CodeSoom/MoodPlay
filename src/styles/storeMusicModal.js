@@ -9,7 +9,7 @@ import {
 } from '../assets/images';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const Modal = styled.div(() => mq({

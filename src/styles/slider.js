@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import facepaint from 'facepaint';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const Slider = styled.div(() => mq({

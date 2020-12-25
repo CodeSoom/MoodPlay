@@ -10,7 +10,7 @@ import {
 } from '../assets/images';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const Form = styled.form(() => mq({

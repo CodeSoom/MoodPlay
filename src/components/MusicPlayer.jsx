@@ -11,6 +11,7 @@ import { MAIN_FONT_COLOR } from '../styles/constants';
 
 const mq = facepaint([
   '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const PlayerWrap = styled.div(({ musicPlayerState }) => mq({
@@ -21,13 +22,13 @@ const PlayerWrap = styled.div(({ musicPlayerState }) => mq({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: ['7vh 7vh 0 7vh', '40px'],
-  width: ['100vw', '426px'],
-  height: [`${musicPlayerState ? '77vh' : '10vh'}`, '100vh'],
+  padding: ['7vh 7vh 0 7vh', '40px 20vh', '40px'],
+  width: ['100vw', '100vw', '426px'],
+  height: [`${musicPlayerState ? '77vh' : '10vh'}`, `${musicPlayerState ? '77vh' : '10vh'}`, '100vh'],
   borderRadius: ['27px 27px 0 0', '0'],
   background: '#1B1A20',
   color: MAIN_FONT_COLOR,
-  transition: ['height 1s', 'none'],
+  transition: ['height 1s', 'height 1s', 'none'],
   overflow: 'hidden',
 }));
 
