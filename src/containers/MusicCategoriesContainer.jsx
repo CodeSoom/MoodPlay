@@ -35,10 +35,16 @@ const Wrap = styled.div(() => mq({
   height: '100vh',
   background: '#0f0f0f',
   color: MAIN_FONT_COLOR,
+
+  '&> p': {
+    fontSize: ['2.3vh', '28px'],
+    fontWeight: '900',
+    marginTop: ['5vh', '52px'],
+  },
 }));
 
 const MusicCategoriesTitle = styled.h2(() => mq({
-  fontSize: ['2.3vh', '3vh'],
+  fontSize: ['2.3vh', '28px'],
   fontWeight: '900',
 }));
 

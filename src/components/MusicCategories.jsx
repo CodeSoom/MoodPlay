@@ -5,6 +5,7 @@ import {
   Wrap,
   Cards,
   Card,
+  TagBox,
   SliderControlButton,
 } from '../styles/slider';
 
@@ -76,12 +77,14 @@ const MusicCategories = React.memo(({
                 onClick={() => handleClickCategory({ title, tag1, tag2 }, index)}
               >
                 <h3>{title}</h3>
-                <p>
-                  #
-                  {tags[tag1]}
-                  {' '}
-                  {tag2 ? `#${tags[tag2]}` : ''}
-                </p>
+                <TagBox>
+                  <p>
+                    {`#${tags[tag1]}`}
+                  </p>
+                  <p>
+                    {tag2 ? `#${tags[tag2]}` : ''}
+                  </p>
+                </TagBox>
               </Card>
             ))
           }

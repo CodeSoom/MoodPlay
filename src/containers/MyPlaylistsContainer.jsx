@@ -38,7 +38,7 @@ const Wrap = styled.div(() => mq({
 }));
 
 const MyPlaylistTitle = styled.h1(() => mq({
-  fontSize: ['2.3vh', '3vh'],
+  fontSize: ['2.3vh', '28px'],
   fontWeight: '900',
 }));
 
