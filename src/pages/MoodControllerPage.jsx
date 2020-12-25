@@ -25,8 +25,9 @@ const Wrap = styled.div(() => mq({
   color: MAIN_FONT_COLOR,
 
   '& h1': {
-    fontSize: ['4.5vw', '2.2vw'],
+    fontSize: ['4.5vw', '32px'],
     fontWeight: 'bold',
+    marginBottom: ['3.5vh', '10vh'],
   },
 }));
 

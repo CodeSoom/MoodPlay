@@ -21,29 +21,29 @@ const Form = styled.form(() => mq({
   marginTop: '20px',
 
   '& h2': {
-    fontSize: ['3.2vw', '1.8vw'],
-    fontWeight: 'bold',
+    fontSize: ['3.2vw', '32px'],
+    fontWeight: '200',
   },
 }));
 
 const RadioWrap = styled.div({
   display: 'flex',
   flex: 'row',
-  margin: '10px',
+  margin: '37px',
   padding: '10px 20px',
   border: '1px solid #000',
   borderRadius: '5px',
 });
 
 const Label = styled.label(({ checked }) => mq({
-  fontSize: ['3.2vw', '2vw'],
+  fontSize: ['3.2vw', '1.4vw'],
   fontWeight: 'bold',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: '0 17px',
-  width: ['23vw', '15vw'],
-  height: ['10vw', '6.5vw'],
+  margin: ['0 2px', '0 24px'],
+  width: ['31.2vw', '16vw'],
+  height: ['10vw', '5.2vw'],
   background: `url(${checked ? MoodBackgroundSelected : MoodBackground}) no-repeat`,
   backgroundSize: 'contain',
 
@@ -55,9 +55,10 @@ const Label = styled.label(({ checked }) => mq({
   '&:active': {
     background: `url(${MoodBackgroundActive}) no-repeat`,
     backgroundSize: 'contain',
+    backgroundPosition: 'left bottom',
 
     '& p': {
-      transform: 'translateY(10px)',
+      transform: ['translateY(0.5vh)', 'translateY(10px)'],
     },
   },
 }));

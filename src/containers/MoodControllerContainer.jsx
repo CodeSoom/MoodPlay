@@ -27,11 +27,11 @@ const mq = facepaint([
 ]);
 
 const MoodSubmit = styled.div(() => mq({
-  fontSize: ['1.5vw', '1vw'],
+  fontSize: ['3.2vw', '1.4vw'],
   fontWeight: 'bold',
-  marginTop: '20px',
-  width: ['15vw', '9vw'],
-  height: ['6.5vw', '3.8vw'],
+  marginTop: ['2vh', '20px'],
+  width: ['31vw', '16vw'],
+  height: ['10vw', '5.2vw'],
   border: '0',
   outline: '0',
   background: `url(${MoodBackgroundSelected}) no-repeat`,
@@ -44,9 +44,9 @@ const MoodSubmit = styled.div(() => mq({
   '& a': {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
-    height: ['6.5vw', '3.8vw'],
-    lineHeight: ['6.5vw', '3.8vw'],
+    height: '100%',
     textDecoration: 'none',
     color: MAIN_FONT_COLOR,
   },
@@ -81,7 +81,7 @@ const MoodControllerContainer = React.memo(() => {
         onClick={handleSubmitMood}
       >
         <Link to="/moodplay">
-          Play your mood!
+          MOOD PLAY!
         </Link>
       </MoodSubmit>
     </>
