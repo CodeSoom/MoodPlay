@@ -11,7 +11,7 @@ describe('AddPlaylistForm', () => {
   it('renders input fields', () => {
     const value = '새 플레이리스트';
 
-    const { container, getByLabelText } = render(
+    const { container, getByRole } = render(
       <AddPlaylistForm
         value={value}
         onChange={handleChange}
@@ -19,14 +19,14 @@ describe('AddPlaylistForm', () => {
       />,
     );
 
-    expect(getByLabelText('이름')).toHaveDisplayValue(value);
-    expect(container).toHaveTextContent('만들기');
+    expect(getByRole('textbox')).toHaveDisplayValue(value);
+    expect(container).toHaveTextContent('Save');
   });
 
   it('listens onChange event', () => {
     const value = '새 플레이리스트';
 
-    const { getByLabelText } = render(
+    const { getByRole } = render(
       <AddPlaylistForm
         value={value}
         onChange={handleChange}
@@ -34,7 +34,7 @@ describe('AddPlaylistForm', () => {
       />,
     );
 
-    fireEvent.change(getByLabelText('이름'), { target: { value: '공부할 때 듣는 음악' } });
+    fireEvent.change(getByRole('textbox'), { target: { value: '공부할 때 듣는 음악' } });
 
     expect(handleChange).toBeCalled();
   });
@@ -50,7 +50,7 @@ describe('AddPlaylistForm', () => {
       />,
     );
 
-    fireEvent.click(getByText('만들기'));
+    fireEvent.click(getByText('Save'));
 
     expect(handleClick).toBeCalled();
   });
