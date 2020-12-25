@@ -5,28 +5,29 @@ import facepaint from 'facepaint';
 import { MusicSelectIcon } from '../assets/images';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
+  '@media(min-width: 1450px)',
 ]);
 
 const Wrap = styled.div(() => mq({
-  marginTop: ['5vh', '8vh'],
-  height: ['48vh', '52vh'],
+  marginTop: ['5vh', '8vh', '8vh'],
+  height: ['48vh', '52vh', '52vh'],
   width: '100%',
 }));
 
 const MusicItemsTitle = styled.h3(() => mq({
-  fontSize: ['2.3vh', '3vh'],
+  fontSize: ['2.3vh', '28px', '28px'],
   fontWeight: '900',
 }));
 
 const MusicItemsWrap = styled.ul(() => mq({
   display: 'grid',
-  gridTemplateColumns: ['100%', '50% 50%'],
-  gridTemplateRows: ['repeat(5, 1fr)', 'repeat(5, 1fr)'],
+  gridTemplateColumns: ['100%', '100%', '50% 50%'],
+  gridTemplateRows: 'repeat(5, 1fr)',
   marginTop: '1vh',
   paddigBottom: '3vh',
   width: '100%',
-  height: ['inherit', '52vh'],
+  height: ['inherit', '52vh', '52vh'],
   overflowY: 'scroll',
 
   '&::-webkit-scrollbar': {
@@ -36,8 +37,8 @@ const MusicItemsWrap = styled.ul(() => mq({
 
 const MusicItem = styled.li(() => mq({
   position: 'relative',
-  margin: ['0.5vh 0', '1vh 0'],
-  width: ['98%', '98%'],
+  margin: ['0.5vh 0', '1vh 0', '1vh 0'],
+  width: '98%',
   height: '10vh',
   borderRadius: '24px',
   background: '#181818',
@@ -90,7 +91,7 @@ const MusicItemContents = styled.div({
 
 const Thumbnail = styled.div(({ url }) => mq({
   fontSize: '0',
-  width: ['30%', '25%'],
+  width: ['30%', '25%', '25%'],
   height: '8vh',
   borderRadius: '20px',
   background: `url(${url}) no-repeat`,
@@ -99,7 +100,7 @@ const Thumbnail = styled.div(({ url }) => mq({
 }));
 
 const InfoBox = styled.div(() => mq({
-  width: ['67%', '72%'],
+  width: ['67%', '72%', '72%'],
   height: '83%',
 }));
 

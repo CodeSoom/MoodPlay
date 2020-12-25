@@ -12,7 +12,7 @@ const mq = facepaint([
   '@media(min-width: 350px)',
   '@media(min-width: 400px)',
   '@media(min-width: 438px)',
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const MusicControlsWrap = styled.div(() => mq({

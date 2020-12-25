@@ -21,7 +21,7 @@ import {
 } from '../styles/constants';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const Wrap = styled.div(() => mq({

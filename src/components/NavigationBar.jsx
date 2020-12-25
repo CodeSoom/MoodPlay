@@ -23,7 +23,7 @@ import {
 import { BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY } from '../styles/constants';
 
 const mq = facepaint([
-  '@media(min-width: 672px)',
+  '@media(min-width: 1025px)',
 ]);
 
 const IconItems = styled.ul(() => mq({
