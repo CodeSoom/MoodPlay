@@ -4,7 +4,7 @@ const BACKGROUND_COLOR_GRAY = '#29292F';
 
 const MAIN_FONT_COLOR = '#fff';
 
-const CATEGORIES_CARD_WIDTH = 145;
+const CATEGORIES_CARD_WIDTH = 136;
 const PLAYLIST_CARD_WIDTH = 215;
 
 export {
