@@ -75,13 +75,13 @@ describe('MoodControllerContainer', () => {
   describe('submit button', () => {
     it('renders submit button', () => {
       const { container } = renderMoodControllerContainer();
-      expect(container).toHaveTextContent('Play your mood!');
+      expect(container).toHaveTextContent('MOOD PLAY!');
     });
 
     it('calls dispatch', () => {
       const { getByText } = renderMoodControllerContainer();
 
-      fireEvent.click(getByText('Play your mood!'));
+      fireEvent.click(getByText('MOOD PLAY!'));
 
       expect(dispatch).toBeCalled();
     });
