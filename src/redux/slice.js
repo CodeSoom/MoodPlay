@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import _ from 'lodash';
+
 import { saveItem } from '../sevices/storage';
 
 import {
@@ -31,6 +33,8 @@ const { actions, reducer } = createSlice({
     storeOpenState: false,
     storeTextFormOpenState: false,
     storeTextInput: '',
+    searchTextInput: '',
+    searchMusic: [],
   },
   reducers: {
     setMoodselectFields(state, { payload: { name, value } }) {
@@ -113,6 +117,20 @@ const { actions, reducer } = createSlice({
       };
     },
 
+    setSearchTextInput(state, { payload: searchTextInput }) {
+      return {
+        ...state,
+        searchTextInput,
+      };
+    },
+
+    setSearchMusic(state, { payload: searchMusic }) {
+      return {
+        ...state,
+        searchMusic,
+      };
+    },
+
     addPlaylistTitle(state, { payload: playlistTitle }) {
       return {
         ...state,
@@ -171,6 +189,8 @@ export const {
   setStoreOpenState,
   setStoreTextFormOpenState,
   setStoreTextInput,
+  setSearchTextInput,
+  setSearchMusic,
   addPlaylistTitle,
   addPlaylistMusic,
   removePlaylistMusic,
@@ -205,6 +225,20 @@ export function loadMusic({ title, tag1, tag2 }) {
 
       dispatch(setCategoryMusic({ title, music: secondCategoryMusic }));
     }
+  };
+}
+
+export function loadSearchMusic() {
+  return async (dispatch, getState) => {
+    const { searchTextInput } = getState();
+
+    if (!_.trim(searchTextInput)) {
+      return;
+    }
+
+    const music = await fetchMusic(`${searchTextInput} 플레이리스트`);
+
+    dispatch(setSearchMusic(music));
   };
 }
 

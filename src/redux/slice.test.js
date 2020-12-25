@@ -14,11 +14,14 @@ import reducer, {
   setStoreOpenState,
   setStoreTextFormOpenState,
   setStoreTextInput,
+  setSearchTextInput,
+  setSearchMusic,
   addPlaylistTitle,
   addPlaylistMusic,
   removePlaylistMusic,
   loadMoodCategories,
   loadMusic,
+  loadSearchMusic,
   storePlaylistTitle,
   storePlaylistMusic,
   deletePlaylistMusic,
@@ -317,6 +320,37 @@ describe('reducer', () => {
     });
   });
 
+  describe('setSearchTextInput', () => {
+    it('changes searchTextInput', () => {
+      const initialState = {
+        searchTextInput: '',
+      };
+
+      const searchTextInput = '아이유';
+
+      const state = reducer(initialState, setSearchTextInput(searchTextInput));
+
+      expect(state.searchTextInput).toEqual(searchTextInput);
+    });
+  });
+
+  describe('setSearchMusic', () => {
+    it('changes setSearchMusic', () => {
+      const initialState = {
+        searchMusic: [],
+      };
+
+      const searchMusic = [
+        { id: { videoId: 'xxx' } },
+        { id: { videoId: 'xxx' } },
+      ];
+
+      const state = reducer(initialState, setSearchMusic(searchMusic));
+
+      expect(state.searchMusic).toEqual(searchMusic);
+    });
+  });
+
   describe('addPlaylistTitle', () => {
     it('changes myPlaylists', () => {
       const initialState = {
@@ -518,6 +552,47 @@ describe('actions', () => {
             },
           },
         ]);
+      });
+    });
+  });
+
+  describe('loadSearchMusic', () => {
+    context('with searchTextInput', () => {
+      beforeEach(() => {
+        store = mockStore({
+          searchTextInput: '아이유',
+        });
+      });
+
+      it('runs setSearchMusic', async () => {
+        store = mockStore({
+          searchTextInput: '아이유',
+        });
+
+        await store.dispatch(loadSearchMusic());
+
+        const actions = store.getActions();
+
+        expect(actions).toEqual([{
+          type: 'application/setSearchMusic',
+          payload: [],
+        }]);
+      });
+    });
+
+    context('without searchTextInput', () => {
+      beforeEach(() => {
+        store = mockStore({
+          searchTextInput: '',
+        });
+      });
+
+      it("doesn't run setSearchMusic", async () => {
+        await store.dispatch(loadSearchMusic());
+
+        const actions = store.getActions();
+
+        expect(actions).toEqual([]);
       });
     });
   });
