@@ -79,18 +79,18 @@ describe('StoreMusicModal', () => {
     it('renders add playlist text input field', () => {
       const storeTextInput = '조용한 음악';
 
-      const { getByLabelText, getByText } = renderStoreMusicModal({
+      const { getByRole, getByText } = renderStoreMusicModal({
         storeTextFormOpenState, storeTextInput,
       });
 
-      expect(getByLabelText('이름')).toHaveDisplayValue(storeTextInput);
-      expect(getByText('만들기')).not.toBeNull();
+      expect(getByRole('textbox')).toHaveDisplayValue(storeTextInput);
+      expect(getByText('Save')).not.toBeNull();
     });
 
     it('listens onChange event', () => {
-      const { getByLabelText } = renderStoreMusicModal({ storeTextFormOpenState });
+      const { getByRole } = renderStoreMusicModal({ storeTextFormOpenState });
 
-      fireEvent.change(getByLabelText('이름'), { target: { value: '집중할 때 들을 음악' } });
+      fireEvent.change(getByRole('textbox'), { target: { value: '집중할 때 들을 음악' } });
 
       expect(handleChange).toBeCalled();
     });
@@ -98,7 +98,7 @@ describe('StoreMusicModal', () => {
     it('listens onClick event', () => {
       const { getByText } = renderStoreMusicModal({ storeTextFormOpenState });
 
-      fireEvent.click(getByText('만들기'));
+      fireEvent.click(getByText('Save'));
 
       expect(handleClick).toBeCalled();
     });
@@ -110,13 +110,13 @@ describe('StoreMusicModal', () => {
     it('renders add playlist text message', () => {
       const { container } = renderStoreMusicModal({ storeTextFormOpenState });
 
-      expect(container).toHaveTextContent('+ 새 플레이리스트만들기');
+      expect(container).toHaveTextContent('새 플레이리스트 만들기');
     });
 
     it('listens onClick event', () => {
       const { getByText } = renderStoreMusicModal({ storeTextFormOpenState });
 
-      fireEvent.click(getByText('+ 새 플레이리스트만들기'));
+      fireEvent.click(getByText('새 플레이리스트 만들기'));
 
       expect(handleClick).toBeCalled();
     });

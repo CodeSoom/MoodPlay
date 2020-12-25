@@ -127,10 +127,10 @@ describe('StoreMusicContainer', () => {
         storeTextFormOpenState,
       }));
 
-      const { getByLabelText, getByText } = render(<StoreMusicContainer />);
+      const { getByRole, getByText } = render(<StoreMusicContainer />);
 
-      expect(getByLabelText('이름')).not.toBeNull();
-      expect(getByText('만들기')).not.toBeNull();
+      expect(getByRole('textbox')).not.toBeNull();
+      expect(getByText('Save')).not.toBeNull();
     });
 
     it('calls dispatch', () => {
@@ -140,10 +140,10 @@ describe('StoreMusicContainer', () => {
         storeTextFormOpenState,
       }));
 
-      const { getByLabelText, getByText } = render(<StoreMusicContainer />);
+      const { getByRole, getByText } = render(<StoreMusicContainer />);
 
-      fireEvent.change(getByLabelText('이름'), { target: { value: '집중할 때 들을 음악' } });
-      fireEvent.click(getByText('만들기'));
+      fireEvent.change(getByRole('textbox'), { target: { value: '집중할 때 들을 음악' } });
+      fireEvent.click(getByText('Save'));
 
       expect(dispatch).toBeCalledTimes(2);
     });
@@ -163,7 +163,7 @@ describe('StoreMusicContainer', () => {
 
       const { getByText } = render(<StoreMusicContainer />);
 
-      expect(getByText('+ 새 플레이리스트만들기')).not.toBeNull();
+      expect(getByText('새 플레이리스트 만들기')).not.toBeNull();
     });
 
     it('calls dispatch', () => {
@@ -175,7 +175,7 @@ describe('StoreMusicContainer', () => {
 
       const { getByText } = render(<StoreMusicContainer />);
 
-      fireEvent.click(getByText('+ 새 플레이리스트만들기'));
+      fireEvent.click(getByText('새 플레이리스트 만들기'));
 
       expect(dispatch).toBeCalled();
     });

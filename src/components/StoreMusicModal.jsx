@@ -1,39 +1,17 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
-
 import AddPlaylistForm from './AddPlaylistForm';
 import PlaylistCheckbox from './PlaylistCheckbox';
 
-const Modal = styled.div({
-  color: '#000',
-  background: '#fff',
-  minWidth: '250px',
-
-  '& p': {
-    margin: '0',
-  },
-});
-
-const ModalTitle = styled.div({
-  background: '#fff',
-  padding: '10px 20px',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  borderBottom: '1px solid #000',
-});
-
-const AddPlaylist = styled.div({
-  background: '#fff',
-  padding: '10px 20px',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  borderTop: '1px solid #000',
-});
+import {
+  Modal,
+  ModalTitle,
+  Form,
+  ModalBottom,
+  AddPlaylist,
+  OpenIcon,
+  SubmitButton,
+} from '../styles/storeMusicModal';
 
 const StoreMusicModal = React.memo(({
   myPlaylists,
@@ -57,7 +35,7 @@ const StoreMusicModal = React.memo(({
       </button>
     </ModalTitle>
 
-    <form>
+    <Form>
       {
         myPlaylists
           .map(({ playlistTitle, playlists }) => (
@@ -72,25 +50,35 @@ const StoreMusicModal = React.memo(({
             />
           ))
       }
-    </form>
+    </Form>
 
-    {
-      storeTextFormOpenState
-        ? (
-          <AddPlaylistForm
-            value={storeTextInput}
-            onChange={onChangeTextInput}
-            onClick={onAddPlaylist}
-          />
-        )
-        : (
-          <AddPlaylist
-            onClick={onOpenTextForm}
-          >
-            <p>+ 새 플레이리스트만들기</p>
-          </AddPlaylist>
-        )
-    }
+    <ModalBottom>
+      {
+        storeTextFormOpenState
+          ? (
+            <AddPlaylistForm
+              value={storeTextInput}
+              onChange={onChangeTextInput}
+              onClick={onAddPlaylist}
+            />
+          )
+          : (
+            <AddPlaylist
+              onClick={onOpenTextForm}
+            >
+              <OpenIcon />
+              <p>새 플레이리스트 만들기</p>
+            </AddPlaylist>
+          )
+      }
+
+      <SubmitButton
+        type="button"
+        onClick={() => { }}
+      >
+        저장
+      </SubmitButton>
+    </ModalBottom>
   </Modal>
 )));
 

@@ -30,6 +30,10 @@ import MoodBackgroundHover from './images/icons/moodbutton_h.png';
 import MoodBackgroundActive from './images/icons/moodbutton_a.png';
 import MoodBackgroundSelected from './images/icons/moodbutton_s.png';
 
+import CloseModalIcon from './images/icons/close-modal-icon.png';
+import PlaylistCheckedIcon from './images/icons/playlist-checked-icon.png';
+import AddPlaylistIcon from './images/icons/add-playlist-icon.png';
+
 export {
   PlayIcon,
   PauseIcon,
@@ -59,4 +63,7 @@ export {
   MoodBackgroundHover,
   MoodBackgroundActive,
   MoodBackgroundSelected,
+  CloseModalIcon,
+  PlaylistCheckedIcon,
+  AddPlaylistIcon,
 };

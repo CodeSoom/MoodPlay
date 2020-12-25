@@ -1,18 +1,6 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
-
-import { MAIN_FONT_COLOR } from '../styles/constants';
-
-const AddPlaylist = styled.form({
-  background: MAIN_FONT_COLOR,
-  padding: '10px 20px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
-  borderTop: '1px solid #000',
-});
+import { AddPlaylistFormWrap } from '../styles/storeMusicModal';
 
 const AddPlaylistForm = React.memo(({
   value, onChange, onClick,
@@ -22,12 +10,11 @@ const AddPlaylistForm = React.memo(({
   };
 
   return (
-    <AddPlaylist>
-      <label htmlFor="name">이름</label>
+    <AddPlaylistFormWrap>
       <input
         type="text"
         id="name"
-        placeholder="플레이리스트 이름 입력..."
+        placeholder="새 플레이리스트 이름"
         value={value}
         onChange={handleChange}
       />
@@ -35,9 +22,9 @@ const AddPlaylistForm = React.memo(({
         type="button"
         onClick={onClick}
       >
-        만들기
+        Save
       </button>
-    </AddPlaylist>
+    </AddPlaylistFormWrap>
   );
 });
 
