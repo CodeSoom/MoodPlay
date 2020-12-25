@@ -9,6 +9,7 @@ import MYPLAYLISTS from '../../fixtures/myplaylists';
 describe('StoreMusicModal', () => {
   const handleClick = jest.fn();
   const handleChange = jest.fn();
+  const handleSave = jest.fn();
 
   beforeEach(() => {
     handleClick.mockClear();
@@ -30,6 +31,7 @@ describe('StoreMusicModal', () => {
         onAddPlaylist={handleClick}
         onOpenTextForm={handleClick}
         onChangeTextInput={handleChange}
+        onSavePlaylist={handleSave}
       />,
     );
   }
@@ -47,6 +49,10 @@ describe('StoreMusicModal', () => {
     fireEvent.click(getByText('x'));
 
     expect(handleClick).toBeCalled();
+
+    fireEvent.click(getByText('저장'));
+
+    expect(handleSave).toBeCalled();
   });
 
   context('with my playlists', () => {

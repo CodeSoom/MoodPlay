@@ -22,6 +22,7 @@ import reducer, {
   storePlaylistTitle,
   storePlaylistMusic,
   deletePlaylistMusic,
+  savePlaylist,
 } from './slice';
 
 const middlewares = getDefaultMiddleware();
@@ -608,6 +609,26 @@ describe('actions', () => {
           },
         },
       ]);
+    });
+  });
+
+  describe('savePlaylist', () => {
+    beforeEach(() => {
+      store = mockStore({
+        myPlaylists: [],
+        selectedMusic: { id: { videoId: 'xxx1' } },
+      });
+    });
+
+    it('runs setStoreOpenState', () => {
+      store.dispatch(savePlaylist());
+
+      const actions = store.getActions();
+
+      expect(actions).toEqual([{
+        payload: undefined,
+        type: 'application/setStoreOpenState',
+      }]);
     });
   });
 });

@@ -23,6 +23,7 @@ const StoreMusicModal = React.memo(({
   onOpenTextForm,
   onChangeTextInput,
   onCheckPlaylist,
+  onSavePlaylist,
 }) => ((
   <Modal>
     <ModalTitle>
@@ -74,7 +75,7 @@ const StoreMusicModal = React.memo(({
 
       <SubmitButton
         type="button"
-        onClick={() => { }}
+        onClick={onSavePlaylist}
       >
         저장
       </SubmitButton>

@@ -54,6 +54,10 @@ describe('StoreMusicContainer', () => {
     fireEvent.click(getByText('x'));
 
     expect(dispatch).toBeCalled();
+
+    fireEvent.click(getByText('저장'));
+
+    expect(dispatch).toBeCalledTimes(2);
   });
 
   context('with my playlists', () => {

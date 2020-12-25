@@ -214,10 +214,6 @@ export function storePlaylistTitle() {
 
     dispatch(addPlaylistTitle(storeTextInput));
 
-    const { myPlaylists } = getState();
-
-    saveItem('moodPlay', myPlaylists);
-
     dispatch(setStoreTextInput(''));
   };
 }
@@ -227,10 +223,6 @@ export function storePlaylistMusic(playlistTitle) {
     const { selectedMusic } = getState();
 
     dispatch(addPlaylistMusic({ playlistTitle, selectedMusic }));
-
-    const { myPlaylists } = getState();
-
-    saveItem('moodPlay', myPlaylists);
   };
 }
 
@@ -239,10 +231,16 @@ export function deletePlaylistMusic(playlistTitle) {
     const { selectedMusic } = getState();
 
     dispatch(removePlaylistMusic({ playlistTitle, selectedMusic }));
+  };
+}
 
+export function savePlaylist() {
+  return (dispatch, getState) => {
     const { myPlaylists } = getState();
 
     saveItem('moodPlay', myPlaylists);
+
+    dispatch(setStoreOpenState());
   };
 }
 

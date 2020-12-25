@@ -11,6 +11,7 @@ import {
   storePlaylistTitle,
   storePlaylistMusic,
   deletePlaylistMusic,
+  savePlaylist,
 } from '../redux/slice';
 
 import StoreMusicModal from '../components/StoreMusicModal';
@@ -67,6 +68,10 @@ const StoreMusicContainer = React.memo(() => {
     dispatch(storePlaylistMusic(playlistTitle));
   }, [dispatch]);
 
+  const handleSavePlaylist = useCallback(() => {
+    dispatch(savePlaylist());
+  }, [dispatch]);
+
   return (
     <>
       {
@@ -85,6 +90,7 @@ const StoreMusicContainer = React.memo(() => {
                 onOpenTextForm={handleTextFormOpen}
                 onChangeTextInput={handleTextInputChange}
                 onCheckPlaylist={handleCheckPlaylist}
+                onSavePlaylist={handleSavePlaylist}
               />
             </ModalWrap>
           )
