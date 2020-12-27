@@ -10,4 +10,4 @@
 다시 찾을 필요 없이 마이 플레이리스트에서 언제든지 즐길 수 있습니다. 
 
 # 링크
- https://moodplay.me/
+ http://moodplay.me/
