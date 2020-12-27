@@ -12,12 +12,15 @@ import {
   HomeIcon,
   MoodControllerIcon,
   MyPlayIcon,
+  SearchMusicIcon,
   HomeIconHover,
   MoodControllerIconHover,
   MyPlayIconHover,
+  SearchMusicIconHover,
   HomeIconActive,
   MoodControllerIconActive,
   MyPlayIconActive,
+  SearchMusicIconActive,
 } from '../assets/images';
 
 import { BACKGROUND_COLOR_BLACK, BACKGROUND_COLOR_GRAY } from '../styles/constants';
@@ -92,6 +95,13 @@ const NavigationBar = React.memo(({ moodCategories, path }) => {
       icon: MyPlayIcon,
       iconHover: MyPlayIconHover,
       iconActive: MyPlayIconActive,
+    },
+    {
+      title: '검색',
+      link: '/search',
+      icon: SearchMusicIcon,
+      iconHover: SearchMusicIconHover,
+      iconActive: SearchMusicIconActive,
     }]
     : [{
       title: '무드선택',
@@ -113,6 +123,13 @@ const NavigationBar = React.memo(({ moodCategories, path }) => {
       icon: MyPlayIcon,
       iconHover: MyPlayIconHover,
       iconActive: MyPlayIconActive,
+    },
+    {
+      title: '검색',
+      link: '/search',
+      icon: SearchMusicIcon,
+      iconHover: SearchMusicIconHover,
+      iconActive: SearchMusicIconActive,
     }];
 
   return (
