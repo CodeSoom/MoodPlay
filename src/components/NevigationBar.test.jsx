@@ -29,6 +29,7 @@ describe('NavigationBar', () => {
       expect(container).toHaveTextContent('무드선택');
       expect(container).toHaveTextContent('홈');
       expect(container).toHaveTextContent('마이플레이');
+      expect(container).toHaveTextContent('검색');
     });
   });
 
@@ -41,6 +42,7 @@ describe('NavigationBar', () => {
       expect(container).toHaveTextContent('무드선택');
       expect(container).not.toHaveTextContent('홈');
       expect(container).toHaveTextContent('마이플레이');
+      expect(container).toHaveTextContent('검색');
     });
   });
 });
