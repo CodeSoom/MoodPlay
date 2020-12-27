@@ -8,6 +8,7 @@ import facepaint from 'facepaint';
 
 import MusicItems from '../components/MusicItems';
 import SearchBar from '../components/SearchBar';
+import Recommendation from '../components/Recommendation';
 
 import { get } from '../utils/utils';
 
@@ -29,9 +30,9 @@ const Wrap = styled.div(() => mq({
   position: 'fixed',
   top: 0,
   left: [0, '176px', '176px'],
+  padding: ['13vh 10vw', '150px  82px  0 82px', '150px  82px  0 82px'],
   width: ['100vw', 'calc(100vw - 602px)', 'calc(100vw - 602px)'],
   height: '100vh',
-  padding: ['13vh 10vw', '150px  82px  0 82px', '150px  82px  0 82px'],
   background: BACKGROUND_COLOR_BLACK,
   color: MAIN_FONT_COLOR,
 }));
@@ -72,11 +73,19 @@ const SearchMusicContainer = React.memo(() => {
         onChange={handleChangeInput}
         onClick={handleSearchMusic}
       />
-      <MusicItems
-        music={searchMusic}
-        musicItemsTitle=""
-        onClick={handleSelectMusic}
-      />
+      {
+        searchMusic.length
+          ? (
+            <MusicItems
+              music={searchMusic}
+              musicItemsTitle=""
+              onClick={handleSelectMusic}
+            />
+          )
+          : (
+            <Recommendation />
+          )
+      }
     </Wrap>
   );
 });
