@@ -50,7 +50,7 @@ const IconItem = styled.li(() => mq({
   alignItems: 'center',
   marginTop: ['0', '36px'],
 
-  '&:nth-child(1)': {
+  '&:nth-of-type(1)': {
     marginTop: '0',
   },
 }));

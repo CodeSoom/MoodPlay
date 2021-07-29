@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { getCategories } from '../../sevices/api';
+import { getCategories } from '../../services/api';
 
 export function reduceCategories(acc, cur) {
   const duplicateCategory = acc.find((item) => item[0] === cur[0]);

@@ -6,7 +6,7 @@ import facepaint from 'facepaint';
 
 import _ from 'lodash';
 
-import { getUpNextItems } from '../utils/mysicPlayer/musicPlayer';
+import { getUpNextItems } from '../utils/musicPlayer/musicPlayer';
 
 const mq = facepaint([
   '@media(min-width: 350px)',
