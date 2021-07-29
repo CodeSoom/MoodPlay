@@ -8,12 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import App from './App';
 
-import { loadItem } from './sevices/storage';
+import { loadItem } from './services/storage';
 
 import MYPLAYLISTS from '../fixtures/myplaylists';
 
 jest.mock('react-redux');
-jest.mock('./sevices/storage');
+jest.mock('./services/storage');
 
 describe('App', () => {
   const dispatch = jest.fn();

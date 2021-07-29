@@ -17,7 +17,7 @@ import MusicItems from '../components/MusicItems';
 
 import { get } from '../utils/utils';
 
-import { getPlaylistMusic } from '../utils/mysicPlayer/musicPlayer';
+import { getPlaylistMusic } from '../utils/musicPlayer/musicPlayer';
 
 import { BACKGROUND_COLOR_BLACK, MAIN_FONT_COLOR } from '../styles/constants';
 

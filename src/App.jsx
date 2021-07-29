@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 
 import './assets/css/global.css';
 
-import { loadItem } from './sevices/storage';
+import { loadItem } from './services/storage';
 
 import { setMyPlaylists } from './redux/slice';
 

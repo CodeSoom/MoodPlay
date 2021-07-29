@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import _ from 'lodash';
 
-import { saveItem } from '../sevices/storage';
+import { saveItem } from '../services/storage';
 
 import {
   getCategoryKeyword,
   fetchMusic,
-} from '../sevices/api';
+} from '../services/api';
 
 import {
   getMoodCategories,

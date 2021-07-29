@@ -31,7 +31,7 @@ import reducer, {
 const middlewares = getDefaultMiddleware();
 const mockStore = configureStore(middlewares);
 
-jest.mock('../sevices/api');
+jest.mock('../services/api');
 
 describe('reducer', () => {
   describe('setMoodselectFields', () => {
